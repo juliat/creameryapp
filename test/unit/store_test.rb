@@ -88,6 +88,10 @@ class StoreTest < ActiveSupport::TestCase
       assert_equal 1, Store.inactive.size
       assert_equal ["Hazelwood"], Store.inactive.alphabetical.map{|s| s.name}
     end
-    
-  end
+	
+	# test the address method
+	should "shows that the address method returns a string of the store's complete address" do
+		assert_equal @oakland.address, "5001 Forbes Avenue, Pittsburgh, PA 15213"
+	end
+end
 end

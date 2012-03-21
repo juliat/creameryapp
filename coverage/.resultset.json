@@ -1,16 +1,93 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/lheimann/67-272-S12/project_2012/creamery_phase_2/app/controllers/application_controller.rb": [
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/lheimann/67-272-S12/project_2012/creamery_phase_2/app/helpers/application_helper.rb": [
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/lheimann/67-272-S12/project_2012/creamery_phase_2/app/models/assignment.rb": [
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/controllers/assignments_controller.rb": [
+
+      ],
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/controllers/employees_controller.rb": [
+
+      ],
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/controllers/home_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/controllers/stores_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null
+      ],
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/models/store.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        78,
+        78,
+        78,
+        null,
+        null,
+        null
+      ],
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/models/assignment.rb": [
         1,
         null,
         1,
@@ -65,7 +142,7 @@
         null,
         null
       ],
-      "/Users/lheimann/67-272-S12/project_2012/creamery_phase_2/app/models/employee.rb": [
+      "C:/Users/Julia/Documents/CMU/Spring2012/272/c3/app/models/employee.rb": [
         1,
         null,
         1,
@@ -136,52 +213,9 @@
         207,
         null,
         null
-      ],
-      "/Users/lheimann/67-272-S12/project_2012/creamery_phase_2/app/models/store.rb": [
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        75,
-        75,
-        75,
-        null,
-        null,
-        null
       ]
     },
-    "timestamp": 1331651086
+    "timestamp": 1332372496
   },
   "RSpec": {
     "coverage": {

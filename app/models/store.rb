@@ -28,6 +28,15 @@ class Store < ActiveRecord::Base
   # Misc Constants
   STATES_LIST = [['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]
   
+  
+  # Helper functions
+   # ------------------------------
+	def address
+		return street+", "+city+", "+state+" "+zip
+	end
+	
+	
+  
   # Callback code
   # -----------------------------
    private
@@ -37,5 +46,5 @@ class Store < ActiveRecord::Base
      phone.gsub!(/[^0-9]/,"") # strip all non-digits
      self.phone = phone       # reset self.phone to new string
    end
-
+   
 end
