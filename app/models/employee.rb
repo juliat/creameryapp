@@ -44,9 +44,9 @@ class Employee < ActiveRecord::Base
   
   # returns the employee's most recent assignment (either their current assignment
   # or their most recent past assignment
-  def most_recent_assignment
-	return Assignment.for_employee(self.id).chronological.last
-  end
+  # def most_recent_assignment
+	# return Assignment.for_employee(self.id).chronological.last
+  # end
   
   def over_18?
     date_of_birth < 18.years.ago.to_date
@@ -63,6 +63,13 @@ class Employee < ActiveRecord::Base
   def pretty_ssn
 	return ssn[0..2]+"-"+ssn[3..4]+"-"+ssn[5..8]
   end
+  
+  def active_status
+		if active
+			return "active"
+		end
+		return "inactive"
+	end
   
   # Misc Constants
   ROLES_LIST = [['Employee', 'employee'],['Manager', 'manager'],['Administrator', 'admin']]

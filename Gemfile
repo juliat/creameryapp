@@ -32,7 +32,7 @@ group :test do
 	gem 'email_spec'
 	gem 'nokogiri'
 	gem 'simplecov'
-	gem 'tconsole', '1.1.1'
+	# gem 'tconsole', '1.1.1'
 end
 
 

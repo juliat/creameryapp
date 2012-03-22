@@ -176,9 +176,15 @@ class EmployeeTest < ActiveSupport::TestCase
 		assert_equal "084-35-9822", @cindy.pretty_ssn
 	end
 	
-	# test the most_recent_assignment method
-	should "shows that the most recent assignment method works" do
-		assert_equal @recent_assign_benji, @benji.most_recent_assignment
+	# test the active_status method
+	should "show that the active_status method returns a string indicating the employee's status as active or inactive" do
+		assert_equal "inactive", @ralph.active_status
+		assert_equal "active", @cindy.active_status
 	end
+	
+	# test the most_recent_assignment method
+	# should "shows that the most recent assignment method works" do
+		# assert_equal @recent_assign_benji, @benji.most_recent_assignment
+	# end
   end
 end

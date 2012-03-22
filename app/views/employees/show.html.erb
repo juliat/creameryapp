@@ -1,6 +1,11 @@
 <h1><%=  @employee.proper_name %></h1>
-
-
+<% if @most_recent_assignment == @employee.current_assignment %>
+	<h2>Currently a <%= @most_recent_assignment.employee.role %> at the <%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %></h2>
+<% elsif (@most_recent_assignment.nil? == false) %>
+	<h2>Was a <%= @most_recent_assignment.employee.role %> at the <%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %> until <%= @most_recent_assignment.end_date %>.</h2>
+<% end %>
+	
+	
 <table id="employee_details">
 	<tr>
 		<th>Phone</th>
@@ -20,5 +25,8 @@
 	</tr>
 </table>
 
-
 <a href=<%= edit_employee_path(@employee) %> class="edit">Edit Employee Information</a>
+
+<% unless @past_assignments.empty? == true%>
+  <%= render :partial => "past_assignments" %>
+<% end %>

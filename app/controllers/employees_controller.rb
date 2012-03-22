@@ -5,7 +5,8 @@ class EmployeesController < ApplicationController
 	
 	def show
 		@employee = Employee.find(params[:id])
-
+		@most_recent_assignment = Assignment.for_employee(@employee.id).chronological.last
+		@past_assignments = Assignment.for_employee(@employee.id).past.chronological
 	end
 
 	def new
