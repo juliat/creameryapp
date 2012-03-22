@@ -56,6 +56,10 @@ class EmployeeTest < ActiveSupport::TestCase
       @alex = FactoryGirl.create(:employee, :first_name => "Alex", :last_name => "Heimann", :role => "admin")
       @assign_ed = FactoryGirl.create(:assignment, :employee => @ed, :store => @cmu)
       @assign_cindy = FactoryGirl.create(:assignment, :employee => @cindy, :store => @cmu, :end_date => nil)
+	  # adding objects to test most_recent_assignment method
+	  @benji = FactoryGirl.create(:employee, :first_name => "Benji", :last_name => "Samson")
+	  @old_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 2.years.ago.to_date, :end_date => 1.year.ago.to_date)
+	  @recent_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 1.year.ago.to_date, :end_date => 1.month.ago.to_date)
     end
     
     # and provide a teardown method as well
@@ -67,8 +71,11 @@ class EmployeeTest < ActiveSupport::TestCase
       @ben.destroy
       @kathryn.destroy
       @alex.destroy
+	  @benji.destroy
       @assign_ed.destroy
       @assign_cindy.destroy
+	  @old_assign_benji.destroy
+	  @recent_assign_benji.destroy
     end
   
     # now run the tests:
@@ -85,15 +92,15 @@ class EmployeeTest < ActiveSupport::TestCase
     end
     
     # test scope younger_than_18
-    should "show there are four employees over 18" do
-      assert_equal 4, Employee.is_18_or_older.size
-      assert_equal ["Gruberman", "Heimann", "Janeway", "Sisko"], Employee.is_18_or_older.alphabetical.map{|e| e.last_name}
+    should "show there are five employees over 18" do
+      assert_equal 5, Employee.is_18_or_older.size
+      assert_equal ["Gruberman", "Heimann", "Janeway", "Samson", "Sisko"], Employee.is_18_or_older.alphabetical.map{|e| e.last_name}
     end
     
     # test the scope 'active'
-    should "shows that there are five active employees" do
-      assert_equal 5, Employee.active.size
-      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Sisko"], Employee.active.alphabetical.map{|e| e.last_name}
+    should "shows that there are six active employees" do
+      assert_equal 6, Employee.active.size
+      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Samson", "Sisko"], Employee.active.alphabetical.map{|e| e.last_name}
     end
     
     # test the scope 'inactive'
@@ -103,9 +110,9 @@ class EmployeeTest < ActiveSupport::TestCase
     end
     
     # test the scope 'regulars'
-    should "shows that there are 3 regular employees: Ed, Cindy and Ralph" do
-      assert_equal 3, Employee.regulars.size
-      assert_equal ["Crawford","Gruberman","Wilson"], Employee.regulars.alphabetical.map{|e| e.last_name}
+    should "shows that there are 4 regular employees: Ed, Cindy, Samson, and Ralph" do
+      assert_equal 4, Employee.regulars.size
+      assert_equal ["Crawford","Gruberman", "Samson", "Wilson"], Employee.regulars.alphabetical.map{|e| e.last_name}
     end
     
     # test the scope 'managers'
@@ -158,5 +165,20 @@ class EmployeeTest < ActiveSupport::TestCase
       assert_equal 17, @cindy.age
       assert_equal 30, @kathryn.age
     end
+
+	#test the pretty_phone method
+	should "shows that the pretty_phone method returns a prettily formatted phone number" do	
+		assert_equal  "412-268-2323", @ben.pretty_phone
+	end
+	
+	#test the pretty_ssn method
+	should "shows that the pretty_ssn method returns a prettily formatted ssn" do
+		assert_equal "084-35-9822", @cindy.pretty_ssn
+	end
+	
+	# test the most_recent_assignment method
+	should "shows that the most recent assignment method works" do
+		assert_equal @recent_assign_benji, @benji.most_recent_assignment
+	end
   end
 end

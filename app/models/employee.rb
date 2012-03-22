@@ -42,12 +42,26 @@ class Employee < ActiveRecord::Base
     curr_assignment.first   # return as a single object, not an array
   end
   
+  # returns the employee's most recent assignment (either their current assignment
+  # or their most recent past assignment
+  def most_recent_assignment
+	return Assignment.for_employee(self.id).chronological.last
+  end
+  
   def over_18?
     date_of_birth < 18.years.ago.to_date
   end
   
   def age
     (Time.now.to_s(:number).to_i - date_of_birth.to_time.to_s(:number).to_i)/10e9.to_i
+  end
+  
+  	def pretty_phone
+		return phone[0..2]+"-"+phone[3..5]+"-"+phone[6..9]
+	end
+  
+  def pretty_ssn
+	return ssn[0..2]+"-"+ssn[3..4]+"-"+ssn[5..8]
   end
   
   # Misc Constants

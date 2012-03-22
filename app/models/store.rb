@@ -35,6 +35,17 @@ class Store < ActiveRecord::Base
 		return street+", "+city+", "+state+" "+zip
 	end
 	
+	def pretty_phone
+		return phone[0..2]+"-"+phone[3..5]+"-"+phone[6..9]
+	end
+	
+	def active_status
+		if active
+			return "active"
+		end
+		return "inactive"
+	end
+	
 	
   
   # Callback code

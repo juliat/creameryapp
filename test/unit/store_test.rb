@@ -93,5 +93,17 @@ class StoreTest < ActiveSupport::TestCase
 	should "shows that the address method returns a string of the store's complete address" do
 		assert_equal @oakland.address, "5001 Forbes Avenue, Pittsburgh, PA 15213"
 	end
-end
-end
+	
+	#test the pretty_phone method
+	should "shows that the pretty_phone method returns a prettily formatted phone number" do	
+		assert_equal "412-268-8211", @oakland.pretty_phone
+	end
+	
+	# test the active_status method
+	should "shows that the active_status method returns a string indicating the store's active/inactive status" do
+		assert_equal "active", @oakland.active_status
+		assert_equal "inactive", @hazelwood.active_status
+	end
+	
+end # context
+end # class

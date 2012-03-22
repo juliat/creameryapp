@@ -1,0 +1,18 @@
+<h1><%=  @store.name%></h1>
+<h2><%=  @store.address %></h2>
+
+<h5 class="active_status"><%= @store.active_status %></h5>
+<a href=<%= edit_store_path(@store) %> class="edit">Edit Store Information</a>
+
+
+<h2>Current Employees</h2>
+<a href=<%=  link_to "Add A New Employee", new_employee_path  %>
+<% if @current_employees.empty? == true%>
+	<p>No employees currently work at the <%=  @store.name %>store.</p>
+<% else %>
+  <%= render :partial => "current_employees" %>
+<% end %>
+
+<% unless @past_employees.empty? == true%>
+  <%= render :partial => "past_employees" %>
+<% end %>
