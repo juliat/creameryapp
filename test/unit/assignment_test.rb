@@ -143,16 +143,6 @@ class AssignmentTest < ActiveSupport::TestCase
        assert_equal 1.day.ago.to_date, @kathryn.assignments.first.end_date
        @promote_kathryn.destroy
      end
-     
-	 # test for employee helper method
-	 should "show that the employee method returns the employee object to which the assignment belongs" do
-		assert_equal @ed, @assign_ed.employee
-	end
-	
-	# test store helper method
-	should "show that the store method returns the store object to which the assignment belongs" do
-		assert_equal @cmu, @assign_ed.store
-	end
 	 
 	 end # context
 end
