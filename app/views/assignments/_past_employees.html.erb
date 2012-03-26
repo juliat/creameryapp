@@ -1,0 +1,9 @@
+<h2>Past Employees:</h2>
+<table class = "past_employees">  
+<% for employee in @past_employees %>
+  <tr>
+	<td><%= employee.role %></td>
+    <td><%= link_to employee.name, employee_path(employee) %></td>
+  </tr>
+<% end %>
+</table>
