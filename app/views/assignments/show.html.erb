@@ -1,22 +1,27 @@
+<h1><%=  link_to "#{@assignment.employee.proper_name}", employee_path(@assignment.employee) %> -
+<%=  link_to "#{@assignment.store.name}", store_path(@assignment.store) %> </h1>
+<table class="assignment_info">
+		<tr>
+			<th>Start Date</th>
+			<td><%= @assignment.start_date.strftime("%m/%d/%Y")  %></td>
+		</tr>
+		<% if @assignment.end_date.nil? %>
+		<tr>
+			<th>End Date</th>
+			<td>None. (This is the current assignment for <%=  @assignment.employee.proper_name %>)</td>
+		</tr>
+		<% else %>
+		<tr>
+			<th>End Date</th>
+			<td><%= @assignment.end_date.strftime("%m/%d/%Y")  %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<th>Pay Level</th>
+			<td><%= @assignment.pay_level %></td>
+		</tr>
+</table>
 
-
-<h1><%=  @store.name%></h1>
-<h2><%=  @store.address %></h2>
-
-<h5 class="active_status"><%= @store.active_status %></h5>
-  <%= link_to "View All Stores", stores_path %>
-<a href=<%= edit_store_path(@store) %> class="edit">Edit Store Information</a>
- <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete %>
-
-
-<h2>Current Employees</h2>
-<a href=<%=  link_to "Add A New Employee", new_employee_path  %>
-<% if @current_employees.empty? == true%>
-	<p>No employees currently work at the <%=  @store.name %>store.</p>
-<% else %>
-  <%= render :partial => "current_employees" %>
-<% end %>
-
-<% unless @past_employees.empty? == true%>
-  <%= render :partial => "past_employees" %>
-<% end %>
+  <%= link_to "View All Assignments", assignments_path %>
+<a href=<%= edit_assignment_path(@assignment) %> class="edit">Edit Assignment Information</a>
+ <%= link_to "Delete Assignment", @assignment, :confirm => 'Are you sure?', :method => :delete %>

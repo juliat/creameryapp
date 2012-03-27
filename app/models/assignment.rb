@@ -25,6 +25,10 @@ class Assignment < ActiveRecord::Base
   scope :for_role, lambda {|role| joins(:employee).where("role = ?", role) }
 
 
+    # Misc Constants
+	PAY_LEVELS_LIST = [1, 2, 3, 4, 5, 6]
+  
+  
   # Private methods for callbacks and custom validations
   private  
   

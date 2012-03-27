@@ -1,4 +1,6 @@
 <h1>All Employees</h1>
+<%=  link_to "Add A New Employee", new_employee_path  %>
+<!--
 <form id="filter">
   <fieldset>
 		<legend>Filter by Status</legend>
@@ -19,7 +21,7 @@
 		<label><input type="radio" name="sort" value="time"></label>      
   </fieldset>
 </form>
-
+-->
 <ul id="employees" class="image-grid">
 <%
 for employee in @employees  %>
