@@ -1,6 +1,6 @@
 <h1>Current Assignments</h1>
 <%= link_to "Create a New Assignment", new_assignment_path, :class => "button"  %>
-		<table class="tablesorter">
+		<table class="display dataTable">
 			<thead>
 				<tr>
 					<th>Store</th>
@@ -24,9 +24,9 @@
 				<% end %>
 			</tbody>
 		</table>
-		<%= render :partial => "partials/tablesorter_pager" %>
+	
 <h1>Past Assignments</h1>
-	<table class="tablesorter">
+	<table class="display dataTable">
 		<thead>
 			<tr>
 				<th>Store</th>
@@ -50,4 +50,4 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= render :partial => "partials/tablesorter_pager" %>
+
