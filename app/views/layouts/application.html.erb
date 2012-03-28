@@ -3,7 +3,7 @@
 	<head>
 	  <title>A&amp;M Creamery</title>
 	  <%= stylesheet_link_tag "application"%>
-	  <%= javascript_include_tag "application"%>
+	  <%= javascript_include_tag "jquery", "jquery-ui", "jquery_ujs", "application", "tablesorter/jquery.tablesorter.min", "tablesorter/jquery.tablesorter.pager", "call-tablesorter.js" %> 
 	  <%= csrf_meta_tags %>
 	</head>
 	
@@ -11,10 +11,12 @@
 		<div id="header">
 			<%= render :partial => "partials/navigation" %>
 		</div>
-		<div id = "main">
-			<%= yield %>
+		<div id = "main-wrapper">
+			<div id="main">
+				<%= yield %>
+			</div>
 		</div>
-		<div id = "footer">
+		<div id = "footer-wrapper">
 			<%=  render :partial  => "partials/footer" %>
 		</div>
 	</body>

@@ -1,25 +1,53 @@
-<h1>Assignments</h1>
-<%=  link_to "Create a New Assignment", new_assignment_path  %>
-<% for assignment in @assignments %>
-	<table>
-		<tr>
-			<th>Assignment</th>
-			<th>Role</th>
-			<th>Pay Level</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-		</tr>
-		<tr>
-			<td><%=  link_to "#{assignment.employee.proper_name} - #{assignment.store.name}", assignment_path(assignment) %></td>
-			<td><%= assignment.employee.role %></td>
-			<td><%= assignment.pay_level %></td>
-			<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>
-			<% if assignment.end_date.nil? == false %>
-				<td><%= assignment.end_date.strftime("%m/%d/%Y")  %></td>
-			<% else %>
-				<td>"Current Assignment"</td>
+<h1>Current Assignments</h1>
+<%= link_to "Create a New Assignment", new_assignment_path, :class => "button"  %>
+		<table class="tablesorter">
+			<thead>
+				<tr>
+					<th>Store</th>
+					<th>Employee</th>
+					<th>Role</th>
+					<th>Pay Level</th>
+					<th>Start Date</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for assignment in @current_assignments %>
+				<tr>
+					<td><%= link_to(assignment.store.name, store_path(assignment.store)) %></td>
+					<td><%= assignment.employee.name %>
+					<td><%= assignment.employee.role %></td>
+					<td><%= assignment.pay_level %></td>
+					<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>
+					<td><button value="end_assignment">End Assignment</button></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= render :partial => "partials/tablesorter_pager" %>
+<h1>Past Assignments</h1>
+	<table class="tablesorter">
+		<thead>
+			<tr>
+				<th>Store</th>
+				<th>Employee</th>
+				<th>Role</th>
+				<th>Pay Level</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for assignment in @past_assignments %>
+			<tr>
+				<td><%= link_to(assignment.store.name, store_path(assignment.store)) %></td>
+				<td><%= assignment.employee.name %>
+				<td><%= assignment.employee.role %></td>
+				<td><%= assignment.pay_level %></td>
+				<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>
+				<td><%= assignment.end_date.strftime("%m/%d/%Y") %></td>
+			</tr>
 			<% end %>
-		</tr>
+		</tbody>
 	</table>
-	<!-- edit button -->
-<% end %>
+	<%= render :partial => "partials/tablesorter_pager" %>

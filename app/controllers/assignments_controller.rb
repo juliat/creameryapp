@@ -1,6 +1,7 @@
 class AssignmentsController < ApplicationController
 	def index
-		@assignments = Assignment.chronological.reverse
+		@current_assignments = Assignment.current.chronological.reverse
+		@past_assignments = Assignment.past.chronological.reverse
 	end
 	
 	def show
