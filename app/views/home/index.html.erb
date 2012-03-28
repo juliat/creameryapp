@@ -1,1 +1,18 @@
-<h1>Welcome to the Amazing and Marvelous Creamery</h1>
+<h1>The Amazing and Marvelous Creamery</h1>
+<h2>Our Stores</h2>
+
+<% for store in @stores %>
+	<h2><span class="invisible">Name: </span><%=  link_to "#{store.name}", store_path(store) %></h2>
+	<table>
+		<tr>
+			<th>Address</th>
+			<td><%= store.address %></td>
+		</tr>
+		<tr>
+			<th>Phone</th>
+			<td><%= store.pretty_phone %></td>
+		</tr>
+	</table>
+	<!-- edit button -->
+	<!-- manage employees button -->
+<% end %>

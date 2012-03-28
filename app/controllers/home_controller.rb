@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+	@stores = Store.active.alphabetical;
   end
 
   def about

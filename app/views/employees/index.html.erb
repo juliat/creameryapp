@@ -1,32 +1,29 @@
 <h1>All Employees</h1>
-<%=  link_to "Add A New Employee", new_employee_path  %>
-<form id="filter">
-  <fieldset>
-		<legend>Filter by Status</legend>
-		<label><input type="radio" name="type" data-filter="*" checked="checked">All</label>
-		<label><input type="radio" name="type" data-filter=".active" checked="checked">Active</label>
-		<label><input type="radio" name="type" data-option-value=".inactive">Inactive</label>
-  </fieldset>
-  <fieldset>
-		<legend>Filter by Role</legend>
-		<label><input type="radio" name="type" value="all" checked="checked">All</label>
-		<label><input type="radio" name="type" value="manager">Manager</label>
-		<label><input type="radio" name="type" value="employee">Employee</label>
-  </fieldset>
-  <fieldset>
-		<legend>Sort by</legend>
-		<label><input type="radio" name="sort" value="name" checked="checked">Alphabetically</label>
-		<label><input type="radio" name="sort" value="store">Store</label>
-		<label><input type="radio" name="sort" value="pay">Pay Level</label>      
-		<label><input type="radio" name="sort" value="time"></label>      
-  </fieldset>
-</form>
-<ul id="employees" class="image-grid">
-<%
-for employee in @employees  %>
- <li class="<%= employee.active ? "active" : "inactive" %>">
-    <strong><%=  link_to employee.name, employee_path(employee) %></strong>
-    <span data-type="role"><%=  employee.role.capitalize %></span>
-  </li>
- <% end %>
- </ul>
+<%=  link_to "Add A New Employee", new_employee_path, :class =>"add button"  %>
+
+<table class="display dataTable">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Assignment</th>
+			<th>Role</th>
+			<th>Active</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for employee in @employees  %>
+		<tr>
+			<td><%= link_to(employee.name, employee_path(employee)) %></td>
+			<% if employee.current_assignment.nil? %>
+				<td><%= link_to("Create Assignment", new_assignment_path) %></td>
+			<% else %>
+				<td><%= link_to(employee.current_assignment.store.name, store_path(employee.current_assignment.store)) %></td>
+			<% end %>
+			<td><%= employee.role.capitalize %></td>
+			<td><%= employee.active ? "Active" : "Inactive" %></td>
+		</tr>
+		 <% end %>
+	</tbody>
+</table>
+		
+

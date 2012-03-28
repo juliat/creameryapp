@@ -22,6 +22,6 @@
 		</tr>
 </table>
 
-  <%= link_to "View All Assignments", assignments_path %>
-<a href=<%= edit_assignment_path(@assignment) %> class="edit">Edit Assignment Information</a>
- <%= link_to "Delete Assignment", @assignment, :confirm => 'Are you sure?', :method => :delete %>
+  <%= link_to "View All Assignments", assignments_path, :class => "view_all button" %>
+<a href=<%= edit_assignment_path(@assignment) %> class="edit button">Edit Assignment Information</a>
+ <%= link_to "Delete Assignment", @assignment, :confirm => 'Are you sure?', :method => :delete, :class => "delete button" %>

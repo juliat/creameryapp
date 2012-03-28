@@ -5,10 +5,10 @@
   <%= f.input :date_of_birth, :as => :date, :start_year => Date.today.year - 90,
                               :end_year => Date.today.year - 13,
                               :order => [:month, :day, :year] %>
-   <%= f.input :phone %>
+   <%= f.input :phone, :placeholder => "Phone number" %>
    <%= f.input :role, :collection => ["employee", "manager", "admin"], :prompt =>"Select Role" %>
    <%=  f.input :active %>
-   <%=  f.button :submit %>
+   <%=  f.button :submit, :class => "create" %>
 <% end %>
 
 

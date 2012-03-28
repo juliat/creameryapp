@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 	def index
-		@employees = Employee.active.alphabetical
+		@employees = Employee.alphabetical
 	end
 	
 	def show

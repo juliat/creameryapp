@@ -1,10 +1,10 @@
-<h1><%=  @store.name%></h1>
-<h2><%=  @store.address %></h2>
+<h1><span class="invisible">Name: </span><%=  @store.name%></h1>
+<h2><span class="invisible">Address: </span><%=  @store.address %></h2>
 
 <h5 class="active_status"><%= @store.active_status %></h5>
-  <%= link_to "View All Stores", stores_path %>
-<a href=<%= edit_store_path(@store) %> class="edit">Edit Store Information</a>
- <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete %>
+  <%= link_to "View All Stores", stores_path, :class =>"view_all store button"   %>
+<a href=<%= edit_store_path(@store) %> class="edit store button">Edit Store Information</a>
+ <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store button"   %>
 
 
 <a href=<%=  link_to "Add A New Employee", new_employee_path  %>
