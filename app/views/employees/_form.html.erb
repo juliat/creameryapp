@@ -3,7 +3,7 @@
   <%= f.input :last_name, :placeholder=>"Last Name" %>
   <%= f.input :ssn, :label => "SSN:", :placeholder=>"Social Security Number" %>
   <%= f.input :date_of_birth, :as => :date, :start_year => Date.today.year - 90,
-                              :end_year => Date.today.year - 14,
+                              :end_year => Date.today.year - 13,
                               :order => [:month, :day, :year] %>
    <%= f.input :phone %>
    <%= f.input :role, :collection => ["employee", "manager", "admin"], :prompt =>"Select Role" %>

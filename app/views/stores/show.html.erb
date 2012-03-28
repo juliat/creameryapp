@@ -11,6 +11,7 @@
 <% if @current_employees.empty? == true%>
 	<p>No employees currently work at the <%=  @store.name %>store.</p>
 <% else %>
+  <p><%= @store.employees.size > 1 ? "#{@store.employees.size} employees work":"#{@store.employees.size} employee works" %> at this store.</p>
   <%= render :partial => "current_employees" %>
 <% end %>
 
