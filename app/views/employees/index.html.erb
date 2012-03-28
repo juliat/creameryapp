@@ -1,13 +1,13 @@
 <h1>All Employees</h1>
 <%=  link_to "Add A New Employee", new_employee_path  %>
-<!--
 <form id="filter">
   <fieldset>
 		<legend>Filter by Status</legend>
-		<label><input type="radio" name="type" value="all" checked="checked">All</label>
-		<label><input type="radio" name="type" value="active" checked="checked">Active</label>
-		<label><input type="radio" name="type" value="inactive">Inactive</label>
+		<label><input type="radio" name="type" data-filter="*" checked="checked">All</label>
+		<label><input type="radio" name="type" data-filter=".active" checked="checked">Active</label>
+		<label><input type="radio" name="type" data-option-value=".inactive">Inactive</label>
   </fieldset>
+  <fieldset>
 		<legend>Filter by Role</legend>
 		<label><input type="radio" name="type" value="all" checked="checked">All</label>
 		<label><input type="radio" name="type" value="manager">Manager</label>
@@ -21,14 +21,12 @@
 		<label><input type="radio" name="sort" value="time"></label>      
   </fieldset>
 </form>
--->
 <ul id="employees" class="image-grid">
 <%
 for employee in @employees  %>
- <li data-id="id<% employee.id %>">
-  <li data-id="id-1" data-type="util">
+ <li class="<%= employee.active ? "active" : "inactive" %>">
     <strong><%=  link_to employee.name, employee_path(employee) %></strong>
-    <span data-type="role"><%=  employee.role %></span>
+    <span data-type="role"><%=  employee.role.capitalize %></span>
   </li>
  <% end %>
  </ul>

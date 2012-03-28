@@ -7,7 +7,6 @@
  <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete %>
 
 
-<h2>Current Employees</h2>
 <a href=<%=  link_to "Add A New Employee", new_employee_path  %>
 <% if @current_employees.empty? == true%>
 	<p>No employees currently work at the <%=  @store.name %>store.</p>
