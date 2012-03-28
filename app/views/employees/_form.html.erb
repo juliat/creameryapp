@@ -6,7 +6,7 @@
                               :end_year => Date.today.year - 13,
                               :order => [:month, :day, :year] %>
    <%= f.input :phone, :placeholder => "Phone number" %>
-   <%= f.input :role, :collection => ["employee", "manager", "admin"], :prompt =>"Select Role" %>
+   <%= f.input :role, :collection => ["Employee", "Manager", "Admin"], :prompt =>"Select Role" %>
    <%=  f.input :active %>
    <%=  f.button :submit, :class => "create" %>
 <% end %>

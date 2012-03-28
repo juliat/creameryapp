@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :store do
     name "CMU"
-    street "5001 Forbes Avenue"
+    street "5000 Forbes Avenue"
     city "Pittsburgh"
     state "PA"
     zip "15213"

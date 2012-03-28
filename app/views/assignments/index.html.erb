@@ -19,7 +19,10 @@
 					<td><%= assignment.employee.role.capitalize %></td>
 					<td><%= assignment.pay_level %></td>
 					<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>
-					<td><button value="end_assignment" class="end assignment button">End Assignment</button></td>
+					<td>
+						<%=  link_to("Details", assignment_path(assignment), :class => "details assignment button") %>
+						<!-- <button value="end_assignment" class="end assignment button">End</button> -->
+					</td>
 				</tr>
 				<% end %>
 			</tbody>

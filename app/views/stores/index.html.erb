@@ -1,4 +1,4 @@
-<h1>All Stores</h1>
+<h1>Current Stores</h1>
 <%=  link_to "Add A New Store", new_store_path, :class =>"add button"    %>
 <table class="display dataTable">
 	<thead>
@@ -6,16 +6,14 @@
 			<th>Store Name</th>
 			<th>Store Phone</th>
 			<th>Staff Count</th>
-			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% for store in @stores  %>
 		<tr>
 			<td><%= link_to(store.name, store_path(store)) %></td>
-			<td><%= store.phone %></td>
+			<td><%= store.pretty_phone %></td>
 			<td><%= store.employees.size %></td>
-			<td><%= store.active %></td>
 		</tr>
 		 <% end %>
 	</tbody>

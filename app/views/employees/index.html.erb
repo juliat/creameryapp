@@ -5,8 +5,9 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Assignment</th>
+			<th>Currently Assigned</th>
 			<th>Role</th>
+			<th>Phone</th>
 			<th>Active</th>
 		</tr>
 	</thead>
@@ -20,6 +21,7 @@
 				<td><%= link_to(employee.current_assignment.store.name, store_path(employee.current_assignment.store)) %></td>
 			<% end %>
 			<td><%= employee.role.capitalize %></td>
+			<td><%= employee.pretty_phone %></td>
 			<td><%= employee.active ? "Active" : "Inactive" %></td>
 		</tr>
 		 <% end %>

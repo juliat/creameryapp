@@ -1,5 +1,6 @@
-<h1><span class="invisible">Name: </span><%=  @store.name%></h1>
-<h2><span class="invisible">Address: </span><%=  @store.address %></h2>
+<h1 class="invisible">Store Details</h1>
+<h1><span class="invisible">Name: </span><%=  @store.name%> Store</h1>
+<h2><span class="invisible">Address: </span><%= @store.address %></h2>
 
 <h5 class="active_status"><%= @store.active_status %></h5>
   <%= link_to "View All Stores", stores_path, :class =>"view_all store button"   %>
