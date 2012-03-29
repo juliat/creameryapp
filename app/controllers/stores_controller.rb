@@ -5,9 +5,8 @@ class StoresController < ApplicationController
 	
 	def show
 		@store = Store.find(params[:id])
-		@managers = @store.employees.managers.active.all
-		@current_employees = @store.employees.regulars.active
-		@past_employees = @store.employees.regulars.inactive
+		@current_employees = Assignment.current.for_store(@store.id).map!{|a| a.employee}
+		# @past_employees = Assignment.past.for_store(@store.id).map!{|a| a.employee} 
 	end
 
 	def new

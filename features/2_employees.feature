@@ -85,9 +85,7 @@ Feature: Manage employees
 		And I select "Employee" from "employee_role"
 		And I check "employee_active"
 		And I press "Create Employee"
-		Then show me the page
 		Then I should see "Successfully created Zaphod Beeblebrox"
-		Then show me the page
 		And I should see "Name: Beeblebrox, Zaphod"
 		And I should see "Date of Birth: 04/30/93"
 		And I should see "Phone: 724-364-9511"
