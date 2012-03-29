@@ -91,7 +91,7 @@ class StoreTest < ActiveSupport::TestCase
 	
 	# test the address method
 	should "shows that the address method returns a string of the store's complete address" do
-		assert_equal @oakland.address, "5001 Forbes Avenue, Pittsburgh, PA 15213"
+		assert_equal @oakland.address, "5000 Forbes Avenue, Pittsburgh, PA 15213"
 	end
 	
 	#test the pretty_phone method

@@ -770,6 +770,7 @@ span.amp {
   display: inline;
   margin: 1.5em 0 0;
 }
+/* form placeholder text */
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: #636363;
@@ -778,7 +779,11 @@ input:-moz-placeholder,
 textarea:-moz-placeholder {
   color: #636363;
 }
-/*
+/* homepage 
+.store {
+	.g1;
+}
+*//*
  *  File:         demo_table.css
  *  CVS:          $Id$
  *  Description:  CSS descriptions for DataTables demo pages

@@ -1,5 +1,7 @@
-This is a set of models and unit tests that can be used to build the next phase of the Creamery project in 67-272.  It will also be used for a refactoring exercise for the morning section later in the semester.
+Why this is a few minutes late:
 
-This project also contains a populate script that will create 3 stores in the Pittsburgh area, 2 administrators (Alex and Mark), 6 managers (2 for each store) and 100 employees who have one or more assignments.  This should give you enough sample data for you to see how your application performs.  To generate this data, you can run 'rake db:populate' after you have created a database by running all the migrations.
+1. I have a Windows machine. Every test takes at least 10x as long to run.
+2. I found a typo in a helper method that I added to the store model (one space) that made a unit test I wrote for it fail. I found it after 11:59.
+3. I didn't commit all my changes (styling ones) at 11:59 because they broke the cucumber tests. So now, commiting to fix the unit test failure, I had to tweak quickly so I won't break the cucumber tests when I submit.
 
-We will be adding some additional files with cucumber testing features right after spring break.
+Sorry! This is not me attempting to get extra time to work-- I just don't want to get serious points off for one " " character breaking a model, so I have to resubmit now.

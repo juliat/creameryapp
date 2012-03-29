@@ -32,7 +32,7 @@ class Store < ActiveRecord::Base
   # Helper functions
    # ------------------------------
 	def address
-		return street+" , "+city+", "+state+" "+zip
+		return street+", "+city+", "+state+" "+zip
 	end
 	
 	def pretty_phone

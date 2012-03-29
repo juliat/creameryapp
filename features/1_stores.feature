@@ -29,7 +29,7 @@ Feature: Manage stores
 		And I should see "5000 Forbes Avenue"
 		And I should see "Pittsburgh, PA 15213"
 		And I should see "Current Employees"
-		Then show me the page
+
 		And I should see "Brunk, Stafford"
 		And I should see "Crawford, Cindy"
 		And I should not see "Hersh, Jon"
@@ -40,7 +40,7 @@ Feature: Manage stores
 		And I click on the link "Carnegie Mellon"
 		And I should see "5000 Forbes Avenue"
 		And I should see "Current Employees"
-		Then show me the page
+
 		And I should see "Brunk, Stafford"
 		And I should not see "Rubinstein, Ari"
 		And I should not see "ID"

@@ -1,8 +1,8 @@
 <h1>The Amazing and Marvelous Creamery</h1>
 <h2>Our Stores</h2>
-
 <% for store in @stores %>
-	<h2><span class="invisible">Name: </span><%=  link_to "#{store.name}", store_path(store) %></h2>
+	<div class="store">
+	<h3><span class="invisible">Name: </span><%=  link_to "#{store.name}", store_path(store) %></h3>
 	<table>
 		<tr>
 			<th>Address</th>
@@ -15,4 +15,5 @@
 	</table>
 	<!-- edit button -->
 	<!-- manage employees button -->
+	</div>
 <% end %>
