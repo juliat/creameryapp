@@ -13,6 +13,11 @@
 		</div>
 		<div id = "main-wrapper">
 			<div id="main">
+				<!-- show any flash messages -->
+				<% flash.each do |name, msg| %>
+					<%= content_tag :div, msg, :id => "flash_#{name}" %>
+				<% end %>
+				<!-- show content -->
 				<%= yield %>
 			</div>
 		</div>

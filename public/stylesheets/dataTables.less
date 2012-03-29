@@ -190,14 +190,19 @@ table.display td.center {
  * DataTables sorting
  */
 
+ .selected_sort_col {
+	background-color: #333;
+	color: white;
+}
+ 
 .sorting_asc {
 	background: url('/images/dataTables/sort_asc.png') no-repeat center right;
-	background-color: @light_blue;
+	.selected_sort_col;
 }
 
 .sorting_desc {
 	background: url('/images/dataTables/sort_desc.png') no-repeat center right;
-	background-color: @light_blue;
+	.selected_sort_col;
 }
 
 .sorting {
@@ -256,7 +261,7 @@ table.display tr.even.gradeU {
 
 
 tr.odd {
-	background-color: #E2E4FF;
+	background-color: @light_grey;
 }
 
 tr.even {
@@ -375,7 +380,7 @@ table.display tr.odd.row_selected td {
  */
 /* For the standard odd/even */
 tr.odd td.sorting_1 {
-	background-color: #D3D6FF;
+	background-color: @grey;
 }
 
 tr.odd td.sorting_2 {
@@ -387,7 +392,7 @@ tr.odd td.sorting_3 {
 }
 
 tr.even td.sorting_1 {
-	background-color: #EAEBFF;
+	background-color: @lighter_grey;
 }
 
 tr.even td.sorting_2 {

@@ -1,9 +1,20 @@
-<h2>Current Employees:</h2>
-<table class = "current_employees">  
-<% for employee in @current_employees %>
-  <tr>
-	<td><%= employee.role.capitalize %></td>
-    <td><%= link_to employee.name, employee_path(employee) %></td>
-  </tr>
-<% end %>
+<h2>Current Employees</h2>
+<h3><%= @store.employees.size > 1 ? "#{@store.employees.active.size} employees currently work":"#{@store.employees.size} employee currently works" %> at this store.</h3>
+<table class="display dataTable">
+	<thead>
+		<tr>
+			<th>Name</th>
+			 <th>Role</th>
+			<th>Phone</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for employee in @current_employees  %>
+		<tr>
+			<td><%= link_to(employee.name, employee_path(employee)) %></td>
+			<td><%= employee.role.capitalize %></td>
+			<td><%= employee.pretty_phone %></td>
+		</tr>
+		 <% end %>
+	</tbody>
 </table>

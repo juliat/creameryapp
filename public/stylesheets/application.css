@@ -97,7 +97,7 @@ h1 {
 /* 36px / 48px */h2 {
   margin: 0;
   font-size: 1.5em;
-  line-height: 1em;
+  line-height: 1.5em;
   margin-bottom: 1em;
 }
 /* 24px / 24px */
@@ -453,8 +453,6 @@ span.amp {
 #header #nav ul #topnav-lis li {
   display: inline-block;
   float: left;
-  margin-left: 1.5em;
-  margin-top: 0.4em;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -469,6 +467,9 @@ span.amp {
   color: black;
   text-decoration: none;
   text-shadow: 0px 0.01px grey, 0.5px 0.3px #333333;
+  margin: 0.75em 0.75em 3em 0;
+  margin-left: 1.5em;
+  margin-top: 0.4em;
 }
 #header #nav ul #topnav-lis li a {
   color: black;
@@ -525,6 +526,7 @@ span.amp {
   color: black;
   text-decoration: none;
   text-shadow: 0px 0.01px grey, 0.5px 0.3px #333333;
+  margin: 0.75em 0.75em 3em 0;
 }
 #main-wrapper #main .button a {
   color: black;
@@ -556,6 +558,7 @@ span.amp {
   font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
   border: 1px solid black;
   font-size: 0.9em;
+  margin: 0;
 }
 #main-wrapper #main .add {
   float: right;
@@ -756,13 +759,19 @@ table.display td.center {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables sorting
  */
+.selected_sort_col {
+  background-color: #333;
+  color: white;
+}
 .sorting_asc {
   background: url('/images/dataTables/sort_asc.png') no-repeat center right;
-  background-color: #bff3ff;
+  background-color: #333;
+  color: white;
 }
 .sorting_desc {
   background: url('/images/dataTables/sort_desc.png') no-repeat center right;
-  background-color: #bff3ff;
+  background-color: #333;
+  color: white;
 }
 .sorting {
   background: url('/images/dataTables/sort_both.png') no-repeat center right;
@@ -804,7 +813,7 @@ table.display tr.even.gradeU {
   background-color: #eee;
 }
 tr.odd {
-  background-color: #E2E4FF;
+  background-color: #eeeeee;
 }
 tr.even {
   background-color: white;
@@ -890,7 +899,7 @@ table.display tr.odd.row_selected td {
  */
 /* For the standard odd/even */
 tr.odd td.sorting_1 {
-  background-color: #D3D6FF;
+  background-color: #dcdcdc;
 }
 tr.odd td.sorting_2 {
   background-color: #DADCFF;
@@ -899,7 +908,7 @@ tr.odd td.sorting_3 {
   background-color: #E0E2FF;
 }
 tr.even td.sorting_1 {
-  background-color: #EAEBFF;
+  background-color: #efefef;
 }
 tr.even td.sorting_2 {
   background-color: #F2F3FF;

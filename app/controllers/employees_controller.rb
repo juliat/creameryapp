@@ -21,7 +21,7 @@ class EmployeesController < ApplicationController
 		@employee = Employee.new(params[:employee])
 		if @employee.save
 			# if saved to database
-			flash[:notice] = "Successfully added #{@employee.proper_name}."
+			flash[:notice] = "Successfully created #{@employee.proper_name}."
 			redirect_to @employee # go to show employee page
 		else
 			# return to the 'new' form

@@ -1,5 +1,5 @@
 	$(document).ready(function() {
 		$('.dataTable').dataTable( {
-			"iDisplayLength": 15
+			"iDisplayLength": 10
 		} );
 	} );
