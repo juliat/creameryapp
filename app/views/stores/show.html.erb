@@ -1,16 +1,33 @@
-<h1 class="invisible">Store Details:</h1>
-<h1><span class="invisible">Name: </span><%=  @store.name%> Store</h1>
-<h2><span class="invisible">Address: </span><%= @store.street %><br><%= @store.city + ", " + @store.state + " " + @store.zip %></h2>
-
-<h5 class="active_status">Active: <%= @store.active ? "Yes" : "No" %></h5>
-  <%= link_to "View All Stores", stores_path, :class =>"view_all store button"   %>
-<a href=<%= edit_store_path(@store) %> class="edit store button">Edit Store Information</a>
- <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store button"   %>
-
- 
-<%= link_to "Add A New Employee", new_employee_path, :class => "button"  %>
-<% if @current_employees.empty? == true%>
-	<h3>No employees currently work at the <%=  @store.name %> store.</h3>
-<% else %>
-  <%= render :partial => "current_employees" %>
-<% end %>
+<div class="store_details">
+	<h1 class="page_label">Store Details</h1>
+	<h1><%= @store.name %> Store </h1>
+	<%= link_to "View All Stores", stores_path, :class =>"view_all store button"   %>
+	<h3>Store Info</h3>
+	<table class="details">
+		<tr>
+			<th>Active:</th>
+			<td><%= @store.active ? "Yes" : "No" %></td>
+		</tr>
+		<tr>
+			<th>Address:</th>
+			<td><%= @store.street %><br><%= @store.city + ", " + @store.state + " " + @store.zip %></td>
+		</tr>
+		<tr>
+			<th>Phone:</th>
+			<td><%=  @store.pretty_phone %></td>
+		</tr>
+	</table>
+	<div id ="action_buttons">
+		 <a href=<%= edit_store_path(@store) %> class="edit store button">Edit Store Information</a>
+		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store button"   %>
+	</div>
+</div>
+<div class="current_employees">
+	<h3>Current Employees</h3>
+	<%= link_to "Add A New Employee", new_employee_path, :class => "add employee button"  %>
+	<% if @current_employees.empty? == true%>
+		<p>No employees currently work at the <%=  @store.name %> store.</p>
+	<% else %>
+	  <%= render :partial => "current_employees" %>
+	<% end %>
+</div>

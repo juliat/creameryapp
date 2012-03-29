@@ -1,10 +1,75 @@
-#employee_details {
+/* employee details page */
+.details {
+	width: 100%;
+	border-top: 1px solid darken(@bright_blue, 20%);
 	tr {
-		border-bottom: 1px dotted black;
+		border-bottom: 1px solid darken(@bright_blue, 20%);
+		td, th {
+			padding: 1.3em 0 0 0;
+		}
+		th {
+			color: @dark_grey;
+		}
+	}
+	tbody:first-child {
+		th, td{
+			padding: 0;
+		}
 	}
 }
-/*
-h1 {
-	clear:both;
+
+
+.details {
+	width: 70%;
+	float: left;
 }
-*/
+
+.employee_data {
+	p {
+		display:inline-block;
+		margin-bottom: 0.5em;
+	}
+}
+
+.assignment_history{
+	clear: both;
+	.past_assignments{
+		.details;
+		width: 70%;
+	}
+}
+
+/* store details page */
+#main-wrapper #main .store_details {
+	.view_all {
+		float: right;
+		margin-top: -2em;
+	}
+	#action_buttons {
+		float: left;
+		margin-left: 10%;
+		width: 20%;
+		.button {
+			margin: 0 0 0.75em 0;
+		}
+	}
+}
+
+#main-wrapper #main .current_employees {
+	padding-top: 3em;
+	clear: both;
+	h3{
+		display: inline-block;
+	}
+	.add {
+		display: inline;
+		margin: 1.5em 0 0;
+	}
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #636363;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #636363;
+}

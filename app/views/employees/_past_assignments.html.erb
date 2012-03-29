@@ -1,4 +1,4 @@
-<h2>Assignment History:</h2>
+<h3>Assignment History:</h3>
 <table class = "past_assignments">  
 	<tr>
 		<th>Store</th>
@@ -10,7 +10,7 @@
 <% for assignment in @past_assignments %>
   <tr>
 	<td><%=  link_to "#{assignment.store.name}", store_path(assignment.store) %></td>
-	<td><%= assignment.employee.role %></td>
+	<td><%= assignment.employee.role.capitalize %></td>
 	<td><%= assignment.pay_level %></td>
 	<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>
 	<td><%= assignment.end_date.strftime("%m/%d/%Y")  %></td>
