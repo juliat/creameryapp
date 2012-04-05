@@ -13,39 +13,36 @@ gem "bcrypt-ruby", :require => "bcrypt"
 
 # Gems used only in development
 group :development do
-	gem 'populator3'
-	gem 'faker'
-	gem 'hirb'
-	gem 'wirble'
+gem 'populator3'
+gem 'faker'
+gem 'hirb'
+gem 'wirble'
 end
 
 # Gems used only in testing
 group :test do
-	gem 'shoulda'
-	gem 'shoulda-matchers'
-	gem 'factory_girl_rails'
-	gem 'mocha'
-	gem 'cucumber-rails'
-	gem 'capybara'
-	gem 'database_cleaner'
-	gem 'launchy'
-	gem 'email_spec'
-	gem 'nokogiri'
-	gem 'simplecov'
-	# gem 'tconsole', '1.1.1'
+gem 'shoulda'
+gem 'shoulda-matchers'
+gem 'factory_girl_rails'
+gem 'mocha'
+gem 'cucumber-rails'
+gem 'capybara'
+gem 'database_cleaner'
+gem 'launchy'
+gem 'email_spec'
+gem 'nokogiri'
+gem 'simplecov'
+gem 'tconsole', '1.1.1'
 end
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-#gem 'twitter-bootstrap-rails'
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'bootstrap-sass', '~> 2.0.1'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'jquery-datatables-rails'
-  
-	
+  # gem 'twitter-bootstrap-rails'
+
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
 
