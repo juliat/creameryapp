@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	
 	
 	# Validations
+	# a user must be associated with an employee, have an email, and have an encoded password
 	validates_presence_of :employee_id, :email, :password_digest
 	
 	
