@@ -15,10 +15,15 @@ class User < ActiveRecord::Base
 	# ====================================================================
 	# a user must be associated with an employee, have an email, and have an encoded password
 	validates_presence_of :employee_id, :password_digest
+	
 	# when created, a user must be connected to an employee who is active in the system
 	validate employee_is_active_in_system, :on => :create
+	
 	# email must have correct format
-	validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/
+	# [letters, digits, underscore, plus, dot]@[letters, digits].[two to four letters/digits] 
+	# (case insensitive)
+	validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
+	
 	# email must be unique in system
 	validates_uniqueness_of :email
 	

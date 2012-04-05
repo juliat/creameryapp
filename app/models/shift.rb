@@ -68,7 +68,11 @@ class Shifts < ActiveRecord::Base
 	# Validations
 	# ====================================================================
 	# a shift must have an associated assignment, a date, and a start time
-	validates_presence_of :assignment_id, :date, :start_time
+	validates_presence_of :assignment_id, :start_time
+	
+	# validate date (including its presence)
+	validates_date :date
+	
 	# a shift can only be added to a current assignment
 	validate :associated_assignment_is_active
 	

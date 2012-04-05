@@ -1,7 +1,19 @@
 require 'test_helper'
 
 class JobTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+	
+	# Test relationships
+	should have_many(:shift_jobs)
+	
+	# Test validatations
+	should validate_presence_of(:name)
+	
+	# Test format of name
+	should allow_value("Cashier").for(:name)
+	# just sanity checking data values
+	should_not allow_value(10).for(:name)
+	should_not allow_value(15.2).for(:name)
+	should_not allow_value(true).for(:name)
+	should_not allow_value(Date.today).for(:name)
+	
 end
