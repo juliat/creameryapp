@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ShiftjobTest < ActiveSupport::TestCase
+class ShiftJobTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

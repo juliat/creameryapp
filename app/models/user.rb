@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 	
 	
 	# Validations
+	validates_presence_of :employee_id, :email, :password_digest
 	
 	
 	# Scopes
