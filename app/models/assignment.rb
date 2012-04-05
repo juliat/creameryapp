@@ -5,6 +5,7 @@ class Assignment < ActiveRecord::Base
   # Relationships
   belongs_to :employee
   belongs_to :store
+  has_many :shifts, :through => :shiftjobs
   
   # Validations
   validates_numericality_of :pay_level, :only_integer => true, :greater_than => 0, :less_than => 7
