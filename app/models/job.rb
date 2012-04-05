@@ -1,19 +1,24 @@
 class Jobs < ActiveRecord::Base
-	
-	# Callbacks
-	# none just yet
-	
-	
+		
 	# Relationships
+	# ====================================================================
 	has_many :shiftjobs
 	
-	
-	# Validations
-	validates_presence_of :name
-	
 	# Scopes
+	# ====================================================================
+	# active: returns only active jobs
+	scope :active, where("active = ?", true)
 	
+	# inactive: returns all inactive jobs
+	scope :inactive, where("active = ?", false)
 	
-	# Helper Functions
+	# alphabetically: returns a list of all jobs ordered alphabetically by name
+	scope :alphabetical, order("name")
+	
+
+	# Validations
+	# ====================================================================
+	# jobs must have a name
+	validates_presence_of :name
 	
 end
