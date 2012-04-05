@@ -2,7 +2,7 @@ class Jobs < ActiveRecord::Base
 		
 	# Relationships
 	# ====================================================================
-	has_many :shiftjobs
+	has_many :shift_jobs
 	
 	# Scopes
 	# ====================================================================
