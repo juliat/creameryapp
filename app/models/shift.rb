@@ -5,8 +5,10 @@ class Shifts < ActiveRecord::Base
 	
 	
 	# Relationships
+	has_many :jobs, :through => :shiftjobs
 	belongs_to :assignment
-	has_many :jobs, 
+	has_one :store, :through => :assignment
+	has_one :employee, :through => :assignment
 	
 	
 	# Validations
