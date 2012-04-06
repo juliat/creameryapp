@@ -13,26 +13,26 @@ gem "bcrypt-ruby", :require => "bcrypt"
 
 # Gems used only in development
 group :development do
-gem 'populator3'
-gem 'faker'
-gem 'hirb'
-gem 'wirble'
+    gem 'populator3'
+    gem 'faker'
+    gem 'hirb'
+    gem 'wirble'
 end
 
 # Gems used only in testing
 group :test do
-gem 'shoulda'
-gem 'shoulda-matchers'
-gem 'factory_girl_rails'
-gem 'mocha'
-gem 'cucumber-rails'
-gem 'capybara'
-gem 'database_cleaner'
-gem 'launchy'
-gem 'email_spec'
-gem 'nokogiri'
-gem 'simplecov'
-gem 'tconsole', '1.1.1'
+    gem 'shoulda'
+    gem 'shoulda-matchers'
+    gem 'factory_girl_rails'
+    gem 'mocha'
+    gem 'cucumber-rails'
+    gem 'capybara'
+    gem 'database_cleaner'
+    gem 'launchy'
+    gem 'email_spec'
+    gem 'nokogiri'
+    gem 'simplecov'
+    gem 'tconsole', '1.1.1'
 end
 
 

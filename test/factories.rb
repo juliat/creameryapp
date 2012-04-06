@@ -31,9 +31,9 @@ FactoryGirl.define do
 	association :assignment
 	date Date.today
 	# set default start time to 1/21/2011 at 11:00 am
-	start_time Time.local.(2011,1,21,11,0,0)
+	start_time Time.local(2011,1,21,11,0,0)
 	# set default end time to 1/21/2011 at 14:00 (2:00 pm)
-	end_time Time.local.(2011,1,21,14,0,0)
+	end_time Time.local(2011,1,21,14,0,0)
 	notes "During this shift, velociraptors stormed the creamery. The employees
 	valiantly battled with these ferocious dinosaurs, using lightsabers, phasers, 
 	and mops."

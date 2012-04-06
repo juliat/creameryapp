@@ -1,4 +1,4 @@
-class Shifts < ActiveRecord::Base
+class Shift < ActiveRecord::Base
 	
 	# Callbacks
 	# ====================================================================
@@ -32,18 +32,18 @@ class Shifts < ActiveRecord::Base
 	scope :for_employee, lambda{|employee_id| where("employee_id = ?", employee_id)}
 	
 	# past: returns all shifts which have a date in the past
-	scope :past, where("start_time < ?", Time.local.now)
+	scope :past, where("start_time < ?", Time.now)
 	
 	# upcoming: returns all shifts which have a date in the present or future
-	scope :upcoming, where ("start_time >= ?", Time.local.now)
+	scope :upcoming, where("start_time >= ?", Time.now)
 	
 	# for_next_days: returns all the upcoming shifts in the next x days
 	# parameter - x
-	scope :for_next_days, where("start_time BETWEEN ? AND ?", Time.local.now, Time.local.now + x.days)
+	scope :for_next_days, lambda{|x| where("start_time BETWEEN ? AND ?", Time.now, Time.now + x.days)}
 	
 	# for_past_days: returns all past shifts in the previous x days
 	# parameter -x
-	scope :for_past_days, where("start_time BETWEEN ? AND  ?", Time.local.now - x.days, Time.local.now)
+	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", Time.now - x.days, Time.now)}
 	
 	# chronological: returns all shifts in chronological order
 	scope :chronological, order('start_time')
@@ -80,7 +80,7 @@ class Shifts < ActiveRecord::Base
 	private
 	def associated_assignment_is_active
 		# get all active assignments
-		active_assignments = Assignments.current.map{|assignment| assignment.id}
+		active_assignments = Assignment.current.map{|assignment| assignment.id}
 		# check if this job's assignment is in the list
 		return active_assignments.include?(self.assignment_id)
 	end

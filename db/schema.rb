@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225210624) do
+ActiveRecord::Schema.define(:version => 20120405214937) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "store_id"
@@ -34,6 +34,31 @@ ActiveRecord::Schema.define(:version => 20120225210624) do
     t.datetime "updated_at",                      :null => false
   end
 
+  create_table "jobs", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "shift_jobs", :force => true do |t|
+    t.integer  "shift_id"
+    t.integer  "job_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "shifts", :force => true do |t|
+    t.integer  "assignment_id"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.text     "notes"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "stores", :force => true do |t|
     t.string   "name"
     t.string   "street"
@@ -44,6 +69,14 @@ ActiveRecord::Schema.define(:version => 20120225210624) do
     t.boolean  "active",     :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "employee_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

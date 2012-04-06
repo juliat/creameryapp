@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :employee_id, :password_digest
 	
 	# when created, a user must be connected to an employee who is active in the system
-	validate employee_is_active_in_system, :on => :create
+	validate :employee_is_active_in_system, :on => :create
 	
 	# email must have correct format
 	# [letters, digits, underscore, plus, dot]@[letters, digits].[two to four letters/digits] 
