@@ -360,6 +360,8 @@
         null,
         1,
         null,
+        null,
+        null,
         null
       ],
       "/home/julia/CMU/272/creamery/app/models/shift.rb": [
@@ -592,7 +594,7 @@
         null
       ]
     },
-    "timestamp": 1333864461
+    "timestamp": 1333865096
   },
   "RSpec": {
     "coverage": {

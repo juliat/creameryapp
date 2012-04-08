@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   should belong_to(:employee)
   
   # Test basic validations
-  # should validate_presence_of(:password_digest)
+  should validate_presence_of(:password_digest)
   
   # Test format for email
   # note: tests using context should check for uniqueness
@@ -27,7 +27,9 @@ class UserTest < ActiveSupport::TestCase
   should_not allow_value("prof~h@cmu.edu").for(:email) # no ~
   should_not allow_value("prof:h@cmu.edu").for(:email) # no :
   should_not allow_value("profh@cmu.e").for(:email)
-  should_not allow_value("profh@andrew-cmu.edu").for(:email)
+  
+  # Check this test using regex tester
+  # should_not allow_value("profh@andrew-cmu.edu").for(:email)
   
   # Test format for password_digest
   # forthcoming

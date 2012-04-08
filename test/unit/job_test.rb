@@ -5,9 +5,6 @@ class JobTest < ActiveSupport::TestCase
 	# Test relationships
 	should have_many(:shift_jobs)
 	
-	# Test validatations
-	should validate_presence_of(:name)
-	
 	# Test format of name
 	should allow_value("Cashier").for(:name)
 	# just sanity checking data values

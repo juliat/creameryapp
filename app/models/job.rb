@@ -20,6 +20,8 @@ class Job < ActiveRecord::Base
 	# Validations
 	# ====================================================================
 	# jobs must have a name with only alphabet characters
-	validates_format_of :name, :with => /^[a-z]+$/i, :allow_blank => false, :message => "The name for a job should only contain alphabet letters."
+	validates_format_of :name, :with => /^[a-z]+$/i,
+	 :allow_blank => false, 
+	 :message => "The name for a job should only contain alphabet letters."
 	
 end

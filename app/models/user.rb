@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	# Validations
 	# ====================================================================
 	# a user must be associated with an employee, have an email, and have an encoded password
-	validates_presence_of :employee_id, :password_digest
+	validates_presence_of :password_digest
 	
 	# when created, a user must be connected to an employee who is active in the system
 	validate :employee_is_active_in_system, :on => :create
