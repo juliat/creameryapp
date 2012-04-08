@@ -74,7 +74,7 @@ class UserTest < ActiveSupport::TestCase
         deny @EdUser.valid?
     end
     
-    should "show that emails must be unique in the system"
+    should "show that emails must be unique in the system" do
         @EdDup = FactoryGirl.build(:employee)
         @EdDupUser = FactoryGirl.build(:user, :employee => @EdDup, :email => @EdUser.email)
         deny @EdDupUser.valid?

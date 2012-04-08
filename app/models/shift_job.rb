@@ -1,8 +1,8 @@
 class ShiftJob < ActiveRecord::Base
 	
 	# Relationships
-	belongs_to :shifts
-	belongs_to :jobs
+	belongs_to :shift
+	belongs_to :job
 	
 	
     # Validations

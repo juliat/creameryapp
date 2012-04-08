@@ -29,7 +29,7 @@ FactoryGirl.define do
   
   factory :shift do
 	association :assignment
-	date Date.new(2011, 1, 21)
+	date Date.today
 	# set default start time to 1/21/2011 at 11:00 am
 	start_time Time.local(2011,1,21,11,0,0)
 	# set default end time to 1/21/2011 at 14:00 (2:00 pm)

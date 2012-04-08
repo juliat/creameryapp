@@ -9,8 +9,9 @@ class ShiftTest < ActiveSupport::TestCase
 	should have_one(:employee).through(:assignment)
 	
 	# Test validations
-	should validate_presence_of(:date)
 	should validate_presence_of(:start_time)
+
+	# need to test date
 	
 	#context "Creating four employees assigned to two stores with two jobs and six shifts" do
 		## create the objects I want in my test context using factories
