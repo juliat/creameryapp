@@ -13,7 +13,6 @@ class JobTest < ActiveSupport::TestCase
 	# just sanity checking data values
 	should_not allow_value(10).for(:name)
 	should_not allow_value(15.2).for(:name)
-	should_not allow_value(true).for(:name)
 	should_not allow_value(Date.today).for(:name)
 	
 end

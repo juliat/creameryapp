@@ -7,7 +7,8 @@ class Shift < ActiveRecord::Base
 	
 	# Relationships
 	# ====================================================================
-
+	
+	has_many :shift_jobs
 	has_many :jobs, :through => :shift_jobs
 	belongs_to :assignment
 	has_one :store, :through => :assignment
