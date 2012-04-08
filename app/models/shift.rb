@@ -18,9 +18,9 @@ class Shift < ActiveRecord::Base
 	# ====================================================================
 	# completed: returns all shifts in the system that have at least one
 	# job associated with them
-	# scope :completed, 
+	# scope :completed, lambda {|job_id| where("job_id IS NOT NULL")}
 	
-	# incomplete: returns all shifts in the system that have at least one 
+	# incomplete: returns all shifts in the system that have NO
 	# job associated with them
 	# scope :incomplete,
 	
@@ -58,7 +58,7 @@ class Shift < ActiveRecord::Base
 	
 	# Methods
 	# ====================================================================
-	# completed? method returns true of ralse depending on whether or not 
+	# completed? method returns true or false depending on whether or not 
 	# there are any jobs associated with this shift
 	def completed?
 		# if there are no jobs associated with this shift, then it is not 
@@ -73,6 +73,9 @@ class Shift < ActiveRecord::Base
 	
 	# validate date (including its presence)
 	validates_date :date
+	
+	# validate that (if it is given) the end time is after the start time
+	validates_time :end_time, :allow_blank => true, :after => :start_time
 	
 	# a shift can only be added to a current assignment
 	validate :associated_assignment_is_active
