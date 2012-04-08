@@ -27,6 +27,7 @@ class AssignmentTest < ActiveSupport::TestCase
    
    # Need to do the rest with a context
    context "Creating six employees and three stores with five assignments" do
+   
      # create the objects I want with factories
      setup do 
        @cmu = FactoryGirl.create(:store)
