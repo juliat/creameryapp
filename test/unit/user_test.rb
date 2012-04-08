@@ -34,4 +34,52 @@ class UserTest < ActiveSupport::TestCase
   # Test format for password_digest
   # forthcoming
   
+  context "Creating one store, three employees, three assignments, and two users" do
+    setup do
+        # store
+        @CMU = FactoryGirl.create(:store)
+        
+        # employees
+        @Ed = FactoryGirl.create(:employee, :active => false)
+        @Ned = FactoryGirl.create(:employee, :first_name => "Ned")
+        @Ted = FactoryGirl.create(:employee, :first_name => "Ted")
+        
+        # assignments
+        # inactive
+        @EdAssign = FactoryGirl.create(:assignment, :employee => @Ed, :store => @CMU)
+        # active
+        @NedAssign = FactoryGirl.create(:assignment, :employee => @Ned, :store => @CMU, :end_date => nil)
+        @TedAssign = FactoryGirl.create(:assignment, :employee => @Ted, :store => @CMU, :end_date => nil)
+        
+        # users
+        # can't create user for Ed b/c he's an inactive employee
+        @NedUser = FactoryGirl.create(:user, :employee => @Ned)
+        @TedUser = FactoryGirl.create(:user, :employee => @Ted)
+    end
+    
+    teardown do
+        @CMU.destroy
+        
+        @Ed.destroy
+        @Ned.destroy
+        @Ted.destroy
+        
+        @EdAssign.destroy
+        @NedAssign.destroy
+        @TedAssign.destroy
+    end
+    
+    should "show that a user can't be created for an inactive employee" do
+        @EdUser = FactoryGirl.build(:user, :employee => @Ned)
+        deny @EdUser.valid?
+    end
+    
+    should "show that emails must be unique in the system"
+        @EdDup = FactoryGirl.build(:employee)
+        @EdDupUser = FactoryGirl.build(:user, :employee => @EdDup, :email => @EdUser.email)
+        deny @EdDupUser.valid?
+    end
+    
+  end
+  
 end
