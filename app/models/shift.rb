@@ -18,11 +18,11 @@ class Shift < ActiveRecord::Base
 	# ====================================================================
 	# completed: returns all shifts in the system that have at least one
 	# job associated with them
-	# scope :completed,  
+	scope :completed, joins(:shift_jobs).group(:shift_id)
 	
 	# incomplete: returns all shifts in the system that have NO
 	# job associated with them
-	# scope :incomplete,
+	scope :incomplete, find_by_sql("select * from shifts where id not in(select shift_id from shift_jobs)")
 	
 	# for_store: returns all shifts that are associated with a given store
 	# parameter - store_id
