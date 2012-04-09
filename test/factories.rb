@@ -52,7 +52,7 @@ FactoryGirl.define do
   
   factory :user do
 	association :employee
-	email { |a| "#{a.first_name}.#{a.last_name}@example.com".downcase }
-	# password_digest # what to put here ?
+	email "ed@gruberman.com"
+	password_digest "placeholder_password"
   end
 end

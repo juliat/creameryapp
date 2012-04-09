@@ -18,7 +18,7 @@ class Shift < ActiveRecord::Base
 	# ====================================================================
 	# completed: returns all shifts in the system that have at least one
 	# job associated with them
-	# scope :completed, lambda {|job_id| where("job_id IS NOT NULL")}
+	# scope :completed,  
 	
 	# incomplete: returns all shifts in the system that have NO
 	# job associated with them
@@ -26,11 +26,11 @@ class Shift < ActiveRecord::Base
 	
 	# for_store: returns all shifts that are associated with a given store
 	# parameter - store_id
-	scope :for_store, lambda {|store_id| where("store_id = ?", store_id)}
+	scope :for_store, lambda {|store_id| joins(:assignment).where("store_id = ?", store_id) }
 	
 	# for_employee: returns all shifts that are associated with a given employee
 	# parameter - employee_id
-	scope :for_employee, lambda{|employee_id| where("employee_id = ?", employee_id)}
+	scope :for_employee, lambda {|employee_id| joins(:assignment).where("employee_id = ?", employee_id) }
 	
 	# past: returns all shifts which have a date in the past
 	scope :past, where("start_time < ?", Time.now)

@@ -40,21 +40,19 @@ class UserTest < ActiveSupport::TestCase
         @CMU = FactoryGirl.create(:store)
         
         # employees
-        @Ed = FactoryGirl.create(:employee, :active => false)
+        @Ed = FactoryGirl.create(:employee)
         @Ned = FactoryGirl.create(:employee, :first_name => "Ned")
         @Ted = FactoryGirl.create(:employee, :first_name => "Ted")
         
         # assignments
-        # inactive
         @EdAssign = FactoryGirl.create(:assignment, :employee => @Ed, :store => @CMU)
-        # active
         @NedAssign = FactoryGirl.create(:assignment, :employee => @Ned, :store => @CMU, :end_date => nil)
         @TedAssign = FactoryGirl.create(:assignment, :employee => @Ted, :store => @CMU, :end_date => nil)
         
         # users
-        # can't create user for Ed b/c he's an inactive employee
-        @NedUser = FactoryGirl.create(:user, :employee => @Ned)
-        @TedUser = FactoryGirl.create(:user, :employee => @Ted)
+        @EdUser = FactoryGirl.create(:user, :employee => @Ed)
+        @NedUser = FactoryGirl.create(:user, :employee => @Ned, :email => "ned@example.com")
+        @TedUser = FactoryGirl.create(:user, :employee => @Ted, :email => "ted@example.com")
     end
     
     teardown do
@@ -70,6 +68,7 @@ class UserTest < ActiveSupport::TestCase
     end
     
     should "show that a user can't be created for an inactive employee" do
+        @Ed.active = false
         @EdUser = FactoryGirl.build(:user, :employee => @Ned)
         deny @EdUser.valid?
     end
