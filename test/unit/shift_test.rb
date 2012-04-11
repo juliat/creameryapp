@@ -11,7 +11,8 @@ class ShiftTest < ActiveSupport::TestCase
 	# Test validations
 	should validate_presence_of(:start_time)
 
-	# need to test date
+	# need to test date?
+	
 	
 	context "Creating four employees assigned to two stores with two jobs and six shifts" do
 		# create the objects I want in my test context using factories

@@ -40,11 +40,11 @@ class Shift < ActiveRecord::Base
 	
 	# for_next_days: returns all the upcoming shifts in the next x days
 	# parameter - x
-	scope :for_next_days, lambda{|x| where("start_time BETWEEN ? AND ?", Time.now, Time.now + x.days)}
+	scope :for_next_days, lambda{|x| where("start_time BETWEEN ? AND ?", Date.today.to_time, x.days.from_now)}
 	
 	# for_past_days: returns all past shifts in the previous x days
 	# parameter -x
-	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", Time.now - x.days, Time.now)}
+	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", x.days.ago, Date.today.to_time)}
 	
 	# chronological: returns all shifts in chronological order
 	scope :chronological, order('start_time')
