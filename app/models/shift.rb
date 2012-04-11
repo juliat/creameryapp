@@ -63,7 +63,7 @@ class Shift < ActiveRecord::Base
 	def completed?
 		# if there are no jobs associated with this shift, then it is not 
 		# completed and this should return false
-		return !(self.jobs.nil?)
+		return !(self.jobs.empty?)
 	end
 	
 	# Validations

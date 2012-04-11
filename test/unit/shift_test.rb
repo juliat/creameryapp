@@ -125,14 +125,11 @@ class ShiftTest < ActiveSupport::TestCase
 		end
 		
 		should "have a scope that returns all completed shifts (ones with associated jobs)" do
-			# check that right number of shifts are returned
-			assert_equal 2, Shift.completed.size
 			# check that the right shifts are returned
-			assert_equal [@Shift1, @Shift3].map{|shift| shift.date}, Shift.completed.map{|shift| shift.date}
+			assert_equal [@Shift1, @Shift3].map{|shift| shift.date}, Shift.completed.all.map{|shift| shift.date}
 		end
 		
 		should "have a scope that returns all incomplete shifts (that have no associated jobs)" do
-			assert_equal 4, Shift.incomplete.size
 			assert_equal [@Shift2, @Shift4, @Shift5, @Shift6].map{|shift| shift.date}, Shift.incomplete.map{|shift| shift.date}
 		end
 			
