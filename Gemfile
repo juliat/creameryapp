@@ -25,7 +25,7 @@ group :test do
     gem 'shoulda-matchers'
     gem 'factory_girl_rails'
     gem 'mocha'
-    gem 'cucumber-rails'
+    gem 'cucumber-rails', :require => false
     gem 'capybara'
     gem 'database_cleaner'
     gem 'launchy'

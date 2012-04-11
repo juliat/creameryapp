@@ -117,27 +117,34 @@ class ShiftTest < ActiveSupport::TestCase
 		
 		# tests
 		# ==========================================================================
+		should "have a method which returns a boolean indicating whether a shift has been completed" do
+			assert_equal true, @Shift1.completed?
+			assert_equal true, @Shift3.completed?
+			assert_equal false, @Shift4.completed?
+			assert_equal false, @Shift2.completed?
+		end
+		
 		should "have a scope that returns all completed shifts (ones with associated jobs)" do
 			# check that right number of shifts are returned
 			assert_equal 2, Shift.completed.size
 			# check that the right shifts are returned
-			assert_equal [], ([@Shift1, @Shift3] - Shift.completed)
+			assert_equal [@Shift1, @Shift3].map{|shift| shift.date}, Shift.completed.map{|shift| shift.date}
 		end
 		
 		should "have a scope that returns all incomplete shifts (that have no associated jobs)" do
 			assert_equal 4, Shift.incomplete.size
-			assert_equal [], ([@Shift2, @Shift4, @Shift5, @Shift6] - Shift.incomplete)
+			assert_equal [@Shift2, @Shift4, @Shift5, @Shift6].map{|shift| shift.date}, Shift.incomplete.map{|shift| shift.date}
 		end
 			
 		should "have a scope to find all shifts for a given store" do
-			#assert_equal [@Shift3, @Shift4, @Shift5, @Shift6].map{|shift| shift.date}, Shift.for_store.map{|shift| shift.date}
+			assert_equal [@Shift3, @Shift4, @Shift5].map{|shift| shift.date}, Shift.for_store(@Squirrel.id).map{|shift| shift.date}
 		end
 		
 		should "have a scope to find all shifts for a given employee" do
 			# if the first array "-" the second array is equal to the empty array, then
 			# the first array contained all the elements in the second array
-			assert_equal [], ([@Shift1, @Shift2, @Shift6] - Shift.for_employee(@Luke.id))
-			assert_equal [], ([@Shift4] - Shift.for_employee(@Hans.id))
+			assert_equal [@Shift1, @Shift2, @Shift6].map{|shift| shift.date}, Shift.for_employee(@Luke.id).map{|shift| shift.date}
+			assert_equal [@Shift4].map{|shift| shift.date}, Shift.for_employee(@Hans.id).map{|shift| shift.date}
 			assert_equal [], Shift.for_employee(@ObiWan.id)
 		end
 		

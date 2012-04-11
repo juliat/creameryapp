@@ -9,5 +9,5 @@ class ShiftJobTest < ActiveSupport::TestCase
     # need a context to test associated_shift_ended validation:
     # jobs can't be added to shifts until after the shift end time has passed, so a 
     # shift_job can only be created if the associated shift has ended
-    
+
 end

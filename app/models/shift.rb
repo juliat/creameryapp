@@ -33,7 +33,7 @@ class Shift < ActiveRecord::Base
 	scope :for_employee, lambda {|employee_id| joins(:assignment).where("employee_id = ?", employee_id) }
 	
 	# past: returns all shifts which have a date in the past
-	scope :past, where("start_time < ?", Time.now)
+	scope :past, where("start_time <= ?", Time.now)
 	
 	# upcoming: returns all shifts which have a date in the present or future
 	scope :upcoming, where("start_time >= ?", Time.now)
@@ -63,7 +63,7 @@ class Shift < ActiveRecord::Base
 	def completed?
 		# if there are no jobs associated with this shift, then it is not 
 		# completed and this should return false
-		return !self.jobs.nil?
+		return !(self.jobs.nil?)
 	end
 	
 	# Validations
