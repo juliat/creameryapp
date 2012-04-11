@@ -55,29 +55,29 @@ class ShiftTest < ActiveSupport::TestCase
 										:end_time => Time.local(2012, 4, 1, 10, 0, 0)
 									   )
 			@Shift4 = FactoryGirl.create(:shift,
-										:assignment => @LeiaAssign,
+										:assignment => @HansAssign,
 										:date => Date.today,
 										:start_time => Time.now,
 										:end_time => nil
 									   )
 			@Shift5 = FactoryGirl.create(:shift,
-										:assignment => @HansAssign,
+										:assignment => @LeiaAssign,
 										:date => Date.today + 7.days,
 										:start_time => Time.now + 7.days,
 										:end_time => nil
 									   )
 			@Shift6 = FactoryGirl.create(:shift,
-										:assignment => @HansAssign,
+										:assignment => @LukeAssign,
 										:date => Date.today + 14.days,
 										:start_time => Time.now + 14.days,
 										:end_time => nil
 									   )
+								
 			# shift_jobs
 			# =================
 			# Luke's first shift has cashier and jedi as jobs
 			@Shift1Cashier = FactoryGirl.create(:shift_job, :shift => @Shift1, :job => @Cashier)
 			@Shift1Jedi = FactoryGirl.create(:shift_job, :shift => @Shift1, :job => @Cashier)
-			# Luke's second shift is incomplete (no jobs associated with it)
 			
 			# Leia's first shift has cashier as job
 			@Shift3Cashier = FactoryGirl.create(:shift_job, :shift => @Shift3, :job => @Cashier)
@@ -117,53 +117,61 @@ class ShiftTest < ActiveSupport::TestCase
 		
 		# tests
 		# ==========================================================================
-		#should "have a scope that returns all completed shifts (ones with associated jobs)" do
-			## check that right number of shifts are returned
-			#assert_equal 2, Shift.completed.size
-			## check that the right shifts are returned
-			#assert_equal [@Shift1, @Shift3], Shift.completed
-		#end
+		should "have a scope that returns all completed shifts (ones with associated jobs)" do
+			# check that right number of shifts are returned
+			assert_equal 2, Shift.completed.size
+			# check that the right shifts are returned
+			assert_equal [], ([@Shift1, @Shift3] - Shift.completed)
+		end
 		
-		#should "have a scope that returns all incomplete shifts (that have no associated jobs)" do
-			#assert_equal 4, Shift.incomplete.size
-			#assert_equal [@Shift2, @Shift4, @Shift5, @Shift6], Shift.incomplete
-		#end
+		should "have a scope that returns all incomplete shifts (that have no associated jobs)" do
+			assert_equal 4, Shift.incomplete.size
+			assert_equal [], ([@Shift2, @Shift4, @Shift5, @Shift6] - Shift.incomplete)
+		end
 			
 		should "have a scope to find all shifts for a given store" do
-			assert ([@Shift3, @Shift4, @Shift5, @Shift6] - Shift.for_store(@Squirrel.id) == [])
+			#assert_equal [@Shift3, @Shift4, @Shift5, @Shift6].map{|shift| shift.date}, Shift.for_store.map{|shift| shift.date}
 		end
 		
 		should "have a scope to find all shifts for a given employee" do
 			# if the first array "-" the second array is equal to the empty array, then
 			# the first array contained all the elements in the second array
-			assert ([@Shift1, @Shift2] - Shift.for_employee(@Luke.id) == [])
-			assert ([@Shift5, @Shift6] - Shift.for_employee(@Hans.id) ==[])
+			assert_equal [], ([@Shift1, @Shift2, @Shift6] - Shift.for_employee(@Luke.id))
+			assert_equal [], ([@Shift4] - Shift.for_employee(@Hans.id))
 			assert_equal [], Shift.for_employee(@ObiWan.id)
 		end
 		
 		should "have a scope which returns all shifts which have a date in the past" do
-			assert [@Shift1, @Shift2, @Shift3] - Shift.past == []
+			assert_equal [@Shift1, @Shift2, @Shift3].map{|shift| shift.date}, Shift.past.map{|shift| shift.date}
 		end
 		
 		should "have a scope which returns all upcoming shifts (with a date in the present or future"  do
-			assert [@Shift4, @Shift5, @Shift6] - Shift.upcoming == []
+			assert_equal [@Shift4, @Shift5, @Shift6].map{|shift| shift.date}, Shift.upcoming.map{|shift| shift.date}
 		end
 		
 		should "have a scope that returns all the upcoming shifts in the next x days" do
-			assert [@Shift4, @Shift5] - Shift.for_next_days(7) == []
+			assert_equal [@Shift4, @Shift5].map{|shift| shift.date}, Shift.for_next_days(7).map{|shift| shift.date}
 		end
 		
 		# should "have a scope that returns all the past shifts in the previous x days" do
 		# end
 		
-		# should "have a scope that returns all the shifts in chronological (ascending) order" do
-		# end
+		should "have a scope that returns all the shifts in chronological (ascending) order" do
+			shifts_in_chrono_order = [@Shift1, @Shift2, @Shift3, @Shift4, @Shift5, @Shift6]
+			assert_equal shifts_in_chrono_order.map{|shift| shift.date}, Shift.chronological.map{|shift| shift.date}
+		end
 		
-		# should "have a scope that returns all shifts ordered by store" do
-		# end
+		should "have a scope that returns all shifts ordered by store" do
+			# Shifts 1, 2, and 6 are associated with the CMU store. 3, 4, and 5 are associated with Squirrel Hill.
+			shifts_by_store = [@Shift1, @Shift2, @Shift6, @Shift3, @Shift4, @Shift5]
+			assert_equal shifts_by_store.map{|shift| shift.date}, Shift.by_store.map{|shift| shift.date}
+		end
 		
-		# should "have a scope that returns all shifts ordered by employee" do
-		# end
+		should "have a scope that returns all shifts ordered by employee" do
+			# shifts 1, 2, 6 belong to Luke. Shifts 3 and 5 belond to Leia. Shift 4 belongs to Hans.
+			shifts_by_employee = [@Shift3, @Shift5, @Shift1, @Shift2, @Shift6, @Shift4]
+			assert_equal shifts_by_employee.map{|shift| shift.employee.name}, Shift.by_employee.map{|shift| shift.employee.name}
+		end
 			
 	end
 
