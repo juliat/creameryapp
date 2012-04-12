@@ -139,8 +139,6 @@ class ShiftTest < ActiveSupport::TestCase
 		end
 		
 		should "have a scope to find all shifts for a given employee" do
-			# if the first array "-" the second array is equal to the empty array, then
-			# the first array contained all the elements in the second array
 			assert_equal [@Shift1, @Shift2, @Shift6].map{|shift| shift.date}, Shift.for_employee(@Luke.id).map{|shift| shift.date}
 			assert_equal [@Shift4].map{|shift| shift.date}, Shift.for_employee(@Hans.id).map{|shift| shift.date}
 			assert_equal [], Shift.for_employee(@ObiWan.id)
