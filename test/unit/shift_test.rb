@@ -131,7 +131,7 @@ class ShiftTest < ActiveSupport::TestCase
 		end
 		
 		should "have a scope that returns all incomplete shifts (that have no associated jobs)" do
-			assert_equal [@Shift2, @Shift4, @Shift5, @Shift6].map{|shift| shift.date}, Shift.incomplete.map{|shift| shift.date}
+			assert_equal [@Shift2, @Shift4, @Shift5, @Shift6].map{|shift| shift.date}, Shift.incomplete.all.map{|shift| shift.date}
 		end
 			
 		should "have a scope to find all shifts for a given store" do

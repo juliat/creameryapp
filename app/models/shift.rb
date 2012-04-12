@@ -23,15 +23,15 @@ class Shift < ActiveRecord::Base
 	# incomplete: returns all shifts in the system that have NO
 	# job associated with them
 	# scope :incomplete, find_by_sql("select * from shifts where id not in(select shift_id from shift_jobs)")
-	scope :incomplete lambda {|shift_id| where("shift_id NOT IN (?)", completed.map{|shift| shift.id})}
+	scope :incomplete, where("id NOT IN (?)", Shift.completed.map(&:id))
 	
 	# for_store: returns all shifts that are associated with a given store
 	# parameter - store_id
-	scope :for_store, lambda {|store_id| joins(:assignment).where("store_id = ?", store_id) }
+	scope :for_store, lambda{|store_id| joins(:assignment).where("store_id = ?", store_id) }
 	
 	# for_employee: returns all shifts that are associated with a given employee
 	# parameter - employee_id
-	scope :for_employee, lambda {|employee_id| joins(:assignment).where("employee_id = ?", employee_id) }
+	scope :for_employee, lambda{|employee_id| joins(:assignment).where("employee_id = ?", employee_id) }
 	
 	# past: returns all shifts which have a date in the past
 	scope :past, where("start_time < ?", Time.now)
