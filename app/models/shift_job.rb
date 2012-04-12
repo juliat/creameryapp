@@ -15,9 +15,9 @@ class ShiftJob < ActiveRecord::Base
     # Valdiation Helper Methods
     private
     def associated_shift_ended 
-        past_shifts = Shift.past.map{|shift| shift.id}
-        return past_shifts.include?(self.shift_id)
+        #past_shifts = Shift.past.map{|shift| shift.id}
+        #return past_shifts.include?(self.shift_id)
 	# other way
-	# return self.shift.end_time > Time.now
+	return self.shift.end_time > Time.now
     end
 end

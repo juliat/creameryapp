@@ -22,7 +22,8 @@ class Shift < ActiveRecord::Base
 	
 	# incomplete: returns all shifts in the system that have NO
 	# job associated with them
-	scope :incomplete, find_by_sql("select * from shifts where id not in(select shift_id from shift_jobs)")
+	# scope :incomplete, find_by_sql("select * from shifts where id not in(select shift_id from shift_jobs)")
+	scope :incomplete lambda {|shift_id| where("shift_id NOT IN (?)", completed.map{|shift| shift.id})}
 	
 	# for_store: returns all shifts that are associated with a given store
 	# parameter - store_id
@@ -33,7 +34,7 @@ class Shift < ActiveRecord::Base
 	scope :for_employee, lambda {|employee_id| joins(:assignment).where("employee_id = ?", employee_id) }
 	
 	# past: returns all shifts which have a date in the past
-	scope :past, where("start_time <= ?", Time.now)
+	scope :past, where("start_time < ?", Time.now)
 	
 	# upcoming: returns all shifts which have a date in the present or future
 	scope :upcoming, where("start_time >= ?", Time.now)
@@ -42,9 +43,9 @@ class Shift < ActiveRecord::Base
 	# parameter - x
 	scope :for_next_days, lambda{|x| where("start_time BETWEEN ? AND ?", Date.today.to_time, x.days.from_now)}
 	
-	# for_past_days: returns all past shifts in the previous x days
+	# for_past_days: returns all past shifts in the previous x days (not including today)
 	# parameter -x
-	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", x.days.ago, Date.today.to_time)}
+	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", x.days.ago, Date.today.to_time - 1.days)}
 	
 	# chronological: returns all shifts in chronological order
 	scope :chronological, order('start_time')
