@@ -1,8 +1,8 @@
 class ShiftJob < ActiveRecord::Base
 	
-	# Relationships
-	belongs_to :shift
-	belongs_to :job
+    # Relationships
+    belongs_to :shift
+    belongs_to :job
 	
 	
     # Validations
@@ -15,9 +15,9 @@ class ShiftJob < ActiveRecord::Base
     # Valdiation Helper Methods
     private
     def associated_shift_ended 
-        #past_shifts = Shift.past.map{|shift| shift.id}
-        #return past_shifts.include?(self.shift_id)
-	# other way
-	return self.shift.end_time > Time.now
+	# shift has ended if it's end time is before the time it is now
+	puts self.shift.end_time
+	puts self.shift.end_time < Time.now
+	return self.shift.end_time < Time.now
     end
 end
