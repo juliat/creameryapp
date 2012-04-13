@@ -131,14 +131,8 @@ class ShiftTest < ActiveSupport::TestCase
 			assert_equal [@Shift1, @Shift3].map{|shift| shift.date}, Shift.completed.all.map{|shift| shift.date}
 		end
 		
-		should "have a scope that returns all incomplete shifts (that have no associated jobs)" do
-			assert_equal [@Shift2, @Shift4, @Shift5, @Shift6], Shift.where("id NOT IN (?)", Shift.completed.map{|shift| shift.id})
-			
-			# For whatever reason, this test is failing in this context. Nonetheless, the scope works in console, and the exact
-			# activerecord queur (shown above) passes the test. As far as I can tell, something's going wrong with the call to the
-			# incomplete scope from the test environment.
-			
-			# assert_equal [@Shift2, @Shift4, @Shift5, @Shift6], Shift.incomplete.all
+		should "have a scope that returns all incomplete shifts (that have no associated jobs)" do		
+			assert_equal [@Shift2, @Shift4, @Shift5, @Shift6], Shift.incomplete.all
 		end
 			
 		should "have a scope to find all shifts for a given store" do

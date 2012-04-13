@@ -23,7 +23,8 @@ class Shift < ActiveRecord::Base
 	# incomplete: returns all shifts in the system that have NO
 	# job associated with them
 	# scope :incomplete, find_by_sql("select * from shifts where id not in(select shift_id from shift_jobs)")
-	scope :incomplete, where("id NOT IN (?)", Shift.completed.map{|shift| shift.id})
+	# scope :incomplete, where("id NOT IN (?)", Shift.completed.map{|shift| shift.id})
+	scope :incomplete, joins("LEFT JOIN shift_jobs ON shifts.id = shift_jobs.shift_id").where('shift_jobs.job_id IS NULL')
 	
 	# for_store: returns all shifts that are associated with a given store
 	# parameter - store_id
@@ -80,7 +81,7 @@ class Shift < ActiveRecord::Base
 	
 	# validate that (if it is given) the end time is after the start time
 	validates_time :end_time, :allow_blank => true
-	# timeliness :after breaks (has to do with internationalization, from what I can tell
+	# timeliness :after breaks (has to do with internationalization, from what I can tell)
 	# so using custom validation
 	validate :end_time_after_start_time
 	
