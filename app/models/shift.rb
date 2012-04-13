@@ -23,7 +23,7 @@ class Shift < ActiveRecord::Base
 	# incomplete: returns all shifts in the system that have NO
 	# job associated with them
 	# scope :incomplete, find_by_sql("select * from shifts where id not in(select shift_id from shift_jobs)")
-	scope :incomplete, where("id NOT IN (?)", Shift.completed.map(&:id))
+	scope :incomplete, where("id NOT IN (?)", Shift.completed.map{|shift| shift.id})
 	
 	# for_store: returns all shifts that are associated with a given store
 	# parameter - store_id
