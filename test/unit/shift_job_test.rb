@@ -20,7 +20,9 @@ class ShiftJobTest < ActiveSupport::TestCase
                                         :start_time => Time.local(d1.year, d1.month, d1.day, 10, 0, 0), 
                                         :end_time => Time.local(d1.year, d1.month, d1.day, 2, 0, 0))
             d2 = Date.tomorrow
-            @Shift2 = FactoryGirl.create(:shift, :assignment => @Assign, :date => d2, :start_time => Time.local(d2.year, d2.month, d2.day, 10, 0, 0), :end_time => Time.local(d2.year, d2.month, d2.day, 2, 0, 0))
+            @Shift2 = FactoryGirl.create(:shift, :assignment => @Assign, :date => d2, 
+                                         :start_time => Time.local(d2.year, d2.month, d2.day, 10, 0, 0),
+                                         :end_time => Time.local(d2.year, d2.month, d2.day, 2, 0, 0))
         end # end setup
         
         teardown do
@@ -38,11 +40,6 @@ class ShiftJobTest < ActiveSupport::TestCase
             @Shift_Job_2 = FactoryGirl.build(:shift_job, :shift => @Shift2, :job => @Job)
             # Shift_Job_2 should not be valid because you should not be able to create a shift_job
             # for a shift that has not yet ended
-            puts "start time: " + @Shift2.start_time.to_s
-            puts "end time: " + @Shift2.end_time.to_s
-            puts "now time: " + Time.now.to_s
-            puts @Shift2.end_time < Time.now
-            assert_equal false, @Shift_Job_2.associated_shift_ended
             assert_equal false, @Shift_Job_2.valid?
         end
         
