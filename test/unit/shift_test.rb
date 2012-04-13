@@ -182,6 +182,12 @@ class ShiftTest < ActiveSupport::TestCase
 			shifts_by_employee = [@Shift3, @Shift5, @Shift1, @Shift2, @Shift6, @Shift4]
 			assert_equal shifts_by_employee.map{|shift| shift.employee.name}, Shift.by_employee.map{|shift| shift.employee.name}
 		end
+		
+		should "have a callback that automatically sets the end_time of a new shift to 3 hours after the start time" do
+			@Test_Shift = FactoryGirl.create(:shift, :assignment => @LukeAssign, :date => Date.today, :start_time => Time.now)
+			assert_equal @Test_Shift.start_time + 3.hours, @Test_Shift.end_time
+			@Test_Shift.destroy
+		end
 			
 	end
 
