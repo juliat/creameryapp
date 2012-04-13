@@ -34,18 +34,20 @@ class Shift < ActiveRecord::Base
 	scope :for_employee, lambda{|employee_id| joins(:assignment).where("employee_id = ?", employee_id) }
 	
 	# past: returns all shifts which have a date in the past
-	scope :past, where("start_time < ?", Time.now)
+	scope :past, where("start_time < ?", Date.today.to_time)
 	
 	# upcoming: returns all shifts which have a date in the present or future
-	scope :upcoming, where("start_time >= ?", Time.now)
+	scope :upcoming, where("start_time >= ?", Date.today.to_time)
 	
 	# for_next_days: returns all the upcoming shifts in the next x days
 	# parameter - x
 	scope :for_next_days, lambda{|x| where("start_time BETWEEN ? AND ?", Date.today.to_time, x.days.from_now)}
 	
-	# for_past_days: returns all past shifts in the previous x days (not including today)
+	# for_past_days: returns all past shifts in the previous x days (NOT including today)
 	# parameter -x
-	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", x.days.ago, Date.today.to_time - 1.days)}
+	yesterday = Date.yesterday
+	yesterday_time_end = Time.local(yesterday.year, yesterday.month, yesterday.day, 23, 59, 59)
+	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", (Date.today - x.days).to_time, yesterday_time_end)}
 	
 	# chronological: returns all shifts in chronological order
 	scope :chronological, order('start_time')
@@ -76,7 +78,10 @@ class Shift < ActiveRecord::Base
 	validates_date :date, :allow_blank => false
 	
 	# validate that (if it is given) the end time is after the start time
-	validates_time :end_time, :allow_blank => true# , :after => :start_time
+	validates_time :end_time, :allow_blank => true
+	# timeliness :after breaks (has to do with internationalization, from what I can tell
+	# so using custom validation
+	validate :end_time_after_start_time
 	
 	# a shift can only be added to a current assignment
 	validate :associated_assignment_is_active
@@ -88,6 +93,12 @@ class Shift < ActiveRecord::Base
 		active_assignments = Assignment.current.map{|assignment| assignment.id}
 		# check if this job's assignment is in the list
 		return active_assignments.include?(self.assignment_id)
+	end
+	def end_time_after_start_time
+		if end_time.nil?
+			return true
+		end
+		return end_time > start_time
 	end
 	
 		

@@ -11,8 +11,6 @@ class ShiftTest < ActiveSupport::TestCase
 	# Test validations
 	should validate_presence_of(:start_time)
 
-	# need to test date?
-	
 	
 	context "Creating four employees assigned to two stores with two jobs and six shifts" do
 		# create the objects I want in my test context using factories
@@ -37,23 +35,26 @@ class ShiftTest < ActiveSupport::TestCase
 			# shifts
 			# =================
 			# shift that started on 3/1/2012 at 15:00 (3pm) and ended at 19:00 (7pm)
+			d = Date.today - 4.weeks
 			@Shift1 = FactoryGirl.create(:shift, 
 										:assignment => @LukeAssign,
-										:date => Date.new(2012, 3, 1),
-										:start_time => Time.local(2012, 3, 1, 15, 0, 0), 
-										:end_time => Time.local(2012, 3, 1, 19, 0, 0)
+										:date => d,
+										:start_time => Time.local(d.year, d.month, d.day, 15, 0, 0), 
+										:end_time => Time.local(d.year, d.month, d.day, 19, 0, 0)
 									   )
+			d = Date.today - 1.weeks
 			@Shift2 = FactoryGirl.create(:shift,
 										:assignment => @LukeAssign,
-										:date => Date.new(2012, 3, 2),
-										:start_time => Time.local(2012, 3, 2, 10, 0, 0),
-										:end_time => Time.local(2012, 3, 2, 13, 0, 0),
+										:date => d,
+										:start_time => Time.local(d.year, d.month, d.day, 10, 0, 0),
+										:end_time => Time.local(d.year, d.month, d.day, 13, 0, 0),
 									   )
+			d = Date.today - 1.days
 			@Shift3 = FactoryGirl.create(:shift,
 										:assignment => @LeiaAssign,
 										:date => Date.new(2012, 4, 1),
-										:start_time => Time.local(2012, 4, 1, 9, 0, 0),
-										:end_time => Time.local(2012, 4, 1, 10, 0, 0)
+										:start_time => Time.local(d.year, d.month, d.day, 9, 0, 0),
+										:end_time => Time.local(d.year, d.month, d.day, 10, 0, 0)
 									   )
 			@Shift4 = FactoryGirl.create(:shift,
 										:assignment => @HansAssign,
@@ -153,11 +154,17 @@ class ShiftTest < ActiveSupport::TestCase
 		end
 		
 		should "have a scope that returns all the upcoming shifts in the next x days" do
+			assert_equal [@Shift4], Shift.for_next_days(0)
 			assert_equal [@Shift4, @Shift5].map{|shift| shift.date}, Shift.for_next_days(7).map{|shift| shift.date}
 		end
 		
-		# should "have a scope that returns all the past shifts in the previous x days" do
-		# end
+		should "have a scope that returns all the past shifts in the previous x days" do
+			# using a parameter of zero should give you an empty array
+			assert_equal [], Shift.for_past_days(0)
+			# using a parameter of one should give you yesterday's shifts
+			assert_equal [@Shift3], Shift.for_past_days(1)
+			assert_equal [@Shift1, @Shift2, @Shift3], Shift.for_past_days(31)
+		end
 		
 		should "have a scope that returns all the shifts in chronological (ascending) order" do
 			shifts_in_chrono_order = [@Shift1, @Shift2, @Shift3, @Shift4, @Shift5, @Shift6]
