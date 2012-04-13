@@ -47,6 +47,7 @@ class Shift < ActiveRecord::Base
 	# parameter -x
 	yesterday = Date.yesterday
 	yesterday_time_end = Time.local(yesterday.year, yesterday.month, yesterday.day, 23, 59, 59)
+	# for_past_days goes from given days ago to the end of yesterday (11:59 pm)
 	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", (Date.today - x.days).to_time, yesterday_time_end)}
 	
 	# chronological: returns all shifts in chronological order
