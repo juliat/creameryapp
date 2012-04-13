@@ -89,6 +89,7 @@ class Shift < ActiveRecord::Base
 		# check if this job's assignment is in the list
 		return active_assignments.include?(self.assignment_id)
 	end
+	
 		
 	# Callbacks
 	# ====================================================================

@@ -25,14 +25,14 @@ class ShiftJobTest < ActiveSupport::TestCase
                             :end_time => Time.local(d2.year, d2.month, d2.day, 2, 0, 0))
         end # end setup
         
-        #~ teardown do
-           #~ @Employee.destroy
-           #~ @Store.destroy
-           #~ @Assign.destroy
-           #~ @Job.destroy
-           #~ @Shift1.destroy
-           #~ @Shift2.destroy
-        #~ end
+        teardown do
+           @Employee.destroy
+           @Store.destroy
+           @Assign.destroy
+           @Job.destroy
+           @Shift1.destroy
+           @Shift2.destroy
+        end
         
         should "show that a shift job can only be created if the associated shift is ended" do
             @Shift_Job_1 = FactoryGirl.build(:shift_job, :shift => @Shift1, :job => @Job)
@@ -41,7 +41,10 @@ class ShiftJobTest < ActiveSupport::TestCase
             # Shift_Job_2 should not be valid because you should not be able to create a shift_job
             # for a shift that has not yet ended
             puts "start time: " + @Shift2.start_time.to_s
+            puts "end time: " + @Shift2.end_time.to_s
             puts "now time: " + Time.now.to_s
+            puts @Shift2.end_time < Time.now
+            assert_equal false, @Shift_Job_2.associated_shift_ended
             assert_equal false, @Shift_Job_2.valid?
         end
         

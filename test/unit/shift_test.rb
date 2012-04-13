@@ -64,13 +64,13 @@ class ShiftTest < ActiveSupport::TestCase
 			@Shift5 = FactoryGirl.create(:shift,
 										:assignment => @LeiaAssign,
 										:date => Date.today + 7.days,
-										:start_time => Time.now + 7.days,
+										:start_time => 7.days.from_now,
 										:end_time => nil
 									   )
 			@Shift6 = FactoryGirl.create(:shift,
 										:assignment => @LukeAssign,
 										:date => Date.today + 14.days,
-										:start_time => Time.now + 14.days,
+										:start_time => 14.days.from_now,
 										:end_time => nil
 									   )
 								
