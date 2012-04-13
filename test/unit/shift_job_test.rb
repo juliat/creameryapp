@@ -20,19 +20,17 @@ class ShiftJobTest < ActiveSupport::TestCase
                                         :start_time => Time.local(d1.year, d1.month, d1.day, 10, 0, 0), 
                                         :end_time => Time.local(d1.year, d1.month, d1.day, 2, 0, 0))
             d2 = Date.tomorrow
-            @Shift2 = FactoryGirl.create(:shift, :assignment => @Assign, :date => d2, 
-                            :start_time => Time.local(d2.year, d2.month, d2.day, 10, 0, 0), 
-                            :end_time => Time.local(d2.year, d2.month, d2.day, 2, 0, 0))
+            @Shift2 = FactoryGirl.create(:shift, :assignment => @Assign, :date => d2, :start_time => Time.local(d2.year, d2.month, d2.day, 10, 0, 0), :end_time => Time.local(d2.year, d2.month, d2.day, 2, 0, 0))
         end # end setup
         
-        #~ teardown do
-           #~ @Employee.destroy
-           #~ @Store.destroy
-           #~ @Assign.destroy
-           #~ @Job.destroy
-           #~ @Shift1.destroy
-           #~ @Shift2.destroy
-        #~ end
+        teardown do
+           @Employee.destroy
+           @Store.destroy
+           @Assign.destroy
+           @Job.destroy
+           @Shift1.destroy
+           @Shift2.destroy
+        end
         
         should "show that a shift job can only be created if the associated shift is ended" do
             @Shift_Job_1 = FactoryGirl.build(:shift_job, :shift => @Shift1, :job => @Job)
