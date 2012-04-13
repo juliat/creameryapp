@@ -76,7 +76,7 @@ class Shift < ActiveRecord::Base
 	validates_date :date, :allow_blank => false
 	
 	# validate that (if it is given) the end time is after the start time
-	validates_time :end_time, :allow_nil => true, :after => :start_time
+	validates_time :end_time, :allow_blank => true# , :after => :start_time
 	
 	# a shift can only be added to a current assignment
 	validate :associated_assignment_is_active
@@ -90,9 +90,6 @@ class Shift < ActiveRecord::Base
 		return active_assignments.include?(self.assignment_id)
 	end
 		
-	#def end_time_past?
-		
-	
 	# Callbacks
 	# ====================================================================
 	# this callback will automatically set the end time of a new shif to three 

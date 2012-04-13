@@ -23,7 +23,7 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-04-12T16:13:03-04:00">2012-04-12T16:13:03-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-04-12T22:46:28-04:00">2012-04-12T22:46:28-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -152,7 +152,7 @@
       <tr>
         <td class="strong"><a href="#eeea95b51eef5ade6929f8fc9dcc5c0a83b8f496" class="src_link" title="app/models/shift.rb">app/models/shift.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>105</td>
+        <td>102</td>
         <td>30</td>
         <td>30</td>
         <td>0</td>
@@ -162,7 +162,7 @@
       <tr>
         <td class="strong"><a href="#b15cba4894718bfef411f245f9f027f033401223" class="src_link" title="app/models/shift_job.rb">app/models/shift_job.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>21</td>
+        <td>23</td>
         <td>7</td>
         <td>7</td>
         <td>0</td>
@@ -347,7 +347,7 @@
       <tr>
         <td class="strong"><a href="#eeea95b51eef5ade6929f8fc9dcc5c0a83b8f496" class="src_link" title="app/models/shift.rb">app/models/shift.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>105</td>
+        <td>102</td>
         <td>30</td>
         <td>30</td>
         <td>0</td>
@@ -357,7 +357,7 @@
       <tr>
         <td class="strong"><a href="#b15cba4894718bfef411f245f9f027f033401223" class="src_link" title="app/models/shift_job.rb">app/models/shift_job.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>21</td>
+        <td>23</td>
         <td>7</td>
         <td>7</td>
         <td>0</td>
@@ -3274,7 +3274,7 @@
         <li class="covered" data-hits="1" data-linenumber="79">
           <span class="hits">1</span>
           
-          <code class="ruby">	validates_time :end_time, :allow_blank =&gt; true, :after =&gt; :start_time</code>
+          <code class="ruby">	validates_time :end_time, :allow_blank =&gt; true# , :after =&gt; :start_time</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="80">
@@ -3358,76 +3358,58 @@
         <li class="never" data-hits="" data-linenumber="93">
           
           
-          <code class="ruby">	#def end_time_past?</code>
+          <code class="ruby">	# Callbacks</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby">		</code>
+          <code class="ruby">	# ====================================================================</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
           
           
-          <code class="ruby">	</code>
+          <code class="ruby">	# this callback will automatically set the end time of a new shif to three </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
           
           
-          <code class="ruby">	# Callbacks</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="97">
-          
-          
-          <code class="ruby">	# ====================================================================</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="98">
-          
-          
-          <code class="ruby">	# this callback will automatically set the end time of a new shif to three </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="99">
-          
-          
           <code class="ruby">	# hours after the start time</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="100">
+        <li class="covered" data-hits="1" data-linenumber="97">
           <span class="hits">1</span>
           
           <code class="ruby">	def set_shift_end_time</code>
         </li>
       
-        <li class="covered" data-hits="68" data-linenumber="101">
+        <li class="covered" data-hits="68" data-linenumber="98">
           <span class="hits">68</span>
           
           <code class="ruby">		self.end_time = self.start_time + 3.hours</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="102">
+        <li class="never" data-hits="" data-linenumber="99">
           
           
           <code class="ruby">	end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="103">
+        <li class="never" data-hits="" data-linenumber="100">
           
           
           <code class="ruby">		</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="104">
+        <li class="never" data-hits="" data-linenumber="101">
           
           
           <code class="ruby">	</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="105">
+        <li class="never" data-hits="" data-linenumber="102">
           
           
           <code class="ruby">end</code>
@@ -3559,19 +3541,31 @@
           <code class="ruby">	# shift has ended if it's end time is before the time it is now</code>
         </li>
       
-        <li class="covered" data-hits="35" data-linenumber="19">
-          <span class="hits">35</span>
+        <li class="never" data-hits="" data-linenumber="19">
           
-          <code class="ruby">	return self.shift.end_time &lt; Time.now</code>
+          
+          <code class="ruby">	# puts self.shift.end_time</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
           
           
+          <code class="ruby">	# puts self.shift.end_time &lt; Time.now</code>
+        </li>
+      
+        <li class="covered" data-hits="35" data-linenumber="21">
+          <span class="hits">35</span>
+          
+          <code class="ruby">	return self.shift.end_time &lt; Time.now</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby">end</code>

@@ -16,8 +16,8 @@ class ShiftJob < ActiveRecord::Base
     private
     def associated_shift_ended 
 	# shift has ended if it's end time is before the time it is now
-	puts self.shift.end_time
-	puts self.shift.end_time < Time.now
+	# puts self.shift.end_time
+	# puts self.shift.end_time < Time.now
 	return self.shift.end_time < Time.now
     end
 end
