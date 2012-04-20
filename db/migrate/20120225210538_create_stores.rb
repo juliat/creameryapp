@@ -5,6 +5,8 @@ class CreateStores < ActiveRecord::Migration
       t.string :street
       t.string :city
       t.string :state, :default => "PA"
+      t.float :latitude
+      t.float :longitude
       t.string :zip
       t.string :phone
       t.boolean :active, :default => true

@@ -1,6 +1,11 @@
 class Store < ActiveRecord::Base
   # Callbacks
   before_save :reformat_phone
+  before_save :find_town_coordinates
+  
+  # Set up this model to use gmaps for rails, a map-generating gem
+  # https://github.com/apneadiving/Google-Maps-for-Rails/wiki/Model-Customization
+  acts_as_gmappable :process_geocoding => false
   
   # Relationships
   has_many :assignments
@@ -58,5 +63,18 @@ class Store < ActiveRecord::Base
      phone.gsub!(/[^0-9]/,"") # strip all non-digits
      self.phone = phone       # reset self.phone to new string
    end
+   
+    #Use a callback to geocode the location of the store
+    def find_town_coordinates
+	# contact google's geocoding service and get the latitude and longitude
+	coord = Geokit::Geocoders::GoogleGeocoder.geocode "#{street}, #{city} #{state} #{zip}"
+	if coord.success
+	    # if the geocode requires was successful, use them to set the latitude and longitude
+	    self.lat, self.lon = coord.ll.split(',')
+	else
+	    errors.add_to_base("Error with geocoding")
+	end
+    end
+   
    
 end
