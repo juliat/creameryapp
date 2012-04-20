@@ -52,7 +52,6 @@ class Store < ActiveRecord::Base
 		return "inactive"
 	end
 	
-	
   
   # Callback code
   # -----------------------------
@@ -70,7 +69,7 @@ class Store < ActiveRecord::Base
 	coord = Geokit::Geocoders::GoogleGeocoder.geocode "#{street}, #{city} #{state} #{zip}"
 	if coord.success
 	    # if the geocode requires was successful, use them to set the latitude and longitude
-	    self.lat, self.lon = coord.ll.split(',')
+	    self.latitude, self.longitude = coord.ll.split(',')
 	else
 	    errors.add_to_base("Error with geocoding")
 	end

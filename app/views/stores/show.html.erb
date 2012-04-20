@@ -21,6 +21,8 @@
 		 <a href=<%= edit_store_path(@store) %> class="edit store button">Edit Store Information</a>
 		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store button"   %>
 	</div>
+	<% # embed map using gmaps4rails %>
+	<%= gmaps4rails(@location) %>
 </div>
 <div class="current_employees">
 	<h3>Current Employees</h3>

@@ -10,6 +10,7 @@ gem 'validates_timeliness'
 gem 'geokit'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'gmaps4rails'
 
 # Gems used only in development
 group :development do

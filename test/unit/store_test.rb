@@ -48,11 +48,11 @@ class StoreTest < ActiveSupport::TestCase
     end
     
     # and provide a teardown method as well
-    teardown do
-      @cmu.destroy
-      @hazelwood.destroy
-      @oakland.destroy
-    end
+    #~ teardown do
+      #~ @cmu.destroy
+      #~ @hazelwood.destroy
+      #~ @oakland.destroy
+    #~ end
   
     # now run the tests:
     # test one of each factory (not really required, but not a bad idea)
@@ -105,6 +105,13 @@ class StoreTest < ActiveSupport::TestCase
 		assert_equal "active", @oakland.active_status
 		assert_equal "inactive", @hazelwood.active_status
 	end
+    
+    # test the geocoding callback using a known address (5000 forbes avenue, pittsburgh, PA 15213)
+    should "show that the geocoding callback retrieves the store's latitude and longitude based on its address" do
+        # rounding to two decimal places because not sure what precision google maps geocoder will return
+        assert_equal 40.44, @oakland.latitude.round(2)
+        assert_equal -79.94, @oakland.longitude.round(2)
+    end
 	
 end # context
 end # class
