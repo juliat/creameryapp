@@ -7,7 +7,7 @@ class StoresController < ApplicationController
 		@store = Store.find(params[:id])
 		@current_employees = Assignment.current.for_store(@store.id).map!{|a| a.employee}
 		# @past_employees = Assignment.past.for_store(@store.id).map!{|a| a.employee} 
-		@location = Town.all.to_gmaps4rails
+		@location = Store.all.to_gmaps4rails
 	end
 
 	def new
