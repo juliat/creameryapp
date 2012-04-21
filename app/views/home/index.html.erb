@@ -17,3 +17,7 @@
 	<!-- manage employees button -->
 	</div>
 <% end %>
+
+<% # embed map using gmaps4rails %>
+<%= @json %>
+<%= gmaps4rails(@json) %>
