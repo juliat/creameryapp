@@ -1,0 +1,6 @@
+<h1>Editing Assignment: <%= @assignment.employee.proper_name %> - <%= @assignment.store.name %> Store.</h1>
+
+<%= render 'form' %>
+
+<%= link_to "View Details for this Assignment", @assignment, :class =>"show assignment button"   %> |
+<%= link_to "View All Assignments", assignments_path, :class =>"view_all assignment button"   %>

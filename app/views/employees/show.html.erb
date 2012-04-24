@@ -1,0 +1,53 @@
+<h1 class="page_label">Employee Details:</h1>
+<h1><span class="invisible">Name:</span> <%=  @employee.name %></h1>
+
+<a href=<%= edit_employee_path(@employee) %> class="edit button">Edit Employee Information</a>
+	
+<div class="employee_data">	
+	<h3>Employee Info:</h3>
+	
+	<% if @most_recent_assignment.nil? == false && @most_recent_assignment == @employee.current_assignment %>
+	<% @most_recent_assignment.employee.role.start_with?("e") ? article = "an" : article = "a"%>
+	<p>Currently <%= article + " " + @most_recent_assignment.employee.role %> at the <%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %></p>
+	<% elsif (@most_recent_assignment.nil? == false) %>
+		<p>Was a <%= @most_recent_assignment.employee.role %> at the <%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %> until <%= @most_recent_assignment.end_date.strftime("%B %e, %Y") %>.</p>
+	<% end %>
+	
+	<table class="details">
+		<tr>
+			<th>Active:</th>
+			<td><%= @employee.active ? "Yes" : "No" %></td>
+		</tr>
+		<% unless @employee.current_assignment.nil? %>
+		<tr>
+			<th>Role:</th>
+			<td><%=  @most_recent_assignment.employee.role.capitalize %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<th>Phone:</th>
+			<td><%=  @employee.pretty_phone%></td>
+		</tr>
+		<tr>
+			<th>SSN:</th>
+			<td><span class="invisible"><%= @employee.ssn %></span><%=  @employee.pretty_ssn %></td>
+		</tr>
+		<tr>
+			<th>Age:</th>
+			<td><%= @employee.age %></td>
+		</tr>
+		<tr>
+			<th>Date of Birth:</th>
+			<td><%= @employee.date_of_birth.strftime("%m/%d/%y") %></td>
+		</tr>
+	</table>
+	
+	<%= link_to "Delete Employee", @employee, :confirm => 'Are you sure?', :method => :delete, :class => "delete button" %>
+</div>
+
+
+<% unless @past_assignments.empty? == true%>
+<div class="assignment_history">
+	<%= render :partial => "past_assignments" %>
+ </div>
+<% end %>

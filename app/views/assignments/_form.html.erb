@@ -1,0 +1,15 @@
+<%= simple_form_for(@assignment) do |f| %>
+
+    <%= f.association :store, :prompt => "Select a store"%>
+
+	<%= f.association :employee, :prompt => "Select an employee"%>
+
+	<%= f.input :pay_level, :collection => 1..6, :prompt => "Select a pay level" %>
+
+	<%= f.input :start_date, :order => [:month, :day, :year] %>
+
+	<%= f.input :end_date, :order => [:month, :day, :year] , :prompt => true, :allow_blank => true%>
+
+    <%= f.submit %>
+
+<% end %>

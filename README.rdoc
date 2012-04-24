@@ -1,0 +1,7 @@
+Why this is a few minutes late:
+
+1. I have a Windows machine. Every test takes at least 10x as long to run.
+2. I found a typo in a helper method that I added to the store model (one space) that made a unit test I wrote for it fail. I found it after 11:59.
+3. I didn't commit all my changes (styling ones) at 11:59 because they broke the cucumber tests. So now, commiting to fix the unit test failure, I had to tweak quickly so I won't break the cucumber tests when I submit.
+
+Sorry! This is not me attempting to get extra time to work-- I just don't want to get serious points off for one " " character breaking a model, so I have to resubmit now.

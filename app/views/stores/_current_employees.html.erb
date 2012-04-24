@@ -1,0 +1,19 @@
+<p><%= @current_employees.size > 1 ? "#{@current_employees.size} employees currently work":"#{@current_employees.size} employee currently works" %> at this store.</p>
+<table class="display dataTable">
+	<thead>
+		<tr>
+			<th>Name</th>
+			 <th>Role</th>
+			<th>Phone</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for employee in @current_employees  %>
+		<tr>
+			<td><%= link_to(employee.name, employee_path(employee)) %></td>
+			<td><%= employee.role.capitalize %></td>
+			<td><%= employee.pretty_phone %></td>
+		</tr>
+		 <% end %>
+	</tbody>
+</table>

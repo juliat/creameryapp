@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>A&amp;M Creamery</title>
+	  <%= stylesheet_link_tag "application", "gmaps4rails"%>
+	  <%= javascript_include_tag "jquery", "jquery-ui", "jquery_ujs", "application", 
+								 "dataTables/jquery.dataTables.min.js", "call-tablesort.js", 
+								 "jquery.isotope.min" %> 
+	  <%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+		<%= yield :head %>
+		<div id="header">
+			<%= render :partial => "partials/navigation" %>
+		</div>
+		<div id = "main-wrapper">
+			<div id="main">
+				<!-- show any flash messages -->
+				<% flash.each do |name, msg| %>
+					<%= content_tag :div, msg, :id => "flash_#{name}" %>
+				<% end %>
+				<!-- show content -->
+				<%= yield %>
+			</div>
+		</div>
+		<div id = "footer-wrapper">
+			<%=  render :partial  => "partials/footer" %>
+		</div>
+		<%= yield :scripts %>
+	</body>
+</html>

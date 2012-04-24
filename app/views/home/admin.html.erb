@@ -1,0 +1,40 @@
+<div class= "stores">
+	<h2>Active Stores</h2>
+	<% for store in @stores %>
+		<div class="store">
+			<h3><%= store.name %> Store</h3>
+			<p><strong><%= store.employees.size %></strong> Current Employees</p>
+			<p><strong>N<%#store.shift_hours_worked(2.weeks) %></strong> Shift Hours Worked in the Last 2 Weeks</p>
+			<p><%= link_to "Assign Employee", new_employee_path, :class => "add employee"  %></p>
+		</div>
+	<% end %>
+</div>
+<div class="employees">
+	<h2>Top Employees</h2>
+	<% unless @top_employees.nil? %>
+		<% for employee in @top_employees %>
+			<div>
+			<h3><%= employee.name %></h3>
+			<p>Worked <strong>N<%# employee.shift_hours_worked(2.weeks) %></strong> in the Last 2 Weeks</p>
+			<p>At <%= employee.store %> Store</p>
+			</div>
+		<% end %>
+	<% else %>
+		<p class="nil-message">There aren't any Top Employees.</p>
+	<% end %>
+</div>
+<div class="container">
+	<div id="employee-search">
+		<h2>Employee Search</h2>
+		<p>A search box to find past and current employees goes here.</p>
+	</div>
+	<div class="quick-links">
+		<h2>Quick Links</h2>
+		<ul>
+			<li><%= link_to "Add an Employee", new_employee_path, :class => "add employee"  %></li>
+			<!-- should this even be here? wouldn't you think about adding shifts to stores/employees? -->
+			<li><%= link_to "Add a Shift", new_shift_path, :class => "add shift" %></li>
+			<li><%# link_to "Add a Job", new_job_path, :class => "add job" %>Add a new Job</li>
+		</ul>
+	</div>
+</div>

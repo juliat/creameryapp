@@ -1,0 +1,31 @@
+<h1>All Employees</h1>
+<%=  link_to "Add A New Employee", new_employee_path, :class =>"add button"  %>
+
+<table class="display dataTable">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Currently Assigned</th>
+			<th>Role</th>
+			<th>Phone</th>
+			<th>Active</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for employee in @employees  %>
+		<tr>
+			<td><%= link_to(employee.name, employee_path(employee)) %></td>
+			<% if employee.current_assignment.nil? %>
+				<td><%= link_to("Create Assignment", new_assignment_path) %></td>
+			<% else %>
+				<td><%= link_to(employee.current_assignment.store.name, store_path(employee.current_assignment.store)) %></td>
+			<% end %>
+			<td><%= employee.role.capitalize %></td>
+			<td><%= employee.pretty_phone %></td>
+			<td><%= employee.active ? "Active" : "Inactive" %></td>
+		</tr>
+		 <% end %>
+	</tbody>
+</table>
+		
+

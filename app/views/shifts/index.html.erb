@@ -1,0 +1,23 @@
+<h1>All Shifts</h1>
+<table>
+	<thead>
+		<tr>
+			<td>Date</td>
+			<td>Start Time</td>
+			<td>End Time</td>
+			<td>Employee</td>
+			<td>Store</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% for shift in @shifts %>
+		<tr>
+			<td><%= shift.date %></td>
+			<td><%= shift.start_time %></td>
+			<td><%= shift.end_time %></td>
+			<td><%= shift.employee %></td>
+			<td><%= shift.store %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
