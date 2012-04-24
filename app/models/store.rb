@@ -47,10 +47,10 @@ class Store < ActiveRecord::Base
     
     # returns stores active/inactive status as string
     def active_status
-	    if active
-		return "active"
-	    end
-	    return "inactive"
+	if active
+	    return "active"
+	end
+	return "inactive"
     end
 
     # returns number of shift hours worked in a given time range in the past

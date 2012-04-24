@@ -88,7 +88,7 @@ class Shift < ActiveRecord::Base
 	# a shift can only be added to a current assignment
 	validate :associated_assignment_is_active
 	
-	
+
 	# Helper Methods
 	# ===================================================================
 	# hours method returns number of hours worked based on end_time - start_time
@@ -96,7 +96,6 @@ class Shift < ActiveRecord::Base
 		end_time - start_time
 	end
 		
-	
 	# Custom Validation Methods
 	private
 	def associated_assignment_is_active
