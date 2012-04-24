@@ -54,9 +54,10 @@ class Store < ActiveRecord::Base
     end
 
     # returns number of shift hours worked in a given time range in the past
-    def shift_hours_worked(time_range)
-	shifts = self.shifts
-	
+    def shift_hours_worked(past_n_days)
+	# get all the hours for each employee and sum them up
+	hours = employees.collect{|employee| employee.shift_hours_worked(past_n_days)}.inject(:+)
+	return hours
     end
   
   # Callback code

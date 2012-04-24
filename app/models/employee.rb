@@ -77,6 +77,7 @@ class Employee < ActiveRecord::Base
     def shift_hours_worked(past_n_days)
         shifts = Shift.for_employee(self.id).for_past_days(past_n_days)
         hours = shifts.collect{|shift| shift.hours}.inject(:+)
+        return hours
     end
   
   # Misc Constants
