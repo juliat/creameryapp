@@ -72,6 +72,12 @@ class Employee < ActiveRecord::Base
 		end
 		return "inactive"
 	end
+    
+    # returns number of shift hours worked in a given time range 
+    def shift_hours_worked(past_n_days)
+        shifts = Shift.for_employee(self.id).for_past_days(past_n_days)
+        hours = shifts.collect{|shift| shift.hours}.inject(:+)
+    end
   
   # Misc Constants
   ROLES_LIST = [['Employee', 'employee'],['Manager', 'manager'],['Administrator', 'admin']]
