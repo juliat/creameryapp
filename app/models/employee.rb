@@ -76,7 +76,11 @@ class Employee < ActiveRecord::Base
     # returns number of shift hours worked in a given time range 
     def shift_hours_worked(past_n_days)
         shifts = Shift.for_employee(self.id).for_past_days(past_n_days)
-        hours = shifts.collect{|shift| shift.hours}.inject(:+)
+        unless shifts.empty?
+            hours = shifts.collect{|shift| shift.hours}.inject(:+)
+        else
+            hours = 0
+        end
         return hours
     end
   
