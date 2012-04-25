@@ -2,6 +2,7 @@ class JobsController < ApplicationController
 
 	# user must be logged in to get to Job info
 	before_filter :check_login
+	authorize_resource
 
 	def index
 		@jobs = Job.alphabetical

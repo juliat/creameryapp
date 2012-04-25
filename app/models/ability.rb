@@ -7,27 +7,39 @@ class Ability
     user ||= User.new # guest user
    
     # admins can do anything
-    if user.employee.role == "admin"
+    if user.role == "admin"
         can :manage, :all
         
-    # managers can access and edit
-    # - their information
-    # - their employees' information
-    # and they can create and edit
-    # - shifts and jobs
-    elsif user.employee.role == "manager"
+    elsif user.role == "manager"
+        # managers can access and edit
+        # - their information
+        # - their employees' information
         can :update, Employee do |employee|
             (employee.id == user.employee.id) || (Employee.by_store(user.employee.store).include?(employee.id))
         end
+        cannot :create, Employee
+        cannot :destroy, Employee
+                
+        # can do anything with Shifts
         can :manage, Shift
-        can :manage, Job
         
-    # employees can only see their own info,
-    # but they can't modify it
+        # can't look at or do anything with stores
+        
+        # can't do anything with assignments
+        cannot :manage, Assignment
+        
+        # can create and edit jobs related to Shifts
+        can [:create, :edit], Job
+        
+        # can't manage users
+        cannot :manage, User
+        
     elsif user.employee.role == "employee"
-        can :read, Employee do |employee|
-            employee.id == user.employee.id
-        end
+        # employees can only see their own info
+        can :read, Employee, :id => user.employee_id
+        
+        # can't do anything else
+        cannot :manage, [Store, Shift, Job, Assignment, User]
     end
     
     # The first argument to `can` is the action you are giving the user permission to do.

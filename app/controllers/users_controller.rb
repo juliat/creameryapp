@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 	# everyone can run new and create actions, but only those actions
 	before_filter :check_login, :except => [:new, :create]
+	authorize_resource
 
 	def index
 		@users = User.all

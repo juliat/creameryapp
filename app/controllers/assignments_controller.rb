@@ -2,6 +2,7 @@ class AssignmentsController < ApplicationController
 	
 	# everyone can run new and create actions, but only those actions
 	before_filter :check_login
+	authorize_resource
 	
 	def index
 		@current_assignments = Assignment.current.chronological.reverse

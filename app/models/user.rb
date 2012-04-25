@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
 	# email must be unique in system
 	validates_uniqueness_of :email
 	
+	# convenience method
+	def role
+		return self.employee.role
+	end
 	
 	# Custom Validation Methods
 	private
