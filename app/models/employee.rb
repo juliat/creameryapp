@@ -26,6 +26,7 @@ class Employee < ActiveRecord::Base
   scope :managers, where('role = ?', 'manager')
   scope :admins, where('role = ?', 'admin')
   scope :alphabetical, order('last_name, first_name')
+  # scope :search, where(
   
   # Class Methods
   
