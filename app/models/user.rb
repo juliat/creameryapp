@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 	
+	attr_accessible :email, :employee_id, :password, :password_confirmation
+	
+	# use rails built-in password management
+	has_secure_password
 
 	# Relationships
 	# ====================================================================
@@ -33,6 +37,10 @@ class User < ActiveRecord::Base
 	def employee_is_active_in_system
 		active_employees = Employee.active.map{|employee| employee.id}
 		return active_employees.include?(self.employee_id)
+	end
+	
+	def self.authenticate(email, password)
+		find_by_email(email).try(:authenticate)
 	end
 	
 	
