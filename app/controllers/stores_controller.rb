@@ -1,8 +1,6 @@
 class StoresController < ApplicationController
 	
-	# everyone can see a list of stores or details for a store, though the details
-	# shown in the view will depend on who the user is and if they're logged in
-	before_filter :check_login, :except => [:index, :show]
+	before_filter :check_login
 	
 	def index
 		@stores = Store.active.alphabetical

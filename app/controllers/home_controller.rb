@@ -6,7 +6,6 @@ class HomeController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def admin
     @stores = Store.active.alphabetical;
   end
@@ -17,8 +16,6 @@ class HomeController < ApplicationController
   def employee
   end
 
-=======
->>>>>>> mine/master
   def about
   end
 

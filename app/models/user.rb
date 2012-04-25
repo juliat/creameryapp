@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 	end
 	
 	def self.authenticate(email, password)
-		find_by_email(email).try(:authenticate)
+		find_by_email(email).try(:authenticate, password)
 	end
 	
 	
