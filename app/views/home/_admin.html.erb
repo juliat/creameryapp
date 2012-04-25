@@ -4,7 +4,7 @@
 		<div class="store">
 			<h3><%= store.name %> Store</h3>
 			<p><strong><%= store.employees.size %></strong> Current Employees</p>
-			<p><strong><%= store.shift_hours_worked(14) %></strong> Shift Hours Worked in the Last 2 Weeks</p>
+			<p><strong><%= store.shift_hours_worked %></strong> Shift Hours Worked in the Last 2 Weeks</p>
 			<p><%= link_to "Assign Employee", new_employee_path, :class => "add employee"  %></p>
 		</div>
 	<% end %>
@@ -15,7 +15,7 @@
 		<% for employee in @top_employees %>
 			<div>
 			<h3><%= employee.name %></h3>
-			<p>Worked <strong><%= employee.shift_hours_worked(14) %></strong> in the Last 2 Weeks</p>
+			<p>Worked <strong><%= employee.shift_hours_worked %></strong> in the Last 2 Weeks</p>
 			<p>At <%= employee.store %> Store</p>
 			</div>
 		<% end %>
@@ -31,9 +31,9 @@
 	<div class="quick-links">
 		<h2>Quick Links</h2>
 		<ul>
-			<li><%= link_to "Add an Employee", new_employee_path, :class => "add employee"  %></li>
+			<li><%= link_to "Add an Employee", new_employee_path, :class => "employee"  %></li>
 			<!-- should this even be here? wouldn't you think about adding shifts to stores/employees? -->
-			<li><%= link_to "Add a Shift", new_shift_path, :class => "add shift" %></li>
+			<li><%= link_to "Add a Shift", new_shift_path, :class => "shift" %></li>
 			<li><%# link_to "Add a Job", new_job_path, :class => "add job" %>Add a new Job</li>
 		</ul>
 	</div>

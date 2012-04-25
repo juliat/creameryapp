@@ -27,6 +27,16 @@ class Employee < ActiveRecord::Base
   scope :admins, where('role = ?', 'admin')
   scope :alphabetical, order('last_name, first_name')
   
+  # Class Methods
+  
+  # returns employees who have worked the most hours in the past n days
+    def self.top_employees(n_employees = 7, n_days = 14)
+        employees = Employee.all
+        top_employees = employees.sort_by{|employee| employee.shift_hours_worked}
+        return top_employees.first(n_employees)   
+    end
+  
+  
   # Other methods
   def name
     "#{last_name}, #{first_name}"
@@ -83,14 +93,14 @@ class Employee < ActiveRecord::Base
 	end
     
     # returns number of shift hours worked in a given time range 
-    def shift_hours_worked(past_n_days)
+    def shift_hours_worked(past_n_days=14)
         shifts = Shift.for_employee(self.id).for_past_days(past_n_days)
         unless shifts.empty?
             hours = shifts.collect{|shift| shift.hours}.inject(:+)
         else
             hours = 0
         end
-        return hours
+        return hours.to_i
     end
   
   # Misc Constants
