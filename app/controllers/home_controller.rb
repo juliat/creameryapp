@@ -14,6 +14,7 @@ class HomeController < ApplicationController
   end
   
   def employee
+    @employee = current_user.employee
   end
 
   def about

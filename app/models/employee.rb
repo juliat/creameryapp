@@ -44,6 +44,15 @@ class Employee < ActiveRecord::Base
     curr_assignment.first   # return as a single object, not an array
   end
   
+  def manager
+    if (self.role == "employee") && (self.current_assignment.nil? == false)
+        manager = Employee.by_store(self.current_assignment.store).managers.first
+        return manager
+    else 
+        return nil
+    end
+  end
+  
   # returns the employee's most recent assignment (either their current assignment
   # or their most recent past assignment
   # def most_recent_assignment
