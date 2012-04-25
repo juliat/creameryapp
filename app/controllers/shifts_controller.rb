@@ -1,4 +1,8 @@
 class ShiftsController < ApplicationController
+	
+	# user must be logged in to get to shift info
+	before_filter :check_login
+	
 	def index
 		@shifts = Shift.chronological
 	end
