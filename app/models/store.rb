@@ -57,7 +57,7 @@ class Store < ActiveRecord::Base
     def shift_hours_worked(past_n_days)
 	# get all the hours for each employee and sum them up
 	hours = employees.collect{|employee| employee.shift_hours_worked(past_n_days)}.inject(:+)
-	return hours
+	return hours.to_i
     end
   
   # Callback code
