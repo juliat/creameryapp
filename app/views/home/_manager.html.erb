@@ -1,0 +1,54 @@
+<div class="employees">
+	<% unless current_user.store.employees.nil? %>
+		<h2>Employees</h2>
+		<% for employee in current_user.store.employees %>
+			<div>
+				<h3><%= employee.name %></h3>
+				<p>Worked <strong>N<%# employee.shift_hours_worked(2.weeks) %></strong> in the Last 2 Weeks</p>
+				<p>Last Shift was on <strong><%# employee.last_shift %></strong></p>
+				<p><%= link_to "New Shift", new_shift_path, :class => "add shift" %></p>
+			</div>
+		<% end %>
+	<% else %>
+		<p class="nil-message">There aren't any Employeees at this Store.</p>
+	<% end %>
+</div>
+<!-- only show incomplete shifts when they exist -->
+<% unless current_user.store.shifts.incomplete.nil? %>
+	<div class="incomplete shifts">
+		<h2>Shifts to Update</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Employee</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for shift in current_user.store.shifts.incomplete %>
+				<tr>
+					<td><%= shift.date %></td>
+					<td><%= shift.employee.name %></td>
+					<td><%= link_to "Add Details", edit_shift_, :class => "edit shift" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>	
+<div class="shifts calendar">
+	<h2>Today's Shifts</h2>
+	<% unless current_user.store.shifts(1.day).nil? %>
+		<% for shift in current_user.store.shifts(1.day) %>
+		<!-- shift div is a link to edit page -->
+		<a href=<%= edit_shift_path %> class="shift edit link">
+			<div class="shift">
+				<p><%= shift.employee.name %></p>
+				<p>Starts at <%= shift.start_time %></p>
+			</div>
+		</a>
+	<% else %>
+		<p class="nil-message">There aren't any Shifts Scheduled for today.</p>
+	<% end %>
+</div>

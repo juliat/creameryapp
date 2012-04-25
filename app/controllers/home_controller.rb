@@ -1,20 +1,18 @@
 class HomeController < ApplicationController
   def index
-	@stores = Store.active.alphabetical;
-    @json = @stores.to_gmaps4rails do |store, marker|
-        marker.title "#{store.name} Store"
+    if logged_in?
+        if current_user.role == "admin"
+            @stores = Store.active.alphabetical;
+            # @top_employees = Employee.by_hours;
+        elsif current_user.role == "manager"
+            
+        end
+    else
+        @stores = Store.active.alphabetical;
+        @json = @stores.to_gmaps4rails do |store, marker|
+            marker.title "#{store.name} Store"
+        end
     end
-  end
-
-  def admin
-    @stores = Store.active.alphabetical;
-  end
-  
-  def manager
-  end
-  
-  def employee
-    @employee = current_user.employee
   end
 
   def about

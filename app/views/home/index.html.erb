@@ -1,22 +1,11 @@
-<h1>The Amazing and Marvelous Creamery</h1>
-<h2>Our Stores</h2>
-<% for store in @stores %>
-	<div class="store">
-	<h3><span class="invisible">Name: </span><%=  link_to "#{store.name}", store_path(store) %></h3>
-	<table>
-		<tr>
-			<th>Address</th>
-			<td><%= store.street %><br><%= store.city + ", " + store.state + " " + store.zip %></td>
-		</tr>
-		<tr>
-			<th>Phone</th>
-			<td><%= store.pretty_phone %></td>
-		</tr>
-	</table>
-	<!-- edit button -->
-	<!-- manage employees button -->
-	</div>
+<% if logged_in? %>
+	<% if current_user.role == 'admin' %>
+		<%= render :partial => 'admin' %>
+	<% elsif current_user.role == 'manager' %>
+		<%= render :partial => 'manager' %>
+	<% elsif current_user.role == 'employee' %>
+		<%= render :partial => 'employee' %>
+	<% end %>
+<% else %>
+	<%= render :partial => 'guest_homepage' %>
 <% end %>
-
-<% # embed map using gmaps4rails %>
-<%= gmaps4rails(@json) %>
