@@ -10,8 +10,6 @@ Creamery2012::Application.routes.draw do
 
 	# Semi-static page routes
 	match 'home' => 'home#index', :as => :home
-	match 'admin' => 'home#admin', :as => :admin
-	match 'employee' => 'home#employee', :as => :employee
 	
 	match 'about' => 'home#about', :as => :about
 	match 'contact' => 'home#contact', :as => :contact
