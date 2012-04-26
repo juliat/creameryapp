@@ -1,0 +1,16 @@
+<div class="employees">
+	<h2>Top Employees</h2>
+	<% unless @top_employees.nil? %>
+		<% for employee in @top_employees %>
+			<div>
+			<h3><%= link_to(employee.name, employee_path(employee)) %></h3>
+			<p>Worked <strong><%= employee.shift_hours_worked %></strong> in the Last 2 Weeks</p>
+			<% unless employee.current_assignment.nil? %>
+				<p>At <%= link_to(employee.current_assignment.store.name + " Store", store_path(employee.current_assignment.store)) %></p>
+			<% end %>
+			</div>
+		<% end %>
+	<% else %>
+		<p class="nil-message">There aren't any Top Employees.</p>
+	<% end %>
+</div>

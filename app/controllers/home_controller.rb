@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     if logged_in?
         if current_user.role == "admin"
             @stores = Store.active.alphabetical;
-            # @top_employees = Employee.by_hours;
+            @top_employees = Employee.top_employees;
         elsif current_user.role == "manager"
             
         end

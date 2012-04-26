@@ -34,7 +34,7 @@ class Employee < ActiveRecord::Base
   
   # returns employees who have worked the most hours in the past n days
     def self.top_employees(n_employees = 7, n_days = 14)
-        employees = Employee.all
+        employees = Employee.active.all
         top_employees = employees.sort_by{|employee| employee.shift_hours_worked}
         return top_employees.first(n_employees)   
     end
