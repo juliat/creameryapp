@@ -97,6 +97,11 @@ class Shift < ActiveRecord::Base
 		hours = seconds_in_shift/3600
 		return hours
 	end
+	
+	# creates a string to name the shift based on the start_time and the end_time
+	def name
+		return "#{start_time.strftime("%l:%M %p")} - #{end_time.strftime("%l:%M %p")}"
+	end
 		
 	# Custom Validation Methods
 	private

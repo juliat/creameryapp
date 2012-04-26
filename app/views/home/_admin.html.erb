@@ -9,6 +9,7 @@
 		</div>
 	<% end %>
 </div>
+
 <div class="employees">
 	<h2>Top Employees</h2>
 	<% unless @top_employees.nil? %>
@@ -23,10 +24,11 @@
 		<p class="nil-message">There aren't any Top Employees.</p>
 	<% end %>
 </div>
+
 <div class="container">
 	<div id="employee-search">
 		<h2>Employee Search</h2>
-		<p>A search box to find past and current employees goes here.</p>
+		<%= render :partial => 'search_employees' %>
 	</div>
 	<div class="quick-links">
 		<h2>Quick Links</h2>

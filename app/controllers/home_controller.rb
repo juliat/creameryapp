@@ -15,6 +15,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def search
+    @query = params[:query]
+    @employees = Employee.search(@query)
+    @total_hits = @employees.size
+  end
+
   def about
   end
 
