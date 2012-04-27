@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20120425040811) do
   create_table "shifts", :force => true do |t|
     t.integer  "assignment_id"
     t.date     "date"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.time     "start_time"
+    t.time     "end_time"
     t.text     "notes"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
