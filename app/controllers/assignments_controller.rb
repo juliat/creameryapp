@@ -15,6 +15,7 @@ class AssignmentsController < ApplicationController
 
 	def new
 		@assignment = Assignment.new
+		@assignment.store_id = params[:store_id] unless params[:store_id].nil?
 	end
 
 	def edit

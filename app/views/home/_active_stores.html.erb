@@ -3,9 +3,9 @@
 	<% for store in @stores %>
 		<div class="store">
 			<h3><%= link_to(store.name + " Store", store_path(store)) %></h3>
-			<p><strong><%= store.employees.size %></strong> Current Employees</p>
+			<p><strong><%= store.employees.active.size %></strong> Current Employees</p>
 			<p><strong><%= store.shift_hours_worked %></strong> Shift Hours Worked in the Last 2 Weeks</p>
-			<p><%= link_to "Assign Employee", new_employee_path, :class => "add employee"  %></p>
+			<p><%= link_to "Assign Employee", new_assignment_path(:store_id => store.id), :class => "add assignment"  %></p>
 		</div>
 	<% end %>
 </div>
