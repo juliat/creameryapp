@@ -59,7 +59,7 @@ class Employee < ActiveRecord::Base
   
   def manager
     if (self.role == "employee") && (self.current_assignment.nil? == false)
-        manager = Employee.by_store(self.current_assignment.store).managers.first
+        manager = Assignment.for_store(self.current_assignment.store).for_role("manager").first.employee
         return manager
     else 
         return nil

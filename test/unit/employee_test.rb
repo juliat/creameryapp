@@ -49,19 +49,27 @@ class EmployeeTest < ActiveSupport::TestCase
   context "Creating six employees of three levels" do
     # create the objects I want with factories
     setup do 
+      # one store
       @cmu = FactoryGirl.create(:store)
+      # many employees
       @ed = FactoryGirl.create(:employee)
       @cindy = FactoryGirl.create(:employee, :first_name => "Cindy", :last_name => "Crawford", :ssn => "084-35-9822", :date_of_birth => 17.years.ago.to_date)
       @ralph = FactoryGirl.create(:employee, :first_name => "Ralph", :last_name => "Wilson", :active => false, :date_of_birth => 16.years.ago.to_date)
       @ben = FactoryGirl.create(:employee, :first_name => "Ben", :last_name => "Sisko", :role => "manager", :phone => "412-268-2323")
       @kathryn = FactoryGirl.create(:employee, :first_name => "Kathryn", :last_name => "Janeway", :role => "manager", :date_of_birth => 30.years.ago.to_date)
       @alex = FactoryGirl.create(:employee, :first_name => "Alex", :last_name => "Heimann", :role => "admin")
+      # some assignments
       @assign_ed = FactoryGirl.create(:assignment, :employee => @ed, :store => @cmu)
       @assign_cindy = FactoryGirl.create(:assignment, :employee => @cindy, :store => @cmu, :end_date => nil)
+      @assign_kathryn = FactoryGirl.create(:assignment, :employee => @kathryn, :store => @cmu)
 	  # adding objects to test most_recent_assignment method
 	  @benji = FactoryGirl.create(:employee, :first_name => "Benji", :last_name => "Samson")
 	  @old_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 2.years.ago.to_date, :end_date => 1.year.ago.to_date)
 	  @recent_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 1.year.ago.to_date, :end_date => 1.month.ago.to_date)
+      # assign a few shifts (to test shift_hours_worked method)
+      @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => Date.yesterday, :start_time => 1.day.ago)
+      @lastWeekShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
+      @lastMonthShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 30.days.ago.to_date, :start_time => 30.days.ago)
     end
     
     # and provide a teardown method as well
@@ -179,7 +187,8 @@ class EmployeeTest < ActiveSupport::TestCase
 	end
 	
 	# test the active_status method
-	should "show that the active_status method returns a string indicating the employee's status as active or inactive" do
+	should "show that the active_status method returns a string indicating the employee's 
+    status as active or inactive" do
 		assert_equal "inactive", @ralph.active_status
 		assert_equal "active", @cindy.active_status
 	end
@@ -188,5 +197,25 @@ class EmployeeTest < ActiveSupport::TestCase
 	# should "shows that the most recent assignment method works" do
 		# assert_equal @recent_assign_benji, @benji.most_recent_assignment
 	# end
+    
+    # test the manager method
+    should "show that the manager returns the manager for an employee (or nil if the 
+    employee is not a low-level employee or has no current assignment" do
+        # kathryn is cindy's manager at the CMU store
+        assert_equal @kathryn, @cindy.manager
+        # ed has no current assignment ==> no manager
+        assert_nil @ed.manager
+    end
+    
+    # test the shift_hours_worked method
+    should "show that the shift_hours_worked method returns the cumulative shift hours 
+    worked  in a given time range by an employee as an integer" do
+        # someone with no hours
+        assert_equal 0, @cindy.shift_hours_worked
+        # someone with many hours (using default time range of 2 weeks)
+        assert_equal 6, @ed.shift_hours_worked
+        # using time range other than default
+        assert_equal 9, @ed.shift_hours_worked(30)
+    end
   end
 end
