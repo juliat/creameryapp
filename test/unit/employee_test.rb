@@ -67,9 +67,12 @@ class EmployeeTest < ActiveSupport::TestCase
 	  @old_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 2.years.ago.to_date, :end_date => 1.year.ago.to_date)
 	  @recent_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 1.year.ago.to_date, :end_date => 1.month.ago.to_date)
       # assign a few shifts (to test shift_hours_worked method)
+      # for ed
       @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => Date.yesterday, :start_time => 1.day.ago)
       @lastWeekShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
       @lastMonthShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 30.days.ago.to_date, :start_time => 30.days.ago)
+      # for cindy
+      
     end
     
     # and provide a teardown method as well
@@ -217,5 +220,12 @@ class EmployeeTest < ActiveSupport::TestCase
         # using time range other than default
         assert_equal 9, @ed.shift_hours_worked(30)
     end
+    
+    # test the top_employees method
+    should "show that the top_employees method returns employees who have worked the most hours (>0) in the past n days" do
+        # for default time range
+        
+    end
+    
   end
 end

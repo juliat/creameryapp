@@ -32,10 +32,12 @@ class Employee < ActiveRecord::Base
   
   # Class Methods
   
-  # returns employees who have worked the most hours in the past n days
+  # returns n employees who have worked the most hours in the past n days
     def self.top_employees(n_employees = 7, n_days = 14)
-        employees = Employee.active.all
-        top_employees = employees.sort_by{|employee| employee.shift_hours_worked}
+        # only employees (not managers or admins)
+        employees = Employee.regulars.active.all
+        # employees who have worked more than 0 hours, sorted by hours worked
+        top_employees = employees.select{|employee| employee.shift_hours_worked > 0}.sort_by{|employee| employee.shift_hours_worked}
         return top_employees.first(n_employees)   
     end
   
