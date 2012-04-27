@@ -126,6 +126,4 @@ class Shift < ActiveRecord::Base
 	def set_shift_end_time
 		self.end_time = self.start_time + 3.hours
 	end
-		
-	
 end

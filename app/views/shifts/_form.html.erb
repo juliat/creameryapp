@@ -1,5 +1,5 @@
 <%= simple_form_for(@shift) do |f| %>
     <%= f.association :assignment, :prompt => "Assignment", :label_method => lambda{|label| label.store.name + " Store | " + label.employee.name} %>
     <%= f.input :start_time, :order => [:month, :day, :year] %>
-	<%=  f.button :submit, :class => "create" %>
+    <%= f.button :submit, :class => "create" %>
 <% end %>

@@ -1,0 +1,25 @@
+<h1>Shift Details</h1>
+
+<table>
+	<tr>
+		<th>Date</th>
+		<td><%= @shift.date %></td>
+	</tr>
+	<tr>
+		<th>Time</th>
+		<td><%= @shift.name %></td>
+	</tr>
+	<tr>
+		<th>Employee</th>
+		<td><%= link_to(@shift.assignment.employee.name, employee_path(@shift.assignment.employee)) %></td>
+	</tr>
+	<tr>
+		<th>Store</th>
+		<td><%= link_to(@shift.assignment.store.name + " Store", store_path(@shift.assignment.store)) %></td>
+	</tr>
+	<tr>
+		<th>Notes</th>
+		<td><%= @shift.notes %></td>
+	</tr>
+</table>
+

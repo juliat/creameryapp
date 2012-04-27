@@ -1,6 +1,7 @@
 <div class="employees">
 	<h2>Top Employees</h2>
-	<% unless @top_employees.nil? %>
+	<span class="note">Top Employees are employees who have worked the most hours in the past two weeks.</span>
+	<% unless @top_employees.empty? %>
 		<% for employee in @top_employees %>
 			<div>
 			<h3><%= link_to(employee.name, employee_path(employee)) %></h3>
