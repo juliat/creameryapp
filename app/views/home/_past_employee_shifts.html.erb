@@ -1,0 +1,23 @@
+	<% unless @shifts.past.empty? %>
+	<div class="past">
+		<h2>Past Shifts</h2>
+		<table class="display dataTable">
+			<thead>
+				<th>Date</th>
+				<th>Start Time</th>
+				<th>End Time</th>
+				<th>Hours</th>
+				<th>Store</th>
+			</thead>
+			<tbody>
+				<% for shift in @shifts.past %>
+				<td><%= shift.date.strftime("%m/%d/%y") %></td>
+				<td><%= shift.start_time %></td>
+				<td><%= shift.end_time %></td>
+				<td><%= shift.hours %></td>
+				<td><%= shift.store %></td>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<% end %>

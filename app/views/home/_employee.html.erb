@@ -1,62 +1,13 @@
 <div class="shifts">
-	<% unless @employee.shifts.upcoming.empty? %>
-	<div class="upcoming">
-		<h2>Upcoming Shifts</h2>
-	</div>
-	<% end %>
-	
-	<% unless @employee.shifts.past.empty? %>
-	<div class="past">
-		<h2>Past Shifts</h2>
-		<table class="display dataTable">
-			<thead>
-				<th>Date</th>
-				<th>Start Time</th>
-				<th>End Time</th>
-				<th>Hours</th>
-				<th>Store</th>
-			</thead>
-			<tbody>
-				<% for shift in @employee.shifts.past %>
-				<td><%= shift.date.strftime("%m/%d/%y") %></td>
-				<td><%= shift.start_time %></td>
-				<td><%= shift.end_time %></td>
-				<td><%= shift.hours %></td>
-				<td><%= shift.store %></td>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+	<% unless @shifts.nil? %>
+		<%= render :partial => 'upcoming_employee_shifts' %>
+		<%= render :partial => 'past_employee_shifts' %>
+	<% else %>
+		<p class="nil-message">You have no past or upcoming shifts.</p></p>
 	<% end %>
 </div>
-<div class="employee">
-	<h2>Your Details</h2>
-	<table>
-		<tr>
-			<th>First Name</th>
-			<td><%= @employee.first_name %></td>
-		</tr>
-		<tr>
-			<th>Last Name</th>
-			<td><%= @employee.last_name %></td>
-		</tr>
-		<tr>
-			<th>Role</th>
-			<td><%= @employee.role %></td>
-		</tr>
-		<tr>
-			<th>Phone</th>
-			<td><%= @employee.pretty_phone %></td>
-		</tr>
-		<tr>
-			<th>Date of Birth</th>
-			<td><%= @employee.date_of_birth.strftime("%m/%d/%y") %></td>
-		</tr>
-		<tr>
-			<th>SSN</th>
-			<td><%= @employee.ssn %></td>
-		</tr>
-	</table>
+<div class="employee details">
+	<%= render :partial => 'employee_details' %>
 	<% unless @employee.manager.nil? %>
 		<p class="note">If the information you see here is wrong, you should call 
 		your manager, <%= @employee.manager.name %> at <%= @employee.manager.pretty_phone %></p>

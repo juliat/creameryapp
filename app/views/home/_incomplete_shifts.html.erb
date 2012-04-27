@@ -1,0 +1,23 @@
+	<div class="incomplete shifts">
+		<h2>Shifts to Update</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Employee</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for shift in @store.shifts.incomplete %>
+				<tr>
+					<td><%= shift.date %></td>
+					<td><%= shift.name %></td>
+					<td><%= shift.employee.name %></td>
+					<td><%= link_to "Add Details", edit_shift_, :class => "edit shift" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
