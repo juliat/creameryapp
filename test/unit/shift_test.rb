@@ -39,22 +39,19 @@ class ShiftTest < ActiveSupport::TestCase
 			@Shift1 = FactoryGirl.create(:shift, 
 										:assignment => @LukeAssign,
 										:date => d,
-										:start_time => Time.local(d.year, d.month, d.day, 15, 0, 0), 
-										:end_time => Time.local(d.year, d.month, d.day, 19, 0, 0)
+										:start_time => Time.local(d.year, d.month, d.day, 15, 0, 0)
 									   )
 			d = Date.today - 1.weeks
 			@Shift2 = FactoryGirl.create(:shift,
 										:assignment => @LukeAssign,
 										:date => d,
-										:start_time => Time.local(d.year, d.month, d.day, 10, 0, 0),
-										:end_time => Time.local(d.year, d.month, d.day, 13, 0, 0),
+										:start_time => Time.local(d.year, d.month, d.day, 10, 0, 0)
 									   )
 			d = Date.today - 1.days
 			@Shift3 = FactoryGirl.create(:shift,
 										:assignment => @LeiaAssign,
 										:date => Date.new(2012, 4, 1),
-										:start_time => Time.local(d.year, d.month, d.day, 9, 0, 0),
-										:end_time => Time.local(d.year, d.month, d.day, 10, 0, 0)
+										:start_time => Time.local(d.year, d.month, d.day, 9, 0, 0)
 									   )
 			@Shift4 = FactoryGirl.create(:shift,
 										:assignment => @HansAssign,
@@ -119,6 +116,15 @@ class ShiftTest < ActiveSupport::TestCase
 		
 		# tests
 		# ==========================================================================
+		
+		# test name method
+		should "have a method which returns the name of a shift as a human readable string of the start time - end time" do
+			# @Shift2 is from 10:00 to 13:00
+			# @Shift3 is from 9:00 to 12:00
+			assert_equal "10:00 AM -  1:00 PM", @Shift2.name
+			assert_equal " 9:00 AM - 12:00 PM", @Shift3.name
+		end
+		
 		should "have a method which returns a boolean indicating whether a shift has been completed" do
 			assert_equal true, @Shift1.completed?
 			assert_equal true, @Shift3.completed?
