@@ -14,8 +14,8 @@ class Ability
         # managers can access and edit
         # - their information
         # - their employees' information
-        can :update, Employee do |employee|
-            (employee.id == user.employee.id) || (Employee.by_store(user.employee.store).include?(employee.id))
+        can [:show, :update]. Employee do |employee|
+            (employee.id == user.employee_id) || (Employee.by_store(user.employee.store).include?(employee.id))
         end
         cannot :create, Employee
         cannot :destroy, Employee
@@ -36,10 +36,15 @@ class Ability
         
     elsif user.employee.role == "employee"
         # employees can only see their own info
-        can :read, Employee, :id => user.employee_id
-        
+        can :show, Employee do |employee|
+            employee.id == user.employee_id
+        end
+
+        # can :show, Shift do |employee|
+            
+
         # can't do anything else
-        cannot :manage, [Store, Shift, Job, Assignment, User]
+        cannot :manage, [Store, Job, Assignment, User]
     end
     
     # The first argument to `can` is the action you are giving the user permission to do.
