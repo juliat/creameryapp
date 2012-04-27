@@ -5,6 +5,7 @@ Creamery2012::Application.routes.draw do
 	resources :employees
 	resources :assignments
 	resources :shifts
+	resources :jobs
 	resources :users
 	resources :sessions
 

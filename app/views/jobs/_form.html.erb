@@ -1,0 +1,6 @@
+<%= simple_form_for(@job) do |f| %>
+	<%= f.input :name, :placeholder=>"Job Name" %>
+	<%= f.input :description %>
+	<%= f.input :active %>
+	<%= f.button :submit, :class => "create" %>
+<% end %>

@@ -1,0 +1,7 @@
+<h1>All Jobs</h1>
+
+<ul>
+	<% for job in @jobs %>
+	<li><h3><%= job.name %></h3><p><%= job.description %></p></li>
+	<% end %>
+</ul>

@@ -1,0 +1,8 @@
+<h1>Employee Search Results for "<%= @query %>"</h1>
+<p>Total Hits: <%= @total_hits %></p>
+	
+<ul id="results">
+	<% for employee in @employees %>
+		<li><%= link_to(employee.name, employee_path(employee)) %></li>
+	<% end %>
+</ul>

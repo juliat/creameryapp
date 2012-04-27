@@ -25,7 +25,7 @@ class JobsController < ApplicationController
 		if @job.save
 			# if saved to database
 			flash[:notice] = "Successfully created #{@job.name}."
-			redirect_to @job # go to show job page
+			redirect_to @jobs # go to show job page
 		else
 			# return to the 'new' form
 			render :action => 'new'
