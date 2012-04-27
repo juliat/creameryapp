@@ -37,12 +37,25 @@ class Employee < ActiveRecord::Base
         # only employees (not managers or admins)
         employees = Employee.regulars.active.all
         # employees who have worked more than 0 hours, sorted by hours worked
-        top_employees = employees.select{|employee| employee.shift_hours_worked > 0}.sort_by{|employee| employee.shift_hours_worked}
+        employees_with_hours = employees.select{|employee| employee.shift_hours_worked(n_days) > 0}
+        top_employees = employees_with_hours.sort{|e1, e2| e2.shift_hours_worked(n_days) <=> e1.shift_hours_worked(n_days)}
         return top_employees.first(n_employees)   
     end
   
   
   # Other methods
+  
+  # returns number of shift hours worked in a given time range 
+  def shift_hours_worked(past_n_days=14)
+    shifts = Shift.for_employee(self.id).for_past_days(past_n_days)
+    unless shifts.empty?
+       hours = shifts.collect{|shift| shift.hours}.inject(:+)
+    else
+       hours = 0
+    end
+    return hours.to_i
+  end
+  
   def name
     "#{last_name}, #{first_name}"
   end
@@ -97,16 +110,6 @@ class Employee < ActiveRecord::Base
 		return "inactive"
 	end
     
-    # returns number of shift hours worked in a given time range 
-    def shift_hours_worked(past_n_days=14)
-        shifts = Shift.for_employee(self.id).for_past_days(past_n_days)
-        unless shifts.empty?
-            hours = shifts.collect{|shift| shift.hours}.inject(:+)
-        else
-            hours = 0
-        end
-        return hours.to_i
-    end
   
   # Misc Constants
   ROLES_LIST = [['Employee', 'employee'],['Manager', 'manager'],['Administrator', 'admin']]

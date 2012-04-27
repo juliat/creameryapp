@@ -46,7 +46,7 @@ class EmployeeTest < ActiveSupport::TestCase
   should_not allow_value(nil).for(:role)
   
   
-  context "Creating six employees of three levels" do
+  context "Creating seven employees of three levels" do
     # create the objects I want with factories
     setup do 
       # one store
@@ -54,13 +54,16 @@ class EmployeeTest < ActiveSupport::TestCase
       # many employees
       @ed = FactoryGirl.create(:employee)
       @cindy = FactoryGirl.create(:employee, :first_name => "Cindy", :last_name => "Crawford", :ssn => "084-35-9822", :date_of_birth => 17.years.ago.to_date)
+      @john = FactoryGirl.create(:employee, :first_name => "John", :last_name => "Johnson")
       @ralph = FactoryGirl.create(:employee, :first_name => "Ralph", :last_name => "Wilson", :active => false, :date_of_birth => 16.years.ago.to_date)
       @ben = FactoryGirl.create(:employee, :first_name => "Ben", :last_name => "Sisko", :role => "manager", :phone => "412-268-2323")
       @kathryn = FactoryGirl.create(:employee, :first_name => "Kathryn", :last_name => "Janeway", :role => "manager", :date_of_birth => 30.years.ago.to_date)
       @alex = FactoryGirl.create(:employee, :first_name => "Alex", :last_name => "Heimann", :role => "admin")
+      
       # some assignments
       @assign_ed = FactoryGirl.create(:assignment, :employee => @ed, :store => @cmu)
       @assign_cindy = FactoryGirl.create(:assignment, :employee => @cindy, :store => @cmu, :end_date => nil)
+      @assign_john = FactoryGirl.create(:assignment, :employee => @john, :store => @cmu, :end_date => nil)
       @assign_kathryn = FactoryGirl.create(:assignment, :employee => @kathryn, :store => @cmu)
 	  # adding objects to test most_recent_assignment method
 	  @benji = FactoryGirl.create(:employee, :first_name => "Benji", :last_name => "Samson")
@@ -71,25 +74,37 @@ class EmployeeTest < ActiveSupport::TestCase
       @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => Date.yesterday, :start_time => 1.day.ago)
       @lastWeekShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
       @lastMonthShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 30.days.ago.to_date, :start_time => 30.days.ago)
-      # for cindy
-      
+      # for john johnson
+      @john1 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
+      @john2 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 8.days.ago.to_date, :start_time => 8.days.ago)
+      @john3 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 9.days.ago.to_date, :start_time => 9.days.ago)
+      @john4 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 19.days.ago.to_date, :start_time => 19.days.ago)
     end
     
     # and provide a teardown method as well
-    teardown do
-      @cmu.destroy
-      @ed.destroy
-      @cindy.destroy
-      @ralph.destroy
-      @ben.destroy
-      @kathryn.destroy
-      @alex.destroy
-	  @benji.destroy
-      @assign_ed.destroy
-      @assign_cindy.destroy
-	  @old_assign_benji.destroy
-	  @recent_assign_benji.destroy
-    end
+    #~ teardown do
+      #~ @cmu.destroy
+      #~ @ed.destroy
+      #~ @cindy.destroy
+      #~ @ralph.destroy
+      #~ @john.destroy
+      #~ @ben.destroy
+      #~ @kathryn.destroy
+      #~ @alex.destroy
+	  #~ @benji.destroy
+      #~ @assign_ed.destroy
+      #~ @assign_cindy.destroy
+      #~ @assign_john.destroy
+	  #~ @old_assign_benji.destroy
+	  #~ @recent_assign_benji.destroy
+      #~ @yesterdayShift.destroy
+      #~ @lastWeekShift.destroy
+      #~ @lastMonthShift.destroy
+      #~ @john1.destroy
+      #~ @john2.destroy
+      #~ @john3.destroy
+      #~ @john4.destroy
+    #~ end
   
     # now run the tests:
     # test employees must have unique ssn
@@ -106,14 +121,14 @@ class EmployeeTest < ActiveSupport::TestCase
     
     # test scope younger_than_18
     should "show there are five employees over 18" do
-      assert_equal 5, Employee.is_18_or_older.size
-      assert_equal ["Gruberman", "Heimann", "Janeway", "Samson", "Sisko"], Employee.is_18_or_older.alphabetical.map{|e| e.last_name}
+      assert_equal 6, Employee.is_18_or_older.size
+      assert_equal ["Gruberman", "Heimann", "Janeway", "Johnson", "Samson", "Sisko"], Employee.is_18_or_older.alphabetical.map{|e| e.last_name}
     end
     
     # test the scope 'active'
     should "shows that there are six active employees" do
-      assert_equal 6, Employee.active.size
-      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Samson", "Sisko"], Employee.active.alphabetical.map{|e| e.last_name}
+      assert_equal 7, Employee.active.size
+      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Johnson", "Samson", "Sisko"], Employee.active.alphabetical.map{|e| e.last_name}
     end
     
     # test the scope 'inactive'
@@ -123,9 +138,9 @@ class EmployeeTest < ActiveSupport::TestCase
     end
     
     # test the scope 'regulars'
-    should "shows that there are 4 regular employees: Ed, Cindy, Samson, and Ralph" do
-      assert_equal 4, Employee.regulars.size
-      assert_equal ["Crawford","Gruberman", "Samson", "Wilson"], Employee.regulars.alphabetical.map{|e| e.last_name}
+    should "shows that there are 4 regular employees: Ed, Cindy, Johnson, Samson, and Ralph" do
+      assert_equal 5, Employee.regulars.size
+      assert_equal ["Crawford","Gruberman", "Johnson", "Samson", "Wilson"], Employee.regulars.alphabetical.map{|e| e.last_name}
     end
     
     # test the scope 'managers'
@@ -217,14 +232,18 @@ class EmployeeTest < ActiveSupport::TestCase
         assert_equal 0, @cindy.shift_hours_worked
         # someone with many hours (using default time range of 2 weeks)
         assert_equal 6, @ed.shift_hours_worked
+        assert_equal 9, @john.shift_hours_worked
         # using time range other than default
         assert_equal 9, @ed.shift_hours_worked(30)
     end
     
     # test the top_employees method
     should "show that the top_employees method returns employees who have worked the most hours (>0) in the past n days" do
-        # for default time range
+        # using defaults (7 employees, past 14 days)
+        assert_equal ["Johnson", "Gruberman"], Employee.top_employees.map{|e| e.last_name}
         
+        # 5 employees, past 5 days
+        assert_equal ["Gruberman"], Employee.top_employees(5, 5).map{|e| e.last_name}
     end
     
   end
