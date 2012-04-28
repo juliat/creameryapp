@@ -5,6 +5,8 @@ gem 'sqlite3'
 gem 'will_paginate'
 gem 'nifty-generators'
 gem 'simple_form'
+# use latest github copy of nested_form so that it's compatible with simple_form
+gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git'
 gem 'cancan'
 gem 'validates_timeliness'
 gem 'geokit'

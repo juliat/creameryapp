@@ -1,0 +1,3 @@
+	<%= f.association :assignment, :prompt => "Assignment", :label_method => lambda{|label| label.store.name + " Store | " + label.employee.name} %>
+	<%= f.input :date, :order => [:month, :day, :year] %>
+	<%= f.input :start_time, :minute_step => 15 %>

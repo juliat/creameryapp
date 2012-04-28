@@ -1,14 +1,34 @@
 class Shift < ActiveRecord::Base
 	
+	# Validations
+	# ====================================================================
+	# a shift must have an associated assignment, a date, and a start time
+	validates_presence_of :assignment_id, :start_time
+	
+	# validate date (including its presence)
+	validates_date :date, :allow_blank => false
+	
+	# validate that (if it is given) the end time is after the start time
+	validates_time :end_time, :allow_blank => true
+	# timeliness :after breaks (has to do with internationalization, from what I can tell)
+	# so using custom validation
+	validate :end_time_after_start_time
+	
+	# a shift can only be added to a current assignment
+	validate :associated_assignment_is_active
+	
+
 	# Callbacks
 	# ====================================================================
 	before_create :set_shift_end_time
 	
+	# allow nesting of attributes for jobs within the shift form, and save them when
+	# the shift is saved (unless they are blank)
+	accepts_nested_attributes_for :jobs, :reject_if => lambda {|attraction| attraction[:name].blank? }
 	
 	# Relationships
 	# ====================================================================
-	
-	has_many :shift_jobs
+	has_many :shift_jobs, :dependent => :destroy
 	has_many :jobs, :through => :shift_jobs
 	belongs_to :assignment
 	has_one :store, :through => :assignment
@@ -71,24 +91,6 @@ class Shift < ActiveRecord::Base
 		return !(self.jobs.empty?)
 	end
 	
-	# Validations
-	# ====================================================================
-	# a shift must have an associated assignment, a date, and a start time
-	validates_presence_of :assignment_id, :start_time
-	
-	# validate date (including its presence)
-	validates_date :date, :allow_blank => false
-	
-	# validate that (if it is given) the end time is after the start time
-	validates_time :end_time, :allow_blank => true
-	# timeliness :after breaks (has to do with internationalization, from what I can tell)
-	# so using custom validation
-	validate :end_time_after_start_time
-	
-	# a shift can only be added to a current assignment
-	validate :associated_assignment_is_active
-	
-
 	# Helper Methods
 	# ===================================================================
 	# hours method returns number of hours worked based on end_time - start_time
@@ -119,7 +121,7 @@ class Shift < ActiveRecord::Base
 	end
 	
 		
-	# Callbacks
+	# Callback Methods
 	# ====================================================================
 	# this callback will automatically set the end time of a new shif to three 
 	# hours after the start time

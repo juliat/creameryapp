@@ -1,9 +1,22 @@
-<%= simple_form_for(@shift) do |f| %>
-	<%= f.association :assignment, :prompt => "Assignment", :label_method => lambda{|label| label.store.name + " Store | " + label.employee.name} %>
-	<%= f.input :date, :order => [:month, :day, :year] %>
-	<%= f.input :start_time %>
-	<%= f.input :end_time %>
-	<%= f.input :notes %>
+<%= simple_nested_form_for(@shift) do |shift_form| %>
+	<div class="shift_fields">
+		<%= render :partial => 'new_shift_fields', :locals => {:f => shift_form} %>
+		<%= render :partial => 'complete_shift_fields', :locals => {:f => shift_form} %>
+	</div>
 	<!-- jobs -->
-	<%= f.button :submit, :class => "create" %>
+	<div class="shift_jobs">
+		<legend>Add some jobs to this shift</legend>
+		<%= shift_form.simple_fields_for :jobs do |job_form| %>
+			<!-- partial for jobs field -->
+			<%= render :partial => 'jobs_fields', :locals => {:f => job_form} %>
+		<% end %>
+		<%= shift_form.link_to_add("Add Job", :jobs) %>
+		
+	</div>
+	
+	<div class="form-actions">
+	  <%= shift_form.submit nil %>
+	  <%= link_to 'Cancel', shifts_path %>
+	</div>
 <% end %>
+
