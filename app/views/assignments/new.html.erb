@@ -1,4 +1,10 @@
-<h1>New Assignment</h1>
+<h1>New Assignment
+	<% if @assignment.store_id.nil? == false %>
+		for <%= Store.find(@assignment.store_id).name %> Store
+	<% elsif @assignment.employee_id.nil? == false %>
+		for <%= Employee.find(@assignment.employee_id).proper_name %>
+	<% end %>
+</h1>
 
 <%= render 'form' %>
 
