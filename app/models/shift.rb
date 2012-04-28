@@ -22,10 +22,6 @@ class Shift < ActiveRecord::Base
 	# ====================================================================
 	before_create :set_shift_end_time
 	
-	# allow nesting of attributes for jobs within the shift form, and save them when
-	# the shift is saved (unless they are blank)
-	accepts_nested_attributes_for :jobs, :reject_if => lambda {|attraction| attraction[:name].blank? }
-	
 	# Relationships
 	# ====================================================================
 	has_many :shift_jobs, :dependent => :destroy
@@ -33,6 +29,11 @@ class Shift < ActiveRecord::Base
 	belongs_to :assignment
 	has_one :store, :through => :assignment
 	has_one :employee, :through => :assignment
+	
+	
+	# allow nesting of attributes for jobs within the shift form, and save them when
+	# the shift is saved (unless they are blank)
+	accepts_nested_attributes_for :jobs, :reject_if => lambda {|attraction| attraction[:name].blank? }
 	
 	# Scopes
 	# ====================================================================

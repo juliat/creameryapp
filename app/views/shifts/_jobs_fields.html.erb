@@ -1,0 +1,11 @@
+<div class="job_fields">
+	<div class="min_job">
+		<%= f.link_to_remove "Remove" %>
+		
+		<!-- use simple_form to add controls for name, and description -->
+		<%= f.fields_for :jobs do |job| %>
+			<%= f.input :name, :placeholder => "The name of the job" %>
+			<%= f.input :description, :placeholder => "The description of the job." %>
+		<% end %>
+	</div>
+</div>
