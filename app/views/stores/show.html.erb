@@ -26,7 +26,7 @@
 </div>
 <div class="current_employees">
 	<h3>Current Employees</h3>
-	<%= link_to "Add A New Employee", new_employee_path, :class => "add employee button"  %>
+	<%= link_to "Add A New Employee", new_employee_path(:store_id => @store.id), :class => "add employee button"  %>
 	<% if @current_employees.empty? == true%>
 		<p>No employees currently work at the <%=  @store.name %> store.</p>
 	<% else %>

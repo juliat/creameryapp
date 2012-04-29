@@ -12,9 +12,9 @@ class CreateAdmin < ActiveRecord::Migration
             
     admin = User.new
     admin.employee_id = employee.id
-    admin.email = "juliat@gmail.com"
-    admin.password ="opensesame"
-    admin.password_confirmation = "opensesame"
+    admin.email = "julialt@gmail.com"
+    admin.password ="secret"
+    admin.password_confirmation = "secret"
     admin.save!
   end
   

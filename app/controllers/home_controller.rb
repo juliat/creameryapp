@@ -5,7 +5,12 @@ class HomeController < ApplicationController
             @stores = Store.active.alphabetical;
             @top_employees = Employee.top_employees;
         elsif current_user.role == "manager"
-            @store = current_user.employee.current_assignment.store
+            @manager = current_user.employee
+            unless @manager.current_assignment.nil?
+                @store = current_user.employee.current_assignment.store
+            else
+                @store = nil
+            end
         elsif current_user.role == "employee"
             @employee = current_user.employee
             unless  @employee.current_assignment.nil?

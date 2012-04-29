@@ -32,7 +32,7 @@ class Shift < ActiveRecord::Base
 	
 	# allow nesting of attributes for jobs within the shift form, and save them when
 	# the shift is saved (unless they are blank)
-	accepts_nested_attributes_for :jobs, :reject_if => lambda {|attraction| attraction[:name].blank? }
+	accepts_nested_attributes_for :jobs, :reject_if => lambda {|job| job[:name].blank? }
 	
 	
 	# Scopes

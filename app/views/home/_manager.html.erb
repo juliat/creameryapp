@@ -1,6 +1,10 @@
-<%= render :partial => 'store_employees' %>
-<!-- only show incomplete shifts when they exist -->
-<% unless current_user.employee.current_assignment.store.shifts.incomplete.nil? %>
-	<%= render :partial => 'incomplete_shifts' %>
-<% end %>	
-<%= render :partial => 'store_shifts' %>
+<% unless @store.nil? %>
+	<%= render :partial => 'store_employees' %>
+	<!-- only show incomplete shifts when they exist -->
+	<% unless @manager.current_assignment.store.shifts.incomplete.nil? %>
+		<%= render :partial => 'incomplete_shifts' %>
+	<% end %>	
+	<%= render :partial => 'store_shifts' %>
+<% else %>
+	<p>You currently have a management position but no assigned store.</p>
+<% end %>
