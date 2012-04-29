@@ -1,0 +1,9 @@
+	<!-- jobs -->
+	<div class="shift_jobs">
+		<legend>Add a new job</legend>
+		<%= shift_form.simple_fields_for :jobs do |job_form| %>
+			<!-- partial for jobs field -->
+			<%= render :partial => 'jobs_fields', :locals => {:f => job_form} %>
+		<% end %>
+		<%= shift_form.link_to_add("Add Job", :jobs) %>
+	</div>

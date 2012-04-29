@@ -1,5 +1,7 @@
 <h1>Shift Details</h1>
 
+<a href=<%= edit_shift_path(@shift) %> class="edit button">Edit Shift Information</a>
+
 <table>
 	<tr>
 		<th>Date</th>
@@ -16,6 +18,16 @@
 	<tr>
 		<th>Store</th>
 		<td><%= link_to(@shift.assignment.store.name + " Store", store_path(@shift.assignment.store)) %></td>
+	</tr>
+	<tr>
+		<th>Jobs Done</th>
+		<td>
+			<ul>
+				<% for job in @shift.jobs %>
+					<li><%= job.name %></li>
+				<% end %>	
+			</ul>
+		</td>
 	</tr>
 	<tr>
 		<th>Notes</th>

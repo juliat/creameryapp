@@ -1,3 +1,4 @@
-
+	
 	<%= f.input :end_time, :hint => 'Hint: round shift end times up to multiples of 15', :minute_step => 15 %>
+	<%= f.collection_check_boxes :job_ids, Job.active.alphabetical.all, :id, :name %>
 	<%= f.input :notes %>

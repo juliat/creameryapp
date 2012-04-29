@@ -3,15 +3,8 @@
 		<%= render :partial => 'new_shift_fields', :locals => {:f => shift_form} %>
 		<%= render :partial => 'complete_shift_fields', :locals => {:f => shift_form} %>
 	</div>
-	<!-- jobs -->
-	<div class="shift_jobs">
-		<legend>Add some jobs to this shift</legend>
-		<%= shift_form.simple_fields_for :jobs do |job_form| %>
-			<!-- partial for jobs field -->
-			<%= render :partial => 'jobs_fields', :locals => {:f => job_form} %>
-		<% end %>
-		<%= shift_form.link_to_add("Add Job", :jobs) %>
-	</div>
+	
+	<!-- add shift jobs form is in partial/two -->
 	
 	<div class="form-actions">
 	  <%= shift_form.submit nil %>

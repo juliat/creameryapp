@@ -12,7 +12,7 @@
 	
 		<h3>Was a <%= @most_recent_assignment.employee.role %> at the 
 		<%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %> 
-		until <%= @most_recent_assignment.end_date.strftime("%B %e, %Y") %>.</h3>
+		until <%= humanize_date(@most_recent_assignment.end_date) %>.</h3>
 	<% else %>
 		<h3><%= @employee.proper_name %> has no current assignment. 
 		<%= link_to("Click here to create one.", new_assignment_path(:employee_id => @employee.id)) %></h3>
@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<th>Date of Birth:</th>
-			<td><%= @employee.date_of_birth.strftime("%m/%d/%y") %></td>
+			<td><%= humanize_date(@employee.date_of_birth) %></td>
 		</tr>
 	</table>
 	

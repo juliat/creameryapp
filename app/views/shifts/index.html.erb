@@ -11,7 +11,7 @@
 	<tbody>
 		<% for shift in @shifts %>
 		<tr>
-			<td><%= shift.date %></td>
+			<td><%= humanize_date(shift.date) %></td>
 			<td><%= link_to(shift.name, shift_path(shift)) %>
 			<td><%= link_to(shift.employee.name, employee_path(shift.employee)) %></td>
 			<td><%= link_to(shift.store.name, store_path(shift.store)) %></td>
