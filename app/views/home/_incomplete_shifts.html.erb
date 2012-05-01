@@ -15,7 +15,7 @@
 					<td><%= shift.date %></td>
 					<td><%= shift.name %></td>
 					<td><%= shift.employee.name %></td>
-					<td><%= link_to "Add Details", edit_shift_, :class => "edit shift" %></td>
+					<td><%= link_to("Add Details", edit_shift_path(shift)) %></td>
 				</tr>
 				<% end %>
 			</tbody>

@@ -22,6 +22,7 @@ class Shift < ActiveRecord::Base
 	# ====================================================================
 	before_create :set_shift_end_time
 	
+	
 	# Relationships
 	# ====================================================================
 	has_many :shift_jobs, :dependent => :destroy

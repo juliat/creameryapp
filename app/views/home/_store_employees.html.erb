@@ -6,7 +6,11 @@
 				<tr>
 					<th><%= employee.name %></th>
 					<td>Worked <strong><%= employee.shift_hours_worked %></strong> in the Last 2 Weeks</td>
-					<td>Last Shift was on <strong><%# employee.last_shift %></strong></td>
+					<% unless employee.last_shift_worked.nil? %>
+						<td>Last Shift was on <strong><%= humanize_date(employee.last_shift_worked.date) %></strong></td>
+					<% else %>
+						<td>Employee has no shifts.</td>
+					<% end %>
 					<td><%= link_to "New Shift", new_shift_path, :class => "add shift" %></td>
 				</tr>
 			</table>

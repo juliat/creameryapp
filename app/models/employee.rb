@@ -50,6 +50,7 @@ class Employee < ActiveRecord::Base
   # Other methods
   # ===========================================================================================
   
+  # returns the most recent shift that an employee has worked
   def last_shift_worked
     return Shift.for_employee(self.id).chronological.last
   end
