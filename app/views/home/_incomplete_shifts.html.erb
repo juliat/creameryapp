@@ -12,7 +12,7 @@
 			<tbody>
 				<% for shift in @store.shifts.incomplete %>
 				<tr>
-					<td><%= shift.date %></td>
+					<td><%= humanize_date(shift.date) %></td>
 					<td><%= shift.name %></td>
 					<td><%= shift.employee.name %></td>
 					<td><%= link_to("Add Details", edit_shift_path(shift)) %></td>
