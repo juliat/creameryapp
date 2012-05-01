@@ -173,7 +173,7 @@ class ShiftTest < ActiveSupport::TestCase
 		end
 		
 		should "have a scope that returns all the shifts in chronological (ascending) order" do
-			shifts_in_chrono_order = [@Shift1, @Shift2, @Shift3, @Shift4, @Shift5, @Shift6]
+			shifts_in_chrono_order = [@Shift3, @Shift1, @Shift2, @Shift4, @Shift5, @Shift6]
 			assert_equal shifts_in_chrono_order.map{|shift| shift.date}, Shift.chronological.map{|shift| shift.date}
 		end
 		

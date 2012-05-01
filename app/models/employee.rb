@@ -48,8 +48,13 @@ class Employee < ActiveRecord::Base
   
   
   # Other methods
+  # ===========================================================================================
   
-  # returns number of shift hours worked in a given time range 
+  def last_shift_worked
+    return Shift.for_employee(self.id).chronological.last
+  end
+  
+  # returns number of shift hours worked in a given time range, passed in as days as an integer
   def shift_hours_worked(past_n_days=14)
     shifts = Shift.for_employee(self.id).for_past_days(past_n_days)
     unless shifts.empty?
@@ -76,6 +81,8 @@ class Employee < ActiveRecord::Base
     curr_assignment.first   # return as a single object, not an array
   end
   
+  # returns the Employee object that is the employee's current manager
+  # returns nil if the Employee is not a regular or if they have no current assignment
   def manager
     if (self.role == "employee") && (self.current_assignment.nil? == false)
         manager = Assignment.for_store(self.current_assignment.store).for_role("manager").first.employee

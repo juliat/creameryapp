@@ -246,5 +246,10 @@ class EmployeeTest < ActiveSupport::TestCase
         assert_equal ["Gruberman"], Employee.top_employees(5, 5).map{|e| e.last_name}
     end
     
+    # test the last_shift_worked method
+    should "show that the last_shift_worked method returns the most recent shift that an employee has worked" do
+        assert_equal @john1, @john.last_shift_worked
+    end
+    
   end
 end

@@ -73,7 +73,7 @@ class Shift < ActiveRecord::Base
 	scope :for_past_days, lambda{|x| where("start_time BETWEEN ? AND  ?", (Date.today - x.days).to_time, yesterday_time_end)}
 	
 	# chronological: returns all shifts in chronological order
-	scope :chronological, order('start_time')
+	scope :chronological, order('date', 'start_time')
 	
 	# by_store: returns all shifts ordered by store
 	scope :by_store, joins(:store).order('name')

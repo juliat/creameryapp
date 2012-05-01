@@ -1,17 +1,4 @@
 class Store < ActiveRecord::Base
-  # Callbacks
-  before_save :reformat_phone
-  before_save :find_store_coordinates
-  
-  # Set up this model to use gmaps for rails, a map-generating gem
-  # https://github.com/apneadiving/Google-Maps-for-Rails/wiki/Model-Customization
-  acts_as_gmappable :process_geocoding => false, :lat => 'latitude', :lng => 'longitude'
-  
-  # Relationships
-  has_many :assignments
-  has_many :employees, :through => :assignments
-  has_many :shifts, :through => :assignments
-  
   
   # Validations
   # make sure required fields are present
@@ -24,6 +11,20 @@ class Store < ActiveRecord::Base
   validates_format_of :phone, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only"
   # make sure stores have unique names
   validates_uniqueness_of :name
+  
+  
+  # Callbacks
+  before_save :reformat_phone
+  before_save :find_store_coordinates
+  
+  # Set up this model to use gmaps for rails, a map-generating gem
+  # https://github.com/apneadiving/Google-Maps-for-Rails/wiki/Model-Customization
+  acts_as_gmappable :process_geocoding => false, :lat => 'latitude', :lng => 'longitude'
+  
+  # Relationships
+  has_many :assignments
+  has_many :employees, :through => :assignments
+  has_many :shifts, :through => :assignments
   
   # Scopes
   scope :alphabetical, order('name')
