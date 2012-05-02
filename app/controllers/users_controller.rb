@@ -23,9 +23,15 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 		if @user.save
-		  redirect_to(@user, :notice => 'User was successfully created.')
+			# provide email confirmation if all is good
+			UserMailer.new_user_msg(@user).deliver
+			# and confirm that this was done
+			flash[:notice] = "#{@user.email} has been added as a user and notified by email"
+			
+			redirect_to(@user, :notice => 'User was successfully created.')
+		  
 		else
-		  render :action => "new"
+			render :action => "new"
 		end
 	end
 	

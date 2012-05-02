@@ -1,0 +1,20 @@
+<p><%= @user.employee.proper_name %>,</p>
+
+<p>You now have an account on A&M's Creamery management app!</p>
+
+<% if @user.role == "admin" %>
+<p>As an admin, you can use this account to manage all aspects of the Creamery's operations.</p>
+<% elsif @user.role == "manager" %>
+<p>As a manager, you can use this account to manage information about your store's employees and shifts schedule.</p>
+<% elsif @user.role == "employee" %>
+<p>As an employee, you can use your account to view your upcoming and previous shifts, and check that our information for you is correct.</p>
+<% end %>
+
+<p>Your account is registered with these details:</br>
+Login: <%= @user.email %></br>
+Password: <%= @user.password %>
+</p>
+
+<p>Have a great day!<\br>
+Your Friendly Creamery Admin</p>
+
