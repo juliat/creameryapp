@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 		if @user.save
 			# provide email confirmation if all is good
-			UserMailer.new_user_msg(@user).deliver
+			UserMailer.new_user_message(@user).deliver
 			# and confirm that this was done
 			flash[:notice] = "#{@user.email} has been added as a user and notified by email"
 			
