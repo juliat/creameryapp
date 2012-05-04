@@ -3,5 +3,5 @@
 			"iDisplayLength": 10
 		} );
 		
-		$('.popover').popover()
+		$('.popover').popover();
 	} );
