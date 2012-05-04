@@ -1,9 +1,9 @@
-<div class="employees">
+<div id="top-employees" class="employees">
 	<h2>Top Employees</h2>
 	<span class="note">Top Employees are employees who have worked the most hours in the past two weeks.</span>
 	<% unless @top_employees.empty? %>
 		<% for employee in @top_employees %>
-			<div>
+			<div class="employee">
 			<h3><%= link_to(employee.name, employee_path(employee)) %></h3>
 			<p>Worked <strong><%= employee.shift_hours_worked %></strong> in the Last 2 Weeks</p>
 			<% unless employee.current_assignment.nil? %>

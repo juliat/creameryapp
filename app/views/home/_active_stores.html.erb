@@ -1,12 +1,12 @@
-<div class= "stores">
+<div id="active-stores" class= "stores">
 	<h2>Active Stores</h2>
 	<% unless @stores.empty? %>
 		<% for store in @stores %>
 			<div class="store">
-				<h3><%= link_to(store.name + " Store", store_path(store)) %></h3>
-				<p><strong><%= store.employees.active.size %></strong> Current Employees</p>
-				<p><strong><%= store.shift_hours_worked %></strong> Shift Hours Worked in the Last 2 Weeks</p>
-				<p><%= link_to "Assign Employee", new_assignment_path(:store_id => store.id), :class => "add assignment"  %></p>
+				<h3 class="name"><%= link_to(store.name + " Store", store_path(store)) %></h3>
+				<p class="num-employees"><strong><%= store.employees.active.size %></strong> Current Employees</p>
+				<p class="shift-hours-worked"><strong><%= store.shift_hours_worked %></strong> Shift Hours Worked</p>
+				<p class="assign-employee"><%= link_to "Assign Employee", new_assignment_path(:store_id => store.id), :class => "add assignment"  %></p>
 			</div>
 		<% end %>
 	<% else %>
