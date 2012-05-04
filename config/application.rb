@@ -51,7 +51,7 @@ module Creamery2012
     # config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
-    config.assets.enabled = false # if this is off, set up js, stylesheets, and images dirs in public, also jquery, jquery ujs, jquery ui
+    config.assets.enabled = true # if this is off, set up js, stylesheets, and images dirs in public, also jquery, jquery ujs, jquery ui
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
