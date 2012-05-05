@@ -1,6 +1,4 @@
 @import "twitter/bootstrap/bootstrap";
-body { padding-top: 60px; }
-
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
@@ -27,3 +25,29 @@ body { padding-top: 60px; }
 //
 // Example:
 // @linkColor: #ff0000;
+
+@fluidGridColumnWidth: 30%;
+@fluidGridGutterWidth: 3%;
+#grid > .fluid();
+
+
+body {
+	padding-top: 0;
+	#main-wrapper {
+		.container;
+		#main {
+			.makeRow();
+			#active-stores {
+				.makeColumn(4);
+			}
+			#top-employees {
+				.makeColumn(4);
+			}
+			#morenav-container {
+				.makeColumn(4);
+			}
+		}
+	}
+}
+
+

@@ -1,12 +1,35 @@
-<div id="nav">
-	<%= link_to(image_tag('wordmark-white.png', :alt => "A&M Creamery"), home_path, :id => "logo") %>
-	<% unless current_user.nil? %>	
-		<% if current_user.role == "admin" %>
-			<%= render :partial=>"partials/admin_nav" %>
-		<% elsif current_user.role == "manager" %>
-			<%= render :partial => "partials/manager_nav" %>
-		<% elsif current_user.role == "employee" %>
-			<%= render :partial => "partials/employee_nav" %>
-		<% end %>
-	<% end %>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+ 
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+ 
+      <!-- Be sure to leave the brand out there if you want it shown -->
+      <%= link_to(image_tag('wordmark-white.png', :alt => "A&M Creamery"), home_path, :id => "logo") %>
+ 
+      <!-- Everything you want hidden at 940px or less, place within here -->
+      <div class="nav-collapse">
+			<% unless current_user.nil? %>	
+				<% if current_user.role == "admin" %>
+					<%= render :partial=>"partials/admin_nav" %>
+				<% elsif current_user.role == "manager" %>
+					<%= render :partial => "partials/manager_nav" %>
+				<% elsif current_user.role == "employee" %>
+					<%= render :partial => "partials/employee_nav" %>
+				<% end %>
+			<% end %>
+			<%= render :partial => "partials/login_status" %>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+
+	
+	
 </div> 

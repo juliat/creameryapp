@@ -1,8 +1,8 @@
 <% if logged_in? %>
-	<p><%= link_to 'Logout', logout_path %></p>
+	<%= link_to 'Logout', logout_path %>
 	<!-- what to do when the user doesn't have an employee associated with them? -->
-	<p>[<%= current_user.email %>:<%# current_user.employee.role %>]</p>
+	[<%= current_user.email %>:<%# current_user.employee.role %>]
 <% else %>
-	<p><%= link_to 'Login', login_path %></p>
+	<%= link_to 'Login', login_path %>
 <% end %>
 	
