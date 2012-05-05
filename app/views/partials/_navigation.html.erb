@@ -14,16 +14,39 @@
  
       <!-- Everything you want hidden at 940px or less, place within here -->
       <div class="nav-collapse">
-			<% unless current_user.nil? %>	
-				<% if current_user.role == "admin" %>
-					<%= render :partial=>"partials/admin_nav" %>
-				<% elsif current_user.role == "manager" %>
-					<%= render :partial => "partials/manager_nav" %>
-				<% elsif current_user.role == "employee" %>
-					<%= render :partial => "partials/employee_nav" %>
-				<% end %>
+	    <% unless current_user.nil? %>	
+		    <% if current_user.role == "admin" %>
+			    <%= render :partial=>"partials/admin_nav" %>
+		    <% elsif current_user.role == "manager" %>
+			    <%= render :partial => "partials/manager_nav" %>
+		    <% elsif current_user.role == "employee" %>
+			    <%= render :partial => "partials/employee_nav" %>
+		    <% end %>
+	    <% end %>
+
+	    
+            <ul class="nav pull-right">
+                <li class="dropdown" id="menu1">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+			<% if logged_in? %>
+				<!-- what to do when the user doesn't have an employee associated with them? -->
+				<%= current_user.email %>
+				<b class="caret"></b>
+				<ul class="dropdown-menu">
+				    <li><a href="#">Your Info</a></li>
+				    <li class="divider"></li>
+				    <li><%= link_to 'Logout', logout_path %></li>
+				</ul>
+		    </a>
+			<% else %>
+				<%= link_to 'Login', login_path %>
+		    </a>
 			<% end %>
-			<%= render :partial => "partials/login_status" %>
+
+                </li>
+            </ul>
+	    
+	    
       </div>
  
     </div>
