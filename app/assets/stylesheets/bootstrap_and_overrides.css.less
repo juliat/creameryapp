@@ -24,19 +24,24 @@
 // See http://twitter.github.com/bootstrap/less.html for their names and documentation
 //
 // Example:
-// @linkColor: #ff0000;
+@linkColor: #3449F5;
+@linkHoverColor: #131E76;
 
+/* old  / guest
 @light_blue: #bff3ff;
 @bright_blue: #00d0ff;
 @orange: #ff6340;
+*/
 @lighter_grey: #EFEFEF;
 @light_grey: #eeeeee;
 @grey: #dcdcdc;
 @dark_grey: #555;
 @light_wood_brown: #d79c64;
 @lighter_wood_brown: lighten(@light_wood_brown, 20%);
-@wood_brown: #a94f2c;
+@wood_brown: #5C250F;
 @dark_brown: darken(@wood_brown, 40%);
+@green: #6DB641;
+@red: #B6262C;
 
 @navbarBackground: @dark_brown;
 @navbarBackgroundHighlight: @dark_brown;
@@ -55,21 +60,33 @@
 body {
 	padding-top: 0;
 	background: black url(//duv2rxyjq20ja.cloudfront.net/wlcom1/backgrounds/wood.jpg) top center no-repeat fixed;
+	
+	#header {
+		.navbar {
+			.nav > li > a {
+				text-shadow: none;
+			}
+			.nav {
+				margin-top: 0.5em;
+			}
+			#admin-nav-list li{
+				padding-left: 0.8em;
+			}
+			.brand {
+				padding-bottom: 2px;
+				 img {
+					width: 50%;
+				}
+			}
+		}
+	}
+	
 	#main-wrapper {
 		min-height:100%;
 		h1, h2, h2 a, h3, h4, h5, p, li, table {
 			color: @dark_brown;
 			&:hover {
 				text-decoration: none;
-			}
-		}
-		
-		#header {
-			.navbar {
-				border-bottom: 2px solid black;
-				.nav > li > a {
-					text-shadow: none;
-				}
 			}
 		}
 	}
