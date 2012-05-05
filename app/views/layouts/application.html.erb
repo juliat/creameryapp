@@ -16,9 +16,11 @@
 		</div>
 		<div id = "main-wrapper">
 			<div id="main">
-				<!-- show any flash messages -->
 				<% flash.each do |name, msg| %>
-					<%= content_tag :div, msg, :id => "flash_#{name}" %>
+				  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+					<a class="close" data-dismiss="alert">×</a>
+					<%= msg %>
+				  </div>
 				<% end %>
 				<!-- show content -->
 				<%= yield %>
