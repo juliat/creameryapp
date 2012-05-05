@@ -1,7 +1,9 @@
 <div id="top-employees" class="span4">
-	<h2>Top Employees</h2>
-<a href="#" id="blob" class="btn large primary" rel="popover" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A title">hover for popover</a>
-	
+	<h2><a href="#" rel="tooltip" title="Employees who have worked the most hours in the past two weeks.">
+		Top Employees
+		</a>
+	</h2>
+
 	<% unless @top_employees.empty? %>
 		<% for employee in @top_employees %>
 			<div class="employee">
