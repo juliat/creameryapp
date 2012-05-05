@@ -3,6 +3,12 @@
 	border-bottom: 1px solid @dark_grey;
 }
 
+.alpha{
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(0, 0, 0);
+	/* RGBa with 0.4 opacity */
+	background: rgba(0, 0, 0, 0.4);
+}
 
 #main-wrapper #main {
 	/* admin */
@@ -45,6 +51,31 @@
 			.name {
 				.box-title;
 			}	
+		}
+	}
+	
+	#employee-search {
+		.rounded(5px);
+		background: black;
+		.alpha;
+		.box-shadow(inset 0 0 4px @dark_grey);
+		
+		#title, form {
+			.opacity(1.0);
+			color:black;
+		}
+	}
+	
+	#quick-links {
+		ul {
+			margin-left: 0;
+			list-style-type: none;
+			li {
+				line-height: 1.6;
+				a {
+					font-size: 1.5em;
+				} 
+			}
 		}
 	}
 }
