@@ -26,26 +26,33 @@
 // Example:
 // @linkColor: #ff0000;
 
-@fluidGridColumnWidth: 30%;
-@fluidGridGutterWidth: 3%;
+@light_blue: #bff3ff;
+@bright_blue: #00d0ff;
+@orange: #ff6340;
+@lighter_grey: #EFEFEF;
+@light_grey: #eeeeee;
+@grey: #dcdcdc;
+@dark_grey: #555;
+
+@navbarBackground: @bright_blue;
+@navbarBackgroundHighlight: @bright_blue;
+@navbarLinkColor: @dark_grey;
+@navbarHeight: 2em;
+
+@baseFontSize: 14px;
+
 
 body {
 	padding-top: 0;
-	#main-wrapper {
-		// .container;
-		#main {
-			// .makeRow();
-			#active-stores {
-				// .makeColumn(4);
-			}
-			#top-employees {
-				// .makeColumn(4);
-			}
-			#morenav-container {
-				// .makeColumn(4);
+	#header {
+		.navbar {
+			border-bottom: 2px solid black;
+			.nav > li > a {
+				text-shadow: none;
 			}
 		}
 	}
+
 }
 
 

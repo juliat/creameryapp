@@ -224,6 +224,7 @@ DEPENDENCIES
   hirb
   jquery-rails
   launchy
+  less-rails
   mocha
   nested_form!
   nifty-generators
