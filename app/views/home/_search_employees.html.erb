@@ -1,7 +1,9 @@
-<div id="employee-search">
-	<h2 id="title">Employee Search</h2>	
+<div id="employee-search" class="well">
+	<h2 id="title">Search for an Employee</h2>	
 	<%= form_tag(search_path) do %>
-		<%= text_field_tag('query', '', :size => 12) %>
-		<%= submit_tag('Find') %>
+		<div class="input-append">
+		<%= text_field_tag('query', '', :size => 12, :id => "appendedInputButton") %>
+		<%= submit_tag('Find', :class => "btn") %>
+		</div>
 	<% end %>
 </div>

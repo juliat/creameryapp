@@ -33,29 +33,50 @@
 @light_grey: #eeeeee;
 @grey: #dcdcdc;
 @dark_grey: #555;
+@light_wood_brown: #d79c64;
+@lighter_wood_brown: lighten(@light_wood_brown, 20%);
+@wood_brown: #a94f2c;
+@dark_brown: darken(@wood_brown, 40%);
 
-@navbarBackground: @bright_blue;
-@navbarBackgroundHighlight: @bright_blue;
-@navbarLinkColor: @dark_grey;
+@navbarBackground: @dark_brown;
+@navbarBackgroundHighlight: @dark_brown;
+@navbarLinkColor: @light_wood_brown;
 @navbarHeight: 2em;
 
 @baseFontSize: 14px;
 
+.input-append .add-on, .input-append .btn {
+	margin-left: -4px;
+} 
+#appendedInputButton {
+	margin-top:9px;
+}
 
 body {
 	padding-top: 0;
 	background: black url(//duv2rxyjq20ja.cloudfront.net/wlcom1/backgrounds/wood.jpg) top center no-repeat fixed;
-	#header {
-		.navbar {
-			border-bottom: 2px solid black;
-			.nav > li > a {
-				text-shadow: none;
+	#main-wrapper {
+		min-height:100%;
+		h2, h2 a {
+			color: @dark_brown;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		
+		#header {
+			.navbar {
+				border-bottom: 2px solid black;
+				.nav > li > a {
+					text-shadow: none;
+				}
 			}
 		}
 	}
 }
 
 @import "util";
+@import "forms";
 @import "dashboards";
 @import "footer";
 
