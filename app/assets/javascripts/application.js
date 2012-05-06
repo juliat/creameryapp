@@ -12,5 +12,29 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery_nested_form
 //= require twitter/bootstrap
 //= require_tree .
+
+
+// Flash fade
+	$(function() {
+	   $('.alert-success').fadeIn('normal', function() {
+	      $(this).delay(3700).fadeOut();
+	   });
+	});
+	
+	$(function() {
+	   $('.alert-error').fadeIn('normal', function() {
+	      $(this).delay(3700).fadeOut();
+	   });
+	});
+
+
+// Datepicker code
+	$(function() {
+		$(".datepicker").datepicker({
+			format: 'mm/dd/YYYY'
+		});
+	});

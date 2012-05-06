@@ -1,5 +1,13 @@
 class Job < ActiveRecord::Base
 		
+		# Validations
+	# ====================================================================
+	# jobs must have a name with only alphabet characters
+	#~ validates_format_of :name, :with => /^[a-z]+$/i,
+	 #~ :allow_blank => false, 
+	 #~ :message => "The name for a job should only contain alphabet letters."
+	 
+	 	
 	# Relationships
 	# ====================================================================
 	has_many :shift_jobs
@@ -15,13 +23,5 @@ class Job < ActiveRecord::Base
 	
 	# alphabetically: returns a list of all jobs ordered alphabetically by name
 	scope :alphabetical, order("name")
-	
-
-	# Validations
-	# ====================================================================
-	# jobs must have a name with only alphabet characters
-	validates_format_of :name, :with => /^[a-z]+$/i,
-	 :allow_blank => false, 
-	 :message => "The name for a job should only contain alphabet letters."
 	
 end

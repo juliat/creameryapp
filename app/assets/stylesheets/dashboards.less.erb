@@ -1,5 +1,6 @@
 .box-title {
 	margin:0;
+	border-bottom: 1px solid @dark_grey;
 }
 
 .alpha{
@@ -19,51 +20,34 @@
 		margin-top: 0.75em; 
 	}
 
-	#active-stores {
-		margin-bottom: 3em;
-		.store {
-			padding: 0.75em;
-			max-width: 370px;
-			.name {
-				.box-title;
-				border-bottom: 1px solid @dark_grey;
-			}
-			
-			.num-employees, .shift-hours-worked, .assign-employee {
-				display: table-cell;
-				padding: 1em 0.5em 0.5em 0.5em;
-				width: 33%;
-				text-align: center;
-			}
-			
-			.num-employees, .shift-hours-worked {
-				font-size: 0.9em;
-				line-height: 1.1;
-				strong {
-					font-size:3em;
-					display:block;
-				}
+	#active-stores .store {
+		padding: 0.75em;
+		.name {
+			.box-title;
+		}
+		
+		.num-employees, .shift-hours-worked, .assign-employee {
+			display: table-cell;
+			padding: 1em 0.5em 0.5em 0.5em;
+			width: 33%;
+			text-align: center;
+		}
+		
+		.num-employees, .shift-hours-worked {
+			font-size: 0.9em;
+			line-height: 1.1;
+			strong {
+				font-size:3em;
+				display:block;
 			}
 		}
 	}
 	
 	#top-employees {
-		margin-bottom: 3em;
 		.note {
 			font-size: 0.8em;
 		}
 		.employee {
-			img {
-				width: 20%;
-				float: left;
-				margin-right: 0.5em;
-			}
-			p {
-				width: 90%;
-				strong {
-					background-color: @lighter_wood_brown;
-				}
-			}
 			.name {
 				.box-title;
 			}	
@@ -71,7 +55,6 @@
 	}
 	
 	#morenav {
-		margin-bottom: 3em;
 		div h2 {
 			font-size: 1.2em;
 			color: white;
@@ -107,14 +90,7 @@
 					line-height: 1.6;
 					a {
 						background: @lighter_grey;
-						margin-bottom: 0.4em;
-						padding-left: 0.5em;
-						font-size: 1.25em;
-						padding-top: 0.4em;
-						padding-bottom: 0.2em;
-						img {
-							width: 18%;
-						}
+						margin-bottom: 0.4eml
 					}
 				}
 			}

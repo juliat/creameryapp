@@ -1,7 +1,7 @@
 <div class="store_details">
 	<h1 class="page_label">Store Details</h1>
 	<h1><span class="invisible">Name: </span><%= @store.name %> Store </h1>
-	<%= link_to "View All Stores", stores_path, :class =>"view_all store button"   %>
+	<%= link_to "View All Stores", stores_path, :class =>"view_all store btn"   %>
 	<h3>Store Info</h3>
 	<table class="details">
 		<tr>
@@ -18,8 +18,8 @@
 		</tr>
 	</table>
 	<div id ="action_buttons">
-		 <a href=<%= edit_store_path(@store) %> class="edit store button">Edit Store Information</a>
-		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store button"   %>
+		 <a href=<%= edit_store_path(@store) %> class="edit store btn">Edit Store Information</a>
+		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store btn"   %>
 	</div>
 	<% # embed map using gmaps4rails %>
 	<%= gmaps4rails(@json) %>
