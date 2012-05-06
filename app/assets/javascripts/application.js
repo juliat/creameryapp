@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require jquery_nested_form
 //= require twitter/bootstrap
+//= require dataTables/jquery.dataTables
 //= require_tree .
 
 
@@ -38,3 +39,5 @@
 			format: 'mm/dd/YYYY'
 		});
 	});
+	
+
