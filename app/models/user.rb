@@ -43,6 +43,14 @@ class User < ActiveRecord::Base
 		return self.employee.role
 	end
 	
+	# send a password reset token
+	def send_password_reset
+	  generate_token(:password_reset_token)
+	  self.password_reset_sent_at = Time.zone.now
+	  save!
+	  UserMailer.password_reset(self).deliver
+	end
+	
 	# Custom Validation Methods
 	private
 	def employee_is_active_in_system
@@ -53,14 +61,6 @@ class User < ActiveRecord::Base
 	# authenticate by checking to see if password matches for user w/ given email
 	def self.authenticate(email, password)
 		find_by_email(email).try(:authenticate, password)
-	end
-	
-	# send a password reset token
-	def send_password_reset
-	  generate_token(:password_reset_token)
-	  self.password_reset_sent_at = Time.zone.now
-	  save!
-	  UserMailer.password_reset(self).deliver
 	end
 
 	# generate reset token by using existing database column

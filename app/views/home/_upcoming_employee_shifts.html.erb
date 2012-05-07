@@ -1,5 +1,21 @@
-<% unless @shifts.upcoming.empty? %>
-<div class="upcoming">
-	<h2>Upcoming Shifts</h2>
-</div>
-<% end %>
+	<% unless @shifts.upcoming.empty? %>
+	<div class="upcoming-shifts">
+		<h2>upcoming Shifts</h2>
+		<table class="display dataTable">
+			<thead>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Hours</th>
+				<th>Store</th>
+			</thead>
+			<tbody>
+				<% for shift in @shifts.upcoming %>
+				<td><%= humanize_date(shift.date) %></td>
+				<td><%= shift.name %></td>
+				<td><%= shift.hours %></td>
+				<td><%= shift.store.name %></td>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<% end %>
