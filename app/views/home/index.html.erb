@@ -1,10 +1,4 @@
 <% if logged_in? %>
-
-	<%  # main div should have dash (short for dashboard) tag
-	 content_for :main_html_id do %>
-	  "dash"
-	<% end %>
-	
 	<% if current_user.role == 'admin' %>
 		<%= render :partial => 'admin' %>
 	<% elsif current_user.role == 'manager' %>

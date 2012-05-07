@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 	def new
+		@main_html_id = "dash";
 	end
 	
 	def create

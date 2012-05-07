@@ -1,5 +1,7 @@
 <h1 class="page_label"><span>Employee Details:</span> <%=  @employee.name %></h1>
-	
+
+<%= raw custom_button("employee", "edit", "Edit Employee") %>
+
 <div class="employee_data">		
 	<% if @most_recent_assignment.nil? == false && @most_recent_assignment == @employee.current_assignment %>
 		<% @most_recent_assignment.employee.role.start_with?("e") ? article = "an" : article = "a"%>
@@ -16,8 +18,6 @@
 		<h3><%= @employee.proper_name %> has no current assignment. 
 		<%= link_to("Click here to create one.", new_assignment_path(:employee_id => @employee.id)) %></h3>
 	<% end %>
-	
-	<a href=<%= edit_employee_path(@employee) %> class="edit button">Edit Employee Information</a>
 	
 	<table class="details">
 		<tr>

@@ -18,6 +18,7 @@ class HomeController < ApplicationController
                 @shifts =@employee.current_assignment.shifts
             end
         end
+        @main_html_id = "dash";
     else
         @stores = Store.active.alphabetical;
         #~ @json = Store.all.to_gmaps4rails do |store, marker|
