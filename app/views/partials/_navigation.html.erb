@@ -33,8 +33,10 @@
 				<%= current_user.email %>
 				<b class="caret"></b>
 				<ul class="dropdown-menu">
-				    <li><a href="#">Your Info</a></li>
-				    <li class="divider"></li>
+				    <% unless current_user.role == "employee" %>
+					<li><%= link_to("Your Info", employee_path(current_user.employee)) %></li>
+					<li class="divider"></li>
+				   <% end %>
 				    <li><%= link_to 'Logout', logout_path %></li>
 				</ul>
 		    </a>
