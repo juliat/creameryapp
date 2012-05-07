@@ -1,32 +1,37 @@
 <div class="store_details">
-	<h1 class="page_label">Store Details</h1>
-	<h1><span class="invisible">Name: </span><%= @store.name %> Store </h1>
-	<%= link_to "View All Stores", stores_path, :class =>"view_all store btn"   %>
-	<h3>Store Info</h3>
-	<table class="details">
-		<tr>
-			<th>Active:</th>
-			<td><%= @store.active ? "Yes" : "No" %></td>
-		</tr>
-		<tr>
-			<th>Address:</th>
-			<td><%= @store.street %><br><%= @store.city + ", " + @store.state + " " + @store.zip %></td>
-		</tr>
-		<tr>
-			<th>Phone:</th>
-			<td><%=  @store.pretty_phone %></td>
-		</tr>
-	</table>
+	<h1 class="page_label"><span>Store Details:</span> <%= @store.name %> Store </h1>
 	<div id ="action_buttons">
-		 <a href=<%= edit_store_path(@store) %> class="edit store btn">Edit Store Information</a>
-		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store btn"   %>
+		 <%= link_to "View All Stores", stores_path, :class =>"view_all store btn btn-info"   %>
+		 <a href=<%= edit_store_path(@store) %> class="edit store btn">Edit Store Information <%= image_tag('icons/icons_12.gif', :alt => "Edit Store")%></a>
+		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store btn btn-danger" %>
 	</div>
-	<% # embed map using gmaps4rails %>
-	<%= gmaps4rails(@json) %>
+	<div class="row">
+		<div class="span4">
+			<h3>Store Info</h3>
+			<table class="details">
+				<tr>
+					<th>Active:</th>
+					<td><%= @store.active ? "Yes" : "No" %></td>
+				</tr>
+				<tr>
+					<th>Address:</th>
+					<td><%= @store.street %><br><%= @store.city + ", " + @store.state + " " + @store.zip %></td>
+				</tr>
+				<tr>
+					<th>Phone:</th>
+					<td><%=  @store.pretty_phone %></td>
+				</tr>
+			</table>
+		</div>
+		<div class="span8">
+		<% # embed map using gmaps4rails %>
+		<%= gmaps4rails(@json) %>
+		</div>
+	</div>
 </div>
 <div class="current_employees">
 	<h3>Current Employees</h3>
-	<%= link_to "Add A New Employee", new_employee_path(:store_id => @store.id), :class => "add employee button"  %>
+	<%= link_to "Add A New Employee", new_employee_path(:store_id => @store.id), :class => "add employee button"%>
 	<% if @current_employees.empty? == true%>
 		<p>No employees currently work at the <%=  @store.name %> store.</p>
 	<% else %>

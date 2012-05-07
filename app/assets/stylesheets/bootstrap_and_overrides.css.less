@@ -50,6 +50,13 @@
 
 @baseFontSize: 14px;
 
+
+@import "util";
+@import "forms";
+@import "dashboards";
+@import "footer";
+
+
 .input-append .add-on, .input-append .btn {
 	margin-left: -4px;
 } 
@@ -83,11 +90,22 @@ body {
 	
 	#main-wrapper {
 		min-height:100%;
+		#main {
+			.prettybox;
+			padding: 3em 4em;
+			margin-top: 1.5em;
+			h1 {
+				margin-top: 1em;
+			}
+		}	
 		h1, h2, h2 a, h3, h4, h5, p, li, table {
 			color: @dark_brown;
 			&:hover {
 				text-decoration: none;
 			}
+		}
+		h1 {
+			clear:both;
 		}
 		table {
 			th, td {
@@ -96,12 +114,24 @@ body {
 				text-align: left;
 			}
 		}
+		.btn img {
+			width: 30%;
+		}
+		.add {
+			width: 8em;
+			float: right;
+			padding: 0.7em 0em 0.4em 0.5em;
+			margin-top: -2em;
+			margin-bottom: 2em;
+			img {
+				width: 35%;
+				margin-top: -7px;
+				margin-left: 1px;
+			}
+		}
 	}
 }
 
-@import "util";
-@import "forms";
-@import "dashboards";
-@import "footer";
+
 
 

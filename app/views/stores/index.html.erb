@@ -1,5 +1,6 @@
 <h1>Current Stores</h1>
-<%=  link_to "Add A New Store", new_store_path, :class =>"add btn"    %>
+<a href=<%= new_store_path %> class="btn btn-large add">
+Add Store <%= image_tag('icons/icons_10.gif', :alt => "Add Store")%></a>
 <table class="display dataTable">
 	<thead>
 		<tr>
