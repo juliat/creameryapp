@@ -1,14 +1,20 @@
-<%= simple_form_for(@employee) do |f| %>
-  <%= f.input :first_name, :placeholder=>"First Name" %>
-  <%= f.input :last_name, :placeholder=>"Last Name" %>
-  <%= f.input :ssn, :label => "SSN:", :placeholder=>"Social Security Number" %>
-  <%= f.input :date_of_birth, :as => :date, :start_year => Date.today.year - 90,
+<%= simple_form_for @employee, :html => { :class => 'form-horizontal' } do |f| %>
+ <legend><%= controller.action_name.capitalize %> Employee</legend>
+    <fieldset>
+    <%= f.input :first_name, :placeholder=>"First Name" %>
+    <%= f.input :last_name, :placeholder=>"Last Name" %>
+    <%= f.input :ssn, :label => "SSN", :placeholder=>"Social Security Number" %>
+    <%= f.input :date_of_birth, :as => :date, :start_year => Date.today.year - 90,
                               :end_year => Date.today.year - 13,
-                              :order => [:month, :day, :year] %>
-   <%= f.input :phone, :placeholder => "Phone number" %>
-   <%= f.input :role, :collection => ["employee", "manager", "admin"], :label_method => lambda{|label| label.capitalize}, :prompt =>"Select Role" %>
-   <%=  f.input :active %>
-   <%=  f.button :submit, :class => "create" %>
+                              :order => [:month, :day, :year],
+                              :input_html => { :class => 'span1' } 
+    %>
+    <%= f.input :phone, :placeholder => "Phone number" %>
+    <%= f.input :role, :collection => ["employee", "manager", "admin"], :label_method => lambda{|label| label.capitalize}, :prompt =>"Select Role" %>
+    <%= f.input :active %>
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', employees_path, :class => 'btn' %>
+    </div>
+  </fieldset>
 <% end %>
-
-
