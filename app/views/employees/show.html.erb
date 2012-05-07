@@ -1,6 +1,6 @@
 <h1 class="page_label"><span>Employee Details:</span> <%=  @employee.name %></h1>
 
-<%= raw custom_button("employee", "edit", "Edit Employee") %>
+<%= raw custom_button("employee", "edit", edit_employee_path, "Edit Employee") %>
 
 <div class="employee_data">		
 	<% if @most_recent_assignment.nil? == false && @most_recent_assignment == @employee.current_assignment %>

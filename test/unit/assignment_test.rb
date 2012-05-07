@@ -4,6 +4,7 @@ class AssignmentTest < ActiveSupport::TestCase
   # Test relationships
    should belong_to(:employee)
    should belong_to(:store)
+   should have_many(:shifts)
 
    # Test basic validations
    # for pay level
@@ -27,7 +28,6 @@ class AssignmentTest < ActiveSupport::TestCase
    
    # Need to do the rest with a context
    context "Creating six employees and three stores with five assignments" do
-   
      # create the objects I want with factories
      setup do 
        @cmu = FactoryGirl.create(:store)
@@ -91,7 +91,7 @@ class AssignmentTest < ActiveSupport::TestCase
      end
      
      should "have all the assignments listed chronologically by start date" do
-       assert_equal ["Ben", "Cindy", "Ed", "Kathryn", "Ben"], Assignment.chronological.map{|a| a.employee.first_name}
+       assert_equal ["Ben", "Kathryn", "Ed", "Cindy", "Ben"], Assignment.chronological.map{|a| a.employee.first_name}
      end
      
      should "have all the assignments listed alphabetically by employee name" do
@@ -144,6 +144,6 @@ class AssignmentTest < ActiveSupport::TestCase
        assert_equal 1.day.ago.to_date, @kathryn.assignments.first.end_date
        @promote_kathryn.destroy
      end
-	 
-	 end # context
+     
+   end
 end
