@@ -1,32 +1,32 @@
 <h1>Current Assignments</h1>
-<%= link_to "Create a New Assignment", new_assignment_path, :class => "add employee button"  %>
-		<table class="display dataTable">
-			<thead>
-				<tr>
-					<th>Store</th>
-					<th>Employee</th>
-					<th>Role</th>
-					<th>Pay Level</th>
-					<th>Start Date</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<% for assignment in @current_assignments %>
-				<tr>
-					<td><%= link_to(assignment.store.name, store_path(assignment.store)) %></td>
-					<td><%= link_to(assignment.employee.name, employee_path(assignment.employee)) %></td>
-					<td><%= assignment.employee.role.capitalize %></td>
-					<td><%= assignment.pay_level %></td>
-					<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>
-					<td>
-						<%=  link_to("Details", assignment_path(assignment), :class => "details assignment button") %>
-						<!-- <button value="end_assignment" class="end assignment button">End</button> -->
-					</td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
+<%= raw custom_button("assignment", "add", "New Assignment") %>
+<table class="display dataTable">
+	<thead>
+		<tr>
+			<th>Store</th>
+			<th>Employee</th>
+			<th>Role</th>
+			<th>Pay Level</th>
+			<th>Start Date</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% for assignment in @current_assignments %>
+		<tr>
+			<td><%= link_to(assignment.store.name, store_path(assignment.store)) %></td>
+			<td><%= link_to(assignment.employee.name, employee_path(assignment.employee)) %></td>
+			<td><%= assignment.employee.role.capitalize %></td>
+			<td><%= assignment.pay_level %></td>
+			<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>
+			<td>
+				<%=  link_to("Details", assignment_path(assignment), :class => "details assignment button") %>
+				<!-- <button value="end_assignment" class="end assignment button">End</button> -->
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
 	
 <h1>Past Assignments</h1>
 	<table class="display dataTable">

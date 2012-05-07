@@ -1,5 +1,4 @@
-<h1 class="page_label">Employee Details:</h1>
-<h1><span class="invisible">Name:</span> <%=  @employee.name %></h1>
+<h1 class="page_label"><span>Employee Details:</span> <%=  @employee.name %></h1>
 	
 <div class="employee_data">		
 	<% if @most_recent_assignment.nil? == false && @most_recent_assignment == @employee.current_assignment %>
@@ -41,7 +40,7 @@
 		</tr>
 		<tr>
 			<th>SSN:</th>
-			<td><span class="invisible"><%= @employee.ssn %></span><%=  @employee.pretty_ssn %></td>
+			<td><%=  @employee.pretty_ssn %></td>
 		</tr>
 		<tr>
 			<th>Age:</th>

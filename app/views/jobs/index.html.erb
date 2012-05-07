@@ -1,5 +1,5 @@
 <h1>All Jobs</h1>
-
+<%= raw custom_button("job", "add", "New Job") %>
 <ul>
 	<% for job in @jobs %>
 	<li><h3><%= job.name %></h3><p><%= job.description %></p></li>

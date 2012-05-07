@@ -6,7 +6,7 @@
 				<h3 class="name"><%= link_to(store.name + " Store", store_path(store)) %></h3>
 				<p class="num-employees"><strong><%= store.employees.active.size %></strong> Current Employees</p>
 				<p class="shift-hours-worked"><strong><%= store.shift_hours_worked %></strong> Shift Hours Worked</p>
-				<p class="assign-employee"><%= link_to "Assign Employee", new_assignment_path(:store_id => store.id), :class => "add assignment"  %></p>
+				<p class="assign-employee"><%= image_tag("icons/icons_06.gif", :alt => "New Assignment") %><%= link_to "Assign Employee", new_assignment_path(:store_id => store.id), :class => "add assignment"  %></p>
 			</div>
 		<% end %>
 	<% else %>
