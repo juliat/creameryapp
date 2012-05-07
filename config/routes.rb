@@ -1,5 +1,7 @@
 Creamery2012::Application.routes.draw do
 
+  get "password_resets/new"
+
 	# Generated model routes
 	resources :stores
 	resources :employees
@@ -8,6 +10,7 @@ Creamery2012::Application.routes.draw do
 	resources :jobs
 	resources :users
 	resources :sessions
+	resources :password_resets
 
 	# Semi-static page routes
 	match 'home' => 'home#index', :as => :home

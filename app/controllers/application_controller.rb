@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # authentication methods
   private
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
   end
   
   # make current_user a helper method so that it's accessible to the views

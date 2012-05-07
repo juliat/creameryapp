@@ -4,19 +4,12 @@ class User < ActiveRecord::Base
 	
 	# use rails built-in password management
 	has_secure_password
-
-	# Relationships
-	# ====================================================================
-	belongs_to :employee
-		
-	# Scopes
-	# ====================================================================
-	# none right now
-	
 	
 	# Validations
 	# ====================================================================
-	# a user must be associated with an employee, have an email, and have an encoded password
+	# a user must be associated with an employee, have an email, 
+	# and have an encoded password
+	validates_presence_of :password, :on => :create
 	validates_presence_of :password_digest
 	
 	# when created, a user must be connected to an employee who is active in the system
@@ -30,7 +23,22 @@ class User < ActiveRecord::Base
 	# email must be unique in system
 	validates_uniqueness_of :email
 	
-	# convenience method
+	
+	# Callbacks
+	# ================================================================================
+	# Callback to create auth_token for users to enable password_reset
+	before_create { generate_token(:auth_token) }
+
+
+	# Relationships
+	# ================================================================================
+	belongs_to :employee
+		
+	
+	# Methods
+	# ================================================================================
+	
+	# convenience method to get a user's employee role
 	def role
 		return self.employee.role
 	end
@@ -42,8 +50,24 @@ class User < ActiveRecord::Base
 		return active_employees.include?(self.employee_id)
 	end
 	
+	# authenticate by checking to see if password matches for user w/ given email
 	def self.authenticate(email, password)
 		find_by_email(email).try(:authenticate, password)
+	end
+	
+	# send a password reset token
+	def send_password_reset
+	  generate_token(:password_reset_token)
+	  self.password_reset_sent_at = Time.zone.now
+	  save!
+	  UserMailer.password_reset(self).deliver
+	end
+
+	# generate reset token by using existing database column
+	def generate_token(column)
+	  begin
+		self[column] = SecureRandom.urlsafe_base64
+	  end while User.exists?(column => self[column])
 	end
 	
 	
