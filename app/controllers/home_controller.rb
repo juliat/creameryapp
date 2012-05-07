@@ -1,8 +1,4 @@
 class HomeController < ApplicationController
-  
-  #~ if current_user.logged_in? == false
-    #~ layout :application
-  #~ end
 
   def index
     if logged_in?
@@ -24,20 +20,20 @@ class HomeController < ApplicationController
         end
     else
         @stores = Store.active.alphabetical;
-        @json = Store.all.to_gmaps4rails do |store, marker|
-          marker.infowindow render_to_string(:partial => "/users/my_template", :locals => { :object => user})
-          marker.picture({
-                          :picture => "http://www.blankdots.com/img/github-32x32.png",
-                          :width   => 32,
-                          :height  => 32
-                         })
-          marker.title   "i'm the title"
-          marker.sidebar "i'm the sidebar"
-          marker.json({ :id => store.id, :foo => "bar" })
-        end
-        #~ @json = @stores.to_gmaps4rails do |store, marker|
-            #~ marker.title "#{store.name} Store"
+        #~ @json = Store.all.to_gmaps4rails do |store, marker|
+          #~ marker.infowindow render_to_string(:partial => "/users/my_template", :locals => { :object => user})
+          #~ marker.picture({
+                          #~ :picture => "http://www.blankdots.com/img/github-32x32.png",
+                          #~ :width   => 32,
+                          #~ :height  => 32
+                         #~ })
+          #~ marker.title   "i'm the title"
+          #~ marker.sidebar "i'm the sidebar"
+          #~ marker.json({ :id => store.id, :foo => "bar" })
         #~ end
+        @json = @stores.to_gmaps4rails do |store, marker|
+            marker.title "#{store.name} Store"
+        end
     end
   end
 
