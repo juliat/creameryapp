@@ -4,6 +4,8 @@ class AssignmentsController < ApplicationController
 	before_filter :check_login
 	authorize_resource
 	
+	include ApplicationHelper
+	
 	def index
 		@current_assignments = Assignment.current.chronological.reverse
 		@past_assignments = Assignment.past.chronological.reverse
@@ -21,12 +23,16 @@ class AssignmentsController < ApplicationController
 
 	def edit
 		@assignment = Assignment.find(params[:id])
+		@assignment.start_date = humanize_date(@assignment.start_date)
+		unless @assignment.end_date.nil? 
+			@assignment.end_date = humanize_date(@assignment.end_date)
+		end
 	end
 
 	def create
 		@assignment = Assignment.new(params[:assignment])
-		@assignment.start_date = convert_to_datetime(params[:assignment][:start_date])
-		@assignment.end_date = convert_to_datetime(params[:assignment][:end_date])
+		@assignment.start_date = Chronic.parse(params[:assignment][:start_date])
+		@assignment.end_date = Chronic.parse(params[:assignment][:end_date])
 		if @assignment.save
 			# if saved to database
 			flash[:notice] = "Successfully created assignment for #{@assignment.employee.proper_name} to the #{@assignment.store.name} store."
@@ -39,8 +45,8 @@ class AssignmentsController < ApplicationController
 
 	def update
 		@assignment = Assignment.find(params[:id])
-		@assignment.start_date = convert_to_datetime(params[:assignment][:start_date])
-		@assignment.end_date = convert_to_datetime(params[:assignment][:end_date])
+		@assignment.start_date =  Chronic.parse(params[:assignment][:start_date])
+		@assignment.end_date = Chronic.parse(params[:assignment][:end_date])
 		if @assignment.update_attributes(params[:assignment])
 			flash[:notice] = "Successfully updated assignment for #{@assignment.employee.proper_name} to the #{@assignment.store.name} store."
 			redirect_to @assignment

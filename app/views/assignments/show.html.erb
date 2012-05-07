@@ -1,5 +1,5 @@
 <h1 class="page_label">Assignment Details</h1>
-<%= raw custom_button("assignment", "edit", "Edit Assignment") %>
+<%= raw custom_button("assignment", "edit", edit_assignment_path(@assignment), "Edit Assignment") %>
 
 <h1><%=  link_to "#{@assignment.employee.name}", employee_path(@assignment.employee) %> -
 <%=  link_to "#{@assignment.store.name}", store_path(@assignment.store) %> </h1>
