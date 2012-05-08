@@ -1,5 +1,8 @@
 <div class="store_page">
 	<h1><%= @store.name %> Store</h1>
+	<div class="page-buttons">
+		<%= link_to "Back to Homepage", home_path, :class => "btn btn-primary" %>
+	</div>
 	<div class="row">
 		<div class="span8">
 			<% # embed map using gmaps4rails %>

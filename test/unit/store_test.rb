@@ -58,7 +58,7 @@ class StoreTest < ActiveSupport::TestCase
       @assign_cindy = FactoryGirl.create(:assignment, :employee => @cindy, :store => @cmu, :end_date => nil)
       @assign_john = FactoryGirl.create(:assignment, :employee => @john, :store => @cmu, :end_date => nil)
       @assign_kathryn = FactoryGirl.create(:assignment, :employee => @kathryn, :store => @cmu, :end_date => nil)
-	  
+          
       # assign a few shifts (to test shift_hours_worked method)
       # for ed
       @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => Date.yesterday, :start_time => 1.day.ago)
@@ -132,22 +132,22 @@ class StoreTest < ActiveSupport::TestCase
       assert_equal 1, Store.inactive.size
       assert_equal ["Hazelwood"], Store.inactive.alphabetical.map{|s| s.name}
     end
-	
-	# test the address method
-	should "shows that the address method returns a string of the store's complete address" do
-		assert_equal @oakland.address, "5000 Forbes Avenue, Pittsburgh, PA 15213"
-	end
-	
-	#test the pretty_phone method
-	should "shows that the pretty_phone method returns a prettily formatted phone number" do	
-		assert_equal "412-268-8211", @oakland.pretty_phone
-	end
-	
-	# test the active_status method
-	should "shows that the active_status method returns a string indicating the store's active/inactive status" do
-		assert_equal "active", @oakland.active_status
-		assert_equal "inactive", @hazelwood.active_status
-	end
+        
+        # test the address method
+        should "shows that the address method returns a string of the store's complete address" do
+                assert_equal @oakland.address, "5000 Forbes Avenue, Pittsburgh, PA 15213"
+        end
+        
+        #test the pretty_phone method
+        should "shows that the pretty_phone method returns a prettily formatted phone number" do        
+                assert_equal "412-268-8211", @oakland.pretty_phone
+        end
+        
+        # test the active_status method
+        should "shows that the active_status method returns a string indicating the store's active/inactive status" do
+                assert_equal "active", @oakland.active_status
+                assert_equal "inactive", @hazelwood.active_status
+        end
     
     # test the geocoding callback using a known address (5000 forbes avenue, pittsburgh, PA 15213)
     should "show that the geocoding callback retrieves the store's latitude and longitude based on its address" do
@@ -155,7 +155,7 @@ class StoreTest < ActiveSupport::TestCase
         assert_equal 40.44, @oakland.latitude.round(2)
         assert_equal -79.94, @oakland.longitude.round(2)
     end
-	
+        
     # test the shift_hours_worked method
     should "show that the shift_hours_worked method works" do
         # for default (14 days, 2 weeks)

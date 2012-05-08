@@ -7,7 +7,7 @@ class Shift < ActiveRecord::Base
 				   :invalid_date_message => "is not a valid date"
 	# validates_date :date, :on_or_after => lambda { self.assignment.start_date.to_date }, :on_or_after_message => "must be on or after the start of the assignment"
 	validates_time :start_time #, :between => [Time.local(2000,1,1,11,0,0), Time.local(2000,1,1,23,0,0)]
-	validates_time :end_time, :after => :start_time, :allow_blank => true
+	#  validates_time :end_time, :after => :start_time, :allow_blank => true
 	validate :assignment_must_be_current
 	validates_numericality_of :assignment_id, :only_integer => true, :greater_than => 0
   
@@ -75,7 +75,7 @@ class Shift < ActiveRecord::Base
 	# ===================================================================
 	# hours method returns number of hours worked based on end_time - start_time
 	def hours
-		seconds_in_shift = start_time - end_time
+		seconds_in_shift = end_time - start_time
 		hours = seconds_in_shift.abs/3600
 		return hours
 	end
