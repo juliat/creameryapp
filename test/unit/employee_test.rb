@@ -72,9 +72,9 @@ class EmployeeTest < ActiveSupport::TestCase
       
       # assign a few shifts (to test shift_hours_worked method)
       # for ed
-      @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => Date.yesterday, :start_time => 1.day.ago)
-      @lastWeekShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
-      @lastMonthShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 30.days.ago.to_date, :start_time => 30.days.ago)
+      @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_cindy, :date => Date.yesterday, :start_time => 1.day.ago)
+      @lastWeekShift = FactoryGirl.create(:shift, :assignment => @assign_cindy, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
+      @lastMonthShift = FactoryGirl.create(:shift, :assignment => @assign_cindy, :date => 30.days.ago.to_date, :start_time => 30.days.ago)
       # for john johnson
       @john1 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
       @john2 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 8.days.ago.to_date, :start_time => 8.days.ago)
@@ -230,21 +230,21 @@ class EmployeeTest < ActiveSupport::TestCase
     should "show that the shift_hours_worked method returns the cumulative shift hours 
     worked  in a given time range by an employee as an integer" do
         # someone with no hours
-        assert_equal 0, @cindy.shift_hours_worked
+        assert_equal 0, @ed.shift_hours_worked
         # someone with many hours (using default time range of 2 weeks)
-        assert_equal 6, @ed.shift_hours_worked
+        assert_equal 6, @cindy.shift_hours_worked
         assert_equal 9, @john.shift_hours_worked
         # using time range other than default
-        assert_equal 9, @ed.shift_hours_worked(30)
+        assert_equal 9, @cindy.shift_hours_worked(30)
     end
     
     # test the top_employees method
     should "show that the top_employees method returns employees who have worked the most hours (>0) in the past n days" do
         # using defaults (7 employees, past 14 days)
-        assert_equal ["Johnson", "Gruberman"], Employee.top_employees.map{|e| e.last_name}
+        assert_equal ["Johnson", "Crawford"], Employee.top_employees.map{|e| e.last_name}
         
         # 5 employees, past 5 days
-        assert_equal ["Gruberman"], Employee.top_employees(5, 5).map{|e| e.last_name}
+        assert_equal ["Crawford"], Employee.top_employees(5, 5).map{|e| e.last_name}
     end
     
     # test the last_shift_worked method
