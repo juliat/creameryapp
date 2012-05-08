@@ -48,11 +48,11 @@ class StoreTest < ActiveSupport::TestCase
     end
     
     # and provide a teardown method as well
-    #~ teardown do
-      #~ @cmu.destroy
-      #~ @hazelwood.destroy
-      #~ @oakland.destroy
-    #~ end
+    teardown do
+      @cmu.destroy
+      @hazelwood.destroy
+      @oakland.destroy
+    end
   
     # now run the tests:
     # test one of each factory (not really required, but not a bad idea)
@@ -113,5 +113,9 @@ class StoreTest < ActiveSupport::TestCase
         assert_equal -79.94, @oakland.longitude.round(2)
     end
 	
+    # test the shift_hours_worked method
+    should "show that the shift_hours_worked method works" do
+    end
+    
 end # context
 end # class
