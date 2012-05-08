@@ -35,6 +35,7 @@ class HomeController < ApplicationController
         @json = @stores.to_gmaps4rails do |store, marker|
             marker.title "#{store.name} Store"
         end
+        @main_html_id = "main";
     end
   end
 

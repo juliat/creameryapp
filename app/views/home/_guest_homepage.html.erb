@@ -1,25 +1,25 @@
 	<h1>The Amazing and Marvelous Creamery</h1>
 	<p>The Amazing and Marvelous Creamery is an ice cream store with locations in Pittsburgh 
-	   and some other states nearby in the northeast. This introduction could use some work.
+	   and some other states nearby in the northeast. 
 	</p>
 	<h2>Our Stores</h2>
+	<div class="row">
 	<% for store in @stores %>
-		<div class="store">
-		<h3><span class="invisible">Name: </span><%=  link_to "#{store.name}", store_path(store) %></h3>
-		<table>
-			<tr>
-				<th>Address</th>
-				<td><%= store.street %><br><%= store.city + ", " + store.state + " " + store.zip %></td>
-			</tr>
-			<tr>
-				<th>Phone</th>
-				<td><%= store.pretty_phone %></td>
-			</tr>
-		</table>
-		<!-- edit button -->
-		<!-- manage employees button -->
+		<div class="store span3">
+			<h4><%=  link_to "#{store.name}", store_path(store) %></h4>
+			<table class="table">
+				<tr>
+					<th>Address</th>
+					<td><%= store.street %><br><%= store.city + ", " + store.state + " " + store.zip %></td>
+				</tr>
+				<tr>
+					<th>Phone</th>
+					<td><%= store.pretty_phone %></td>
+				</tr>
+			</table>
 		</div>
 	<% end %>
+	</div>
 
 	<% # embed map using gmaps4rails %>
 	<%= gmaps4rails(@json) %>
