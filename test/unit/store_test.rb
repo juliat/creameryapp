@@ -77,6 +77,26 @@ class StoreTest < ActiveSupport::TestCase
       @cmu.destroy
       @hazelwood.destroy
       @oakland.destroy
+      
+      @ed.destroy
+      @cindy.destroy
+      @kathryn.destroy
+      @john.destroy
+      
+      @assign_ed.destroy
+      @assign_cindy.destroy
+      @assign_kathryn.destroy
+      @assign_john.destroy
+      
+      @yesterdayShift.destroy
+      @lastWeekShift.destroy
+      @lastMonthShift.destroy
+      @john1.destroy
+      @john2.destroy
+      @john3.destroy
+      @john4.destroy
+      
+      
     end
   
     # now run the tests:
@@ -144,6 +164,12 @@ class StoreTest < ActiveSupport::TestCase
         assert_equal 15, @cmu.shift_hours_worked
         # for custom number of days
         assert_equal 21, @cmu.shift_hours_worked(30)
+    end
+    
+    # test current_employees method
+    should "show that the current_employees method works" do
+        assert_equal [], @hazelwood.current_employees
+        assert_equal ["Crawford", "Gruberman", "Janeway", "Johnson"], @cmu.current_employees.map{|e| e.last_name}
     end
     
 end # context

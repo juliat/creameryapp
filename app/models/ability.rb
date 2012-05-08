@@ -15,7 +15,8 @@ class Ability
         # - their information
         # - their employees' information
         can [:show, :update], Employee do |employee|
-            (employee.id == user.employee_id) || (Employee.by_store(user.employee.store).include?(employee.id))
+            user_store = user.employee.current_assignment.store
+            (employee.id == user.employee_id) || (user_store.current_employees.include?(employee))
         end
         cannot :create, Employee
         cannot :destroy, Employee

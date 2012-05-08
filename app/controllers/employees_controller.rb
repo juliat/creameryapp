@@ -5,7 +5,11 @@ class EmployeesController < ApplicationController
 	load_and_authorize_resource
 	
 	def index
-		@employees = Employee.alphabetical
+		if current_user.role == "admin"
+			@employees = Employee.alphabetical
+		elsif current_user.role == "manager"
+			@employees = Employee.for_store(current_user.employee.store.id).alphabetical
+		end
 	end
 	
 	def show

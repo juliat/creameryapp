@@ -61,6 +61,15 @@ class Store < ActiveRecord::Base
 	return hours.to_i
     end
   
+    # returns employees who currently work at the store
+    def current_employees
+	assignments = Assignment.current.for_store(self.id)
+	employees = assignments.map{|a| Employee.find(a.employee_id)}
+	employees = employees.sort_by { |e| [e.last_name, e.first_name] }
+	return employees
+    end
+	
+  
   # Callback code
   # -----------------------------
    # private

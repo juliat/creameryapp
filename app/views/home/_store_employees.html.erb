@@ -1,5 +1,5 @@
 <div class="store-employees">
-	<% unless @store.employees.nil? %>
+	<% unless @store_employees.nil? %>
 		<h2>Employees</h2>
 		<table class="display dataTable">
 			<thead>
@@ -11,9 +11,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% for employee in @store.employees %>
+				<% for employee in @store_employees %>
 				<tr>
-					<th><%= employee.name %></th>
+					<th><%= link_to(employee.name, employee_path(employee)) %></th>
 					<td><%= employee.shift_hours_worked %></td>
 					<% unless employee.last_shift_worked.nil? %>
 						<td><%= humanize_date(employee.last_shift_worked.date) %></td>
