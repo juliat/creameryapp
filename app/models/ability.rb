@@ -5,11 +5,10 @@ class Ability
 
     # handle case where user is not yet logged in
     user ||= User.new # guest user
-   
+      
     # admins can do anything
     if user.role == "admin"
         can :manage, :all
-        
     elsif user.role == "manager"
         # managers can access and edit
         # - their information
@@ -34,8 +33,6 @@ class Ability
         # can do anything with Shifts
         can :manage, Shift
         
-        # can't look at or do anything with stores
-        
         # can't do anything with assignments
         cannot :manage, Assignment
         
@@ -45,7 +42,7 @@ class Ability
         # can't manage users
         cannot :manage, User
         
-    elsif user.employee.role == "employee"
+    elsif user.role == "employee"
         # employees can only see their own info
         can :show, Employee do |employee|
             employee.id == user.employee_id
@@ -58,7 +55,9 @@ class Ability
 
         # can't do anything else
         cannot :manage, [Store, Job, Assignment, User]
-    end
+    else
+        can :show, Store
+    end 
     
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are

@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
 	
 	# convenience method to get a user's employee role
 	def role
-		return self.employee.role
+		unless self.employee.nil?
+			return self.employee.role
+		else
+			return "guest"
+		end
 	end
 	
 	# send a password reset token

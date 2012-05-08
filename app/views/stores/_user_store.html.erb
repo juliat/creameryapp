@@ -1,0 +1,42 @@
+<div class="store_details">
+	<h1 class="page_label"><span>Store Details:</span> <%= @store.name %> Store </h1>
+	<div class="page-buttons">
+		 <%= raw custom_button("store", "edit", edit_store_path(@store), "Edit Store") %>
+		 <%= link_to "View All Stores", stores_path, :class =>"view_all store btn btn-info"   %>
+		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store btn btn-danger btn-small" %>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<% # embed map using gmaps4rails %>
+			<%= gmaps4rails(@json) %>
+		</div>
+		<div class="span4">
+			<h3>Store Info</h3>
+			<table class="details">
+				<tr>
+					<th>Active:</th>
+					<td><%= @store.active ? "Yes" : "No" %></td>
+				</tr>
+				<tr>
+					<th>Address:</th>
+					<td><%= @store.street %><br><%= @store.city + ", " + @store.state + " " + @store.zip %></td>
+				</tr>
+				<tr>
+					<th>Phone:</th>
+					<td><%=  @store.pretty_phone %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="current_employees">
+	<h2>Current Employees</h2>
+	<div class="page-buttons">
+		<%= raw custom_button("employee", "new", new_employee_path, "Add Employee") %>
+	</div>
+	<% if @current_employees.empty? == true%>
+		<p>No employees currently work at the <%=  @store.name %> store.</p>
+	<% else %>
+	  <%= render :partial => "current_employees" %>
+	<% end %>
+</div>

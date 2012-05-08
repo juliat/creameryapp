@@ -1,0 +1,23 @@
+<div class="store_page">
+	<h1><%= @store.name %> Store</h1>
+	<div class="row">
+		<div class="span8">
+			<% # embed map using gmaps4rails %>
+			<%= gmaps4rails(@json) %>
+		</div>
+		<div class="span4">
+			<h3>Store Info</h3>
+			<table class="details">
+				<tr>
+					<th>Address:</th>
+					<td><%= @store.street %><br><%= @store.city + ", " + @store.state + " " + @store.zip %></td>
+				</tr>
+				<tr>
+					<th>Phone:</th>
+					<td><%=  @store.pretty_phone %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
