@@ -1,16 +1,20 @@
 <%= simple_nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
-	<div class="shift_fields">
-		<%= render :partial => 'new_shift_fields', :locals => {:f => shift_form} %>
-		<%= render :partial => 'complete_shift_fields', :locals => {:f => shift_form} %>
-	</div>
-	
-	<!-- add shift jobs form is in partial/two -->
-	
-	<div class="form-actions">
-	  <%= shift_form.submit nil %>
-	  <%= link_to 'Cancel', shifts_path %>
-	</div>
-<% end %>
+	<fieldset>
+		<legend>Edit Shift</legend>
+		<div class="shift_fields">
+			<%= render :partial => 'new_shift_fields', :locals => {:f => shift_form} %>
+			<%= render :partial => 'complete_shift_fields', :locals => {:f => shift_form} %>
+		</div>
+		
+		<!-- add shift jobs form is in partial/two -->
+		
+		<div class="form-actions">
+		  <%= shift_form.submit nil, :class => 'btn btn-primary' %>
+		  <%= link_to 'Cancel', shifts_path, :class => 'btn' %>
+		</div>
+  </fieldset>
+ <% end %>
+
 
 
 	

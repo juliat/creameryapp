@@ -1,8 +1,17 @@
-<div class="employees">
+<div class="store-employees">
 	<% unless @store.employees.nil? %>
 		<h2>Employees</h2>
-		<% for employee in @store.employees %>
-			<table>
+		<table class="display dataTable">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Hours</th>
+					<th>Last Shift</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for employee in @store.employees %>
 				<tr>
 					<th><%= employee.name %></th>
 					<td>Worked <strong><%= employee.shift_hours_worked %></strong> in the Last 2 Weeks</td>
@@ -13,8 +22,9 @@
 					<% end %>
 					<td><%= link_to "New Shift", new_shift_path, :class => "add shift" %></td>
 				</tr>
-			</table>
-		<% end %>
+				<% end %>
+			</tbody>
+		</table>
 	<% else %>
 		<p class="nil-message">There aren't any Employeees at this Store.</p>
 	<% end %>

@@ -1,7 +1,10 @@
 	
 	<%= f.input :end_time, :hint => 'Hint: round shift end times up to multiples of 15', 
 						   :minute_step => 15, 
-						   :input_html => {:class => "span1"} %>
-	<label>Jobs</label>
-	<%= f.input :job_id, :collection => Job.active.alphabetical %>
+						   :input_html => {:class => "span1"} %>  
+	<label class="control-label">Jobs</label>
+	<div class="controls">
+		<%= f.collection_check_boxes :job_ids, Job.active.alphabetical.all, :id, :name %>
+	</div>
 	<%= f.input :notes %>
+

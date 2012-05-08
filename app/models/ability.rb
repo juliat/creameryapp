@@ -14,7 +14,7 @@ class Ability
         # managers can access and edit
         # - their information
         # - their employees' information
-        can [:show, :update]. Employee do |employee|
+        can [:show, :update], Employee do |employee|
             (employee.id == user.employee_id) || (Employee.by_store(user.employee.store).include?(employee.id))
         end
         cannot :create, Employee
