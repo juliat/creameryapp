@@ -44,7 +44,7 @@
 			<% for assignment in @past_assignments %>
 			<tr>
 				<td><%= link_to(assignment.store.name, store_path(assignment.store)) %></td>
-				<td><%= link_to(assignment.employee.name, store_path(assignment.employee)) %></td>
+				<td><%= link_to(assignment.employee.name, employee_path(assignment.employee)) %></td>
 				<td><%= assignment.employee.role.capitalize %></td>
 				<td><%= assignment.pay_level %></td>
 				<td><%= humanize_date(assignment.start_date)  %></td>

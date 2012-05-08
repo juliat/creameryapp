@@ -1,4 +1,4 @@
-	<% unless @shifts.past.empty? %>
+<% unless @shifts.past.empty? %>
 	<div class="past-shifts">
 		<h2>Past Shifts</h2>
 		<table class="display dataTable">
@@ -11,11 +11,16 @@
 			<tbody>
 				<% for shift in @shifts.past %>
 				<td><%= humanize_date(shift.date) %></td>
-				<td><%= shift.name %></td>
+				<td><%= link_to shift.name, shift_path(shift) %></td>
 				<td><%= shift.hours %></td>
 				<td><%= shift.store.name %></td>
 				<% end %>
 			</tbody>
 		</table>
 	</div>
-	<% end %>
+<% else %>
+	<div class="nil-message">
+		<h2>Past Shifts</h2>
+		<p>You have no past shifts.</p>
+	</div>
+<% end %>

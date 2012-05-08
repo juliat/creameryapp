@@ -1,7 +1,7 @@
 <%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
  <legend><%= controller.action_name.capitalize %> User</legend>
     <fieldset>
-        <%= f.association :employee %>
+        <%= f.input :employee_id, :collection => Employee.active.alphabetical %>
         <%= f.input :email, :label => "Email Address" %>
         <%= f.input :password, :label => "Password" %>
         <%= f.input :password_confirmation, :label => "Password Confirmation" %>

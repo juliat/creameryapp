@@ -39,6 +39,11 @@ class Ability
         can :show, Employee do |employee|
             employee.id == user.employee_id
         end
+        
+        # can view their own shift details
+        can :show, Shift do |shift|
+            shift.assignment.employee.id == user.employee_id
+        end
 
         # can't do anything else
         cannot :manage, [Store, Job, Assignment, User]
