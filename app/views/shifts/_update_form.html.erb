@@ -1,4 +1,4 @@
-<%= simple_nested_form_for(@shift) do |shift_form| %>
+<%= simple_nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
 	<div class="shift_fields">
 		<%= render :partial => 'new_shift_fields', :locals => {:f => shift_form} %>
 		<%= render :partial => 'complete_shift_fields', :locals => {:f => shift_form} %>

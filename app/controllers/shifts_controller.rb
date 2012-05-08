@@ -3,6 +3,8 @@ class ShiftsController < ApplicationController
 	# user must be logged in to get to shift info
 	before_filter :check_login
 	
+	include ApplicationHelper
+	
 	def index
 		@shifts = Shift.chronological
 	end
@@ -17,6 +19,7 @@ class ShiftsController < ApplicationController
 
 	def edit
 		@shift = Shift.find(params[:id])
+		@shift.date = humanize_date(@shift.date)
 	end
 
 	def create
