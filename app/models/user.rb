@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 	validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
 	
 	# email must be unique in system
-	validates_uniqueness_of :email
+	validates_uniqueness_of :email, :on => :create
 	
 	
 	# Callbacks
