@@ -13,16 +13,16 @@ class ShiftJobTest < ActiveSupport::TestCase
         setup do
             @Employee = FactoryGirl.create(:employee)
             @Store = FactoryGirl.create(:store, :name => "Narnia")
-            @Assign = FactoryGirl.create(:assignment, :employee => @Employee, :store => @Store)
+            @Assign = FactoryGirl.create(:assignment, :employee => @Employee, :store => @Store, :end_date => nil)
             @Job = FactoryGirl.create(:job)
             d1 = Date.yesterday
             @Shift1 = FactoryGirl.create(:shift, :assignment => @Assign, :date => d1, 
                                         :start_time => Time.local(d1.year, d1.month, d1.day, 10, 0, 0), 
-                                        :end_time => Time.local(d1.year, d1.month, d1.day, 2, 0, 0))
+                                        )
             d2 = Date.tomorrow
             @Shift2 = FactoryGirl.create(:shift, :assignment => @Assign, :date => d2, 
                                          :start_time => Time.local(d2.year, d2.month, d2.day, 10, 0, 0),
-                                         :end_time => Time.local(d2.year, d2.month, d2.day, 2, 0, 0))
+                                         )
         end # end setup
         
         teardown do
