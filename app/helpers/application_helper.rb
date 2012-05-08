@@ -1,7 +1,16 @@
 module ApplicationHelper
+	# make dates human readable in 05/08/2012 format
 	def humanize_date(date)
 		date.strftime("%m/%d/%Y")
 	end
+	
+	# helper to create popovers for jobs
+	def job_popover(job)
+		"<a href='#' class='job' rel='popover' data-content='#{job.description}' data-original-title='#{job.name}'>
+		#{job.name}</a>"
+	end
+	
+	# helper to generate html for custom buttons that use icon images
 	def custom_button(entity, action, path, label)
 		employee_icons = {"show"  => 'icons/icons_01.gif',
 				"new"  => 'icons/icons_02.gif',

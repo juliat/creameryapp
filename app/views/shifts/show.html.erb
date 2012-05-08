@@ -30,7 +30,7 @@
 			<% unless @shift.jobs.empty? %>
 			<ul>
 				<% for job in @shift.jobs %>
-					<li><%= job.name %></li>
+					<li><%= raw job_popover(job) %></li>
 				<% end %>	
 			</ul>
 			<% else %>
