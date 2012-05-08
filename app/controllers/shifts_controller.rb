@@ -1,10 +1,8 @@
 class ShiftsController < ApplicationController
-	
+
 	# user must be logged in to get to shift info
 	before_filter :check_login
 	load_and_authorize_resource
-	
-	include ApplicationHelper
 	
 	def index
 		@shifts = Shift.chronological
@@ -25,7 +23,7 @@ class ShiftsController < ApplicationController
 
 	def create
 		@shift = Shift.new(params[:shift])
-		@shift.date = Chronic.parse(params[:shift][:date])
+		@shift.date = computerize_date(params[:shift][:date])
 		if @shift.save
 			# if saved to database
 			flash[:notice] = "Successfully created this shift."
@@ -38,9 +36,9 @@ class ShiftsController < ApplicationController
 
 	def update
 		@shift = Shift.find(params[:id])
-		@shift.date = Chronic.parse(params[:shift][:date])
+		@shift.date = computerize_date(params[:shift][:date])
 		if @shift.update_attributes(params[:shift])
-			flash[:notice] = "Successfully updated this shift."
+			flash[:notice] = "Successfully updated this shift. #{@shift.date}"
 			redirect_to @shift
 		else
 			render :action => 'edit'

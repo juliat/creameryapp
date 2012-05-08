@@ -4,6 +4,26 @@ module ApplicationHelper
 		date.strftime("%m/%d/%Y")
 	end
 	
+	def computerize_date(date)
+		if date.nil?
+			return ""
+		end
+		convert_to_datetime(date).to_s.slice(0..9)
+	end
+	
+	# convert a string to a date (using Chronic, of course)
+    def convert_to_date(string)
+      return nil if (string.nil? || string.class != String)
+      tmp = Chronic.parse(string)
+      tmp ? tmp.to_date : nil
+    end
+
+    # convert a string to a datetime (Chronic's default)
+    def convert_to_datetime(string)
+      return nil if (string.nil? || string.class != String)
+      Chronic.parse(string)
+    end
+	
 	# helper to create popovers for jobs
 	def job_popover(job)
 		"<a href='#' class='job' rel='popover' data-content='#{job.description}' data-original-title='#{job.name}'>
