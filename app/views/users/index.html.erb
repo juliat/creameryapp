@@ -13,7 +13,7 @@
       <tr>
         <td><%= link_to user.employee.name, user_path(user) %></td>
         <td><%= mail_to user.email, user.email %></td>
-        <td><%= user.employee.role %></td>
+        <td><%= user.role.capitalize %></td>
         <td>
           <%= link_to "Edit", edit_user_path(user), :class => 'btn btn-mini' %>
           <%= link_to "Remove", user_path(user), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>

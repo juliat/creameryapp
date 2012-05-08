@@ -2,7 +2,7 @@
 	<% if current_user.role == 'admin' %>
 		<%= render :partial => 'admin' %>
 	<% elsif current_user.role == 'manager' %>
-		<%= render :partial => 'manager', :locals => {:todays_shifts => @todays_shifts} %>
+		<%= render :partial => 'manager' %>
 	<% elsif current_user.role == 'employee' %>
 		<%= render :partial => 'employee' %>
 	<% end %>

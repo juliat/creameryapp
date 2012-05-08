@@ -4,10 +4,9 @@
 		<table>
 		<% for shift in @todays_shifts %>
 			<tr>
-				<a href=<%= edit_shift_path(shift) %> class="">
-					<th><%= shift.name %></th>
-					<td><%= shift.employee.name %></td>
-				</a>
+				<th><%= link_to(shift.name, edit_shift_path(shift)) %></th>
+				<td><%= shift.employee.name %></td>
+
 			</tr>
 		<% end %>
 		</table>

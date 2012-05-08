@@ -16,7 +16,7 @@
 		<tr>
 			<td><%= link_to(employee.name, employee_path(employee)) %></td>
 			<% if employee.current_assignment.nil? %>
-				<td><%= link_to "Create Assignment", new_assignment_path(:employee_id => employee.id) %></td>
+				<td><%= link_to "Create Assignment", new_assignment_path(:employee_id => employee.id), :class=>"btn" %></td>
 			<% else %>
 				<td><%= link_to(employee.current_assignment.store.name, store_path(employee.current_assignment.store)) %></td>
 			<% end %>
