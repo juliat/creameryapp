@@ -8,10 +8,15 @@
 
 	<%= f.input :pay_level, :collection => 1..6, :prompt => "Select a pay level" %>
 
-	<%= f.input :start_date, :label => "Start Date", :as => :string, :input_html => {:class => "datepicker"} %>
-
-	<%= f.input :end_date, :label => "End Date", :as => :string, :input_html => {:class => "datepicker"} %>
-    
+	<%= f.input :start_date, :label => "Start Date", :as => :date, :start_year => Date.today.year - 3,
+						  :end_year => Date.today.year + 3,
+						  :order => [:month, :day, :year],
+						  :input_html => { :class => 'span1' } %>
+						  
+    	<%= f.input :end_date, :label => "End Date", :as => :date, :start_year => Date.today.year - 3,
+						  :end_year => Date.today.year + 3,
+						  :order => [:month, :day, :year],
+						  :input_html => { :class => 'span1' } %>
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', employees_path, :class => 'btn' %>

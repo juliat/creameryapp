@@ -15,3 +15,9 @@ Could not write a test for password_reset method because it uses mailers.
 Store:
 Couldn't trigger geocoding callback error in tests.
 
+
+Extra Credit
+-------------
+*	Javascript enabled Google Maps (+0.5)
+*	Job popovers (+0.5)
+*	Reset passwords (+1)
