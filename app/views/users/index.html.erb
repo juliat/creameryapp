@@ -1,11 +1,14 @@
 <h2>Users</h2>
-<%= link_to "New User", new_user_path, :class => "btn btn-large" %>
+<div class="page-buttons">
+    <%= link_to "Add New User", new_user_path, :class => "btn btn-large" %>
+</div>
 <table class="display dataTable">
   <thead>
     <tr>
       <th>Name</th>
       <th>Email</th>
       <th>Role</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
