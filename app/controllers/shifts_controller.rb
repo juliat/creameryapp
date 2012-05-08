@@ -24,6 +24,7 @@ class ShiftsController < ApplicationController
 
 	def create
 		@shift = Shift.new(params[:shift])
+		@shift.date =  Chronic.parse(params[:shift][:date])
 		if @shift.save
 			# if saved to database
 			flash[:notice] = "Successfully created this shift."
@@ -36,6 +37,7 @@ class ShiftsController < ApplicationController
 
 	def update
 		@shift = Shift.find(params[:id])
+		@shift.date =  Chronic.parse(params[:shift][:date])
 		if @shift.update_attributes(params[:shift])
 			flash[:notice] = "Successfully updated this shift."
 			redirect_to @shift
