@@ -13,9 +13,9 @@ module ApplicationHelper
 	# helper to generate html for custom buttons that use icon images
 	def custom_button(entity, action, path, label)
 		employee_icons = {"show"  => 'icons/icons_01.gif',
-				"new"  => 'icons/icons_02.gif',
-			       "del"  => 'icons/icons_03.gif',
-				"edit"  => 'icons/icons_04.gif'
+						"new"  => 'icons/icons_02.gif',
+					   "del"  => 'icons/icons_03.gif',
+						"edit"  => 'icons/icons_04.gif'
 		}
 		assign_icons = {  "show"  => 'icons/icons_05.gif',
 				"new"  => 'icons/icons_06.gif',

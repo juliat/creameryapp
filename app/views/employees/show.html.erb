@@ -60,7 +60,7 @@
 		<tr>
 			<th>User Account:</th>
 			<% unless @user.nil? %>
-				<td><%= @user.email %></td>
+				<td><%= @user.email %><br><%= link_to "Edit Account", edit_user_path(@user), :class => "btn btn-info btn-mini" %></td>
 			<% else %>
 				<td><%= @employee.proper_name %> has no account. <%= link_to "Click to create one!", new_user_path(:employee_id => @employee.id) %></td>
 			<% end %>

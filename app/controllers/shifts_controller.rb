@@ -35,7 +35,7 @@ class ShiftsController < ApplicationController
 	def update
 		@shift = Shift.find(params[:id])
 		if @shift.update_attributes(params[:shift])
-			flash[:notice] = "Successfully updated this shift. #{@shift.date}"
+			flash[:notice] = "Successfully updated this shift."
 			redirect_to @shift
 		else
 			render :action => 'edit'
