@@ -1,81 +1,52 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # Test relationships
   should belong_to(:employee)
   
-  # Test basic validations
-  should validate_presence_of(:password_digest)
+  # Validating email...
+  should allow_value("fred@fred.com").for(:email)
+  should allow_value("fred@andrew.cmu.edu").for(:email)
+  should allow_value("my_fred@fred.org").for(:email)
+  should allow_value("fred123@fred.gov").for(:email)
+  should allow_value("my.fred@fred.net").for(:email)
   
-  # Test format for email
-  # note: tests using context should check for uniqueness
-  should allow_value("profh@cmu.edu").for(:email) # alpha chars permitted
-  should allow_value("profh@cmu.ed").for(:email)
-  should allow_value("profh@cmu.eduu").for(:email)
+  should_not allow_value("fred").for(:email)
+  should_not allow_value("fred@fred,com").for(:email)
+  should_not allow_value("fred@fred.uk").for(:email)
+  should_not allow_value("my fred@fred.com").for(:email)
+  should_not allow_value("fred@fred.con").for(:email)
   
-  should allow_value("profH@CMU.EDU").for(:email) # case insensitive
-  should allow_value("profh+klingon@cmu.edu").for(:email) # plus is allowed
-  should allow_value("profh_klingon@cmu.edu").for(:email) # underscore is allowed
-  should allow_value("profh.klingon@cmu.edu").for(:email) # dot is allowed
-  should allow_value("profh-klingon@cmu.edu").for(:email) # dash is allowed
-  should allow_value("-profh@cmu.edu").for(:email) # even at the beginning
-  should allow_value("profh42@cmu.edu").for(:email) # numbers are allowed in username
-  should allow_value("profh@cmu83.edu").for(:email) # numbers are allowed in domain
-  
-  should_not allow_value("prof h@cmu.edu").for(:email) # no spaces
-  should_not allow_value("profh>@cmu.edu").for(:email) # > char is not allowed
-  should_not allow_value("prof~h@cmu.edu").for(:email) # no ~
-  should_not allow_value("prof:h@cmu.edu").for(:email) # no :
-  should_not allow_value("profh@cmu.e").for(:email)
-   
-  # Test format for password_digest
+  # Need to do the rest with a context
+  context "Creating a context of three employees" do
+    # create the objects I want with factories
+    setup do 
+      @ed = FactoryGirl.create(:employee)
+      @ed_user = FactoryGirl.create(:user, :employee => @ed, :email => "ed@example.com")
+      @ralph = FactoryGirl.create(:employee, :first_name => "Ralph", :last_name => "Wilson", :active => false, :date_of_birth => 17.years.ago.to_date)
+      @kathryn = FactoryGirl.create(:employee, :first_name => "Kathryn", :last_name => "Janeway", :role => "manager", :date_of_birth => 30.years.ago.to_date)
+    end
 
-  
-  context "Creating one store, three employees, three assignments, and two users" do
-    setup do
-        # store
-        @CMU = FactoryGirl.create(:store)
-        
-        # employees
-        @Ed = FactoryGirl.create(:employee)
-        @Ned = FactoryGirl.create(:employee, :first_name => "Ned")
-        @Ted = FactoryGirl.create(:employee, :first_name => "Ted")
-        
-        # assignments
-        @EdAssign = FactoryGirl.create(:assignment, :employee => @Ed, :store => @CMU)
-        @NedAssign = FactoryGirl.create(:assignment, :employee => @Ned, :store => @CMU, :end_date => nil)
-        @TedAssign = FactoryGirl.create(:assignment, :employee => @Ted, :store => @CMU, :end_date => nil)
-        
-        # users
-        @EdUser = FactoryGirl.create(:user, :employee => @Ed)
-        @NedUser = FactoryGirl.create(:user, :employee => @Ned, :email => "ned@example.com")
-        @TedUser = FactoryGirl.create(:user, :employee => @Ted, :email => "ted@example.com")
-    end
-    
+    # and provide a teardown method as well
     teardown do
-        @CMU.destroy
-        
-        @Ed.destroy
-        @Ned.destroy
-        @Ted.destroy
-        
-        @EdAssign.destroy
-        @NedAssign.destroy
-        @TedAssign.destroy
+      @ed.destroy
+      @ralph.destroy
+      @kathryn.destroy
+    end
+
+    should "allow active employees to be users" do
+      active_employee = FactoryGirl.build(:user, :employee => @kathryn, :email => "kathryn@example.com")
+      assert active_employee.valid?
+    end
+
+    should "not allow inactive employees to be users" do
+      inactive_employee = FactoryGirl.build(:user, :employee => @ralph, :email => "ralph@example.com")
+      deny inactive_employee.valid?
     end
     
-    should "show that a user can't be created for an inactive employee" do
-        @Ed.active = false
-        @EdUser = FactoryGirl.build(:user, :employee => @Ned)
-        deny @EdUser.valid?
+    should "not allow an email address to be used by more than one user" do
+      email_taken = FactoryGirl.build(:user, :employee => @kathryn, :email => "ed@example.com")
+      deny email_taken.valid?
     end
-    
-    should "show that emails must be unique in the system" do
-        @EdDup = FactoryGirl.build(:employee)
-        @EdDupUser = FactoryGirl.build(:user, :employee => @EdDup, :email => @EdUser.email)
-        deny @EdDupUser.valid?
-    end
-    
   end
-  
 end
+ 

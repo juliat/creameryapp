@@ -21,21 +21,21 @@ class ShiftTest < ActiveSupport::TestCase
     setup do 
       @cmu = FactoryGirl.create(:store)
       @oakland = FactoryGirl.create(:store, :name => "Oakland", :street => "Fifth Avenue")
-      
+      # Cindy
       @cindy = FactoryGirl.create(:employee, :first_name => "Cindy", :last_name => "Crawford", :ssn => "084-35-9822", :date_of_birth => 17.years.ago.to_date)
       @assign_cindy = FactoryGirl.create(:assignment, :employee => @cindy, :store => @cmu, :start_date => 14.months.ago.to_date, :end_date => nil)
       @shift_cindy = FactoryGirl.create(:shift, :assignment => @assign_cindy, :date => 1.day.from_now.to_date)
-      
+      # Ben
       @ben = FactoryGirl.create(:employee, :first_name => "Ben", :last_name => "Sisko", :role => "manager", :phone => "412-268-2323")
       @assign_ben = FactoryGirl.create(:assignment, :employee => @ben, :store => @cmu, :start_date => 2.years.ago.to_date, :end_date => 6.months.ago.to_date, :pay_level => 3)
-      
+      # Kathryn
       @kathryn = FactoryGirl.create(:employee, :first_name => "Kathryn", :last_name => "Janeway", :role => "manager", :date_of_birth => 30.years.ago.to_date)
       @assign_kathryn = FactoryGirl.create(:assignment, :employee => @kathryn, :store => @oakland, :start_date => 10.months.ago.to_date, :end_date => nil, :pay_level => 3)
-      @shift_kathryn = FactoryGirl.create(:shift, :assignment => @assign_kathryn)
+      @shift_kathryn = FactoryGirl.create(:shift, :assignment => @assign_kathryn, :date => 1.week.ago)
       @cashier = FactoryGirl.create(:job)
       @mopping = FactoryGirl.create(:job, :name => "Mopping")
       @sj_kath_cashier = FactoryGirl.create(:shift_job, :shift => @shift_kathryn, :job => @cashier)
-      
+      # Ralph
       @ralph = FactoryGirl.create(:employee, :first_name => "Ralph", :last_name => "Wilson", :date_of_birth => 17.years.ago.to_date)
       @assign_ralph = FactoryGirl.create(:assignment, :employee => @ralph, :store => @oakland, :start_date => 10.months.ago.to_date, :end_date => nil, :pay_level => 3)
       @shift_ralph_1 = FactoryGirl.create(:shift, :assignment => @assign_ralph, :date => 3.days.ago.to_date)
@@ -45,7 +45,7 @@ class ShiftTest < ActiveSupport::TestCase
       @sj_ralph_cashier = FactoryGirl.create(:shift_job, :shift => @shift_ralph_1, :job => @cashier)
       @sj_ralph_cashier2 = FactoryGirl.create(:shift_job, :shift => @shift_ralph_2, :job => @cashier)
       @sj_ralph_mopping = FactoryGirl.create(:shift_job, :shift => @shift_ralph_2, :job => @mopping)
-      
+      # Ed
       @ed = FactoryGirl.create(:employee)
       @assign_ed = FactoryGirl.create(:assignment, :employee => @ed, :store => @cmu, :end_date => nil)
       @shift_ed = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 4.days.from_now.to_date)

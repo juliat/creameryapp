@@ -28,15 +28,11 @@ FactoryGirl.define do
   end
   
   factory :shift do
-	association :assignment
-	date Date.new(2011, 1, 21)
-	# set default start time to 1/21/2011 at 11:00 am
-	start_time Time.local(2011,1,21,11,0,0)
-	# set default end time to 1/21/2011 at 14:00 (2:00 pm)
-	end_time Time.local(2011,1,21,14,0,0)
-	notes "During this shift, velociraptors stormed the creamery. The employees
-	valiantly battled with these ferocious dinosaurs, using lightsabers, phasers, 
-	and mops."
+    association :assignment
+    date Date.today
+    start_time Time.local(2000,1,1,11,0,0)
+    end_time Time.local(2000,1,1,14,0,0)
+    notes "During this shift, velociraptors stormed the creamery. The employees valiantly battled with these ferocious dinosaurs, using lightsabers, phasers, and mops."
   end
   
   factory :shift_job do
@@ -51,8 +47,10 @@ FactoryGirl.define do
   end
   
   factory :user do
-	association :employee
-	email "ed@gruberman.com"
-	password_digest "placeholder_password"
+    email "ed@gruberman.com"
+    association :employee
+    password "secret"
+    password_confirmation "secret"
+    password_digest "$2a$10$o6xZS3B73OZ8GqRoM6uGPOEzZL0pOh6Yhk3qIMp2Qr2Fap.bshK5S"
   end
 end
