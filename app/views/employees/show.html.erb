@@ -3,8 +3,13 @@
 <% else %>
 	<h1 class="page_label"><span>Your Details:</span> <%=  @employee.proper_name %></h1>
 <% end %>
-
-<%= raw custom_button("employee", "edit", edit_employee_path(@employee), "Edit Employee") %>
+<div class="page-buttons">
+	<%= raw custom_button("employee", "edit", edit_employee_path(@employee), "Edit Employee") %>
+	<%= link_to "View All Employees", employees_path, :class => "view_all btn btn-large" %>
+	<%= link_to "Delete Employee", @employee, 
+		:confirm => 'Are you sure you want to delete this employee?', 
+		:method => :delete, :class => "delete btn btn-danger btn-small" %>
+</div>
 
 <div class="employee_data">		
 	<% if @employee.current_assignment.nil? == false %>
@@ -55,8 +60,6 @@
 		</tr>
 	</table>
 </div>
-
-<%= link_to "Delete Employee", @employee, :confirm => 'Are you sure you want to delete this employee?', :method => :delete, :class => "delete" %>
 
 <% unless @past_assignments.empty? == true%>
 <div class="assignment_history">
