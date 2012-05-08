@@ -23,18 +23,18 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-05-08T12:31:33-04:00">2012-05-08T12:31:33-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-05-08T12:40:30-04:00">2012-05-08T12:40:30-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">63.96%</span></span>
+    (<span class="covered_percent"><span class="red">65.77%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.4
+         1.68
        </span>
     </span> hits/line)
   </h2>
@@ -42,8 +42,8 @@
   <div>
     <b>4</b> files in total.
     <b>111</b> relevant lines. 
-    <span class="green"><b>71</b> lines covered</span> and
-    <span class="red"><b>40</b> lines missed </span>
+    <span class="green"><b>73</b> lines covered</span> and
+    <span class="red"><b>38</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -86,17 +86,17 @@
         <td>70</td>
         <td>45</td>
         <td>25</td>
-        <td>1.5</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#3e62b1c4a64de3abd9f0694a776f96a4df1b564c" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
-        <td class="red strong">78.57 %</td>
+        <td class="yellow strong">85.71 %</td>
         <td>74</td>
         <td>28</td>
-        <td>22</td>
-        <td>6</td>
-        <td>2.8</td>
+        <td>24</td>
+        <td>4</td>
+        <td>3.3</td>
       </tr>
       
     </tbody>
@@ -145,11 +145,11 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="red">68.37%</span></span>
+    (<span class="covered_percent"><span class="red">70.41%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.15
+         2.7
        </span>
     </span> hits/line)
   </h2>
@@ -157,8 +157,8 @@
   <div>
     <b>2</b> files in total.
     <b>98</b> relevant lines. 
-    <span class="green"><b>67</b> lines covered</span> and
-    <span class="red"><b>31</b> lines missed </span>
+    <span class="green"><b>69</b> lines covered</span> and
+    <span class="red"><b>29</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -181,17 +181,17 @@
         <td>70</td>
         <td>45</td>
         <td>25</td>
-        <td>1.5</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#3e62b1c4a64de3abd9f0694a776f96a4df1b564c" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
-        <td class="red strong">78.57 %</td>
+        <td class="yellow strong">85.71 %</td>
         <td>74</td>
         <td>28</td>
-        <td>22</td>
-        <td>6</td>
-        <td>2.8</td>
+        <td>24</td>
+        <td>4</td>
+        <td>3.3</td>
       </tr>
       
     </tbody>
@@ -703,8 +703,8 @@
           <code class="ruby">    validates_presence_of :first_name, :last_name</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="5">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="16" data-linenumber="5">
+          <span class="hits">16</span>
           
           <code class="ruby">    validates_date :date_of_birth, :on_or_before =&gt; lambda { 14.years.ago }, :on_or_before_message =&gt; &quot;must be at least 14 years old&quot;</code>
         </li>
@@ -1477,20 +1477,20 @@
           <code class="ruby">   def reformat_phone</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="134">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="134">
+          <span class="hits">15</span>
           
           <code class="ruby">     phone = self.phone.to_s  # change to string in case input as all numbers </code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="135">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="135">
+          <span class="hits">15</span>
           
           <code class="ruby">     phone.gsub!(/[^0-9]/,&quot;&quot;) # strip all non-digits</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="136">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="136">
+          <span class="hits">15</span>
           
           <code class="ruby">     self.phone = phone       # reset self.phone to new string</code>
         </li>
@@ -1507,20 +1507,20 @@
           <code class="ruby">   def reformat_ssn</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="139">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="139">
+          <span class="hits">15</span>
           
           <code class="ruby">     ssn = self.ssn.to_s      # change to string in case input as all numbers </code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="140">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="140">
+          <span class="hits">15</span>
           
           <code class="ruby">     ssn.gsub!(/[^0-9]/,&quot;&quot;)   # strip all non-digits</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="141">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="141">
+          <span class="hits">15</span>
           
           <code class="ruby">     self.ssn = ssn           # reset self.ssn to new string</code>
         </li>
@@ -1544,11 +1544,11 @@
         <div class="source_table" id="3e62b1c4a64de3abd9f0694a776f96a4df1b564c">
   <div class="header">
     <h3>app/models/user.rb</h3>
-    <h4><span class="red">78.57 %</span> covered</h4>
+    <h4><span class="yellow">85.71 %</span> covered</h4>
     <div>
       <b>28</b> relevant lines. 
-      <span class="green"><b>22</b> lines covered</span> and
-      <span class="red"><b>6</b> lines missed.</span>
+      <span class="green"><b>24</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
   </div>
   
@@ -1717,8 +1717,8 @@
           <code class="ruby">	# Callback to create auth_token for users to enable password_reset</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="28">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="6" data-linenumber="28">
+          <span class="hits">6</span>
           
           <code class="ruby">	before_create { generate_token(:auth_token) }</code>
         </li>
@@ -1795,8 +1795,8 @@
           <code class="ruby">	def role</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="41">
-          
+        <li class="covered" data-hits="1" data-linenumber="41">
+          <span class="hits">1</span>
           
           <code class="ruby">		return self.employee.role</code>
         </li>
@@ -1879,14 +1879,14 @@
           <code class="ruby">	def employee_is_active_in_system</code>
         </li>
       
-        <li class="covered" data-hits="25" data-linenumber="55">
-          <span class="hits">25</span>
+        <li class="covered" data-hits="29" data-linenumber="55">
+          <span class="hits">29</span>
           
           <code class="ruby">		all_active_employees = Employee.active.all.map{|e| e.id}</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="56">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="18" data-linenumber="56">
+          <span class="hits">18</span>
           
           <code class="ruby">		unless all_active_employees.include?(self.employee_id)</code>
         </li>
@@ -1927,8 +1927,8 @@
           <code class="ruby">	def self.authenticate(email, password)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="63">
-          
+        <li class="covered" data-hits="2" data-linenumber="63">
+          <span class="hits">2</span>
           
           <code class="ruby">		find_by_email(email).try(:authenticate, password)</code>
         </li>
@@ -1963,14 +1963,14 @@
           <code class="ruby">	  begin</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="69">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="69">
+          <span class="hits">5</span>
           
           <code class="ruby">		self[column] = SecureRandom.urlsafe_base64</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="70">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="70">
+          <span class="hits">5</span>
           
           <code class="ruby">	  end while User.exists?(column =&gt; self[column])</code>
         </li>

@@ -47,6 +47,17 @@ class UserTest < ActiveSupport::TestCase
       email_taken = FactoryGirl.build(:user, :employee => @kathryn, :email => "ed@example.com")
       deny email_taken.valid?
     end
+    
+    # test role method
+    should "show that the role method returns the role of the employee associated with the user" do
+      assert_equal "employee", @ed_user.role
+    end
+    
+    # test authentication
+    should "show that the authenticate method works" do
+      assert_equal @ed_user, User.authenticate(@ed_user.email, @ed_user.password)
+      assert_equal false, User.authenticate(@ed_user.email, "not eds password")
+    end
   end
 end
  
