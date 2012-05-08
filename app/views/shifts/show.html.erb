@@ -1,7 +1,10 @@
 <h1>Shift Details</h1>
 
-<%= raw custom_button("shift", "edit", edit_shift_path(@shift), "Edit Shift") %>
-
+<% unless current_user.role == "employee" %>
+	<%= raw custom_button("shift", "edit", edit_shift_path(@shift), "Edit Shift") %>
+<% else %>
+	<%= link_to("Back", home_path, :class => "btn btn-large btn-primary") %>
+<% end %>
 <table>
 	<tr>
 		<th>Date</th>
@@ -11,10 +14,12 @@
 		<th>Time</th>
 		<td><%= @shift.name %></td>
 	</tr>
+	<% unless current_user.role == "employee" %>
 	<tr>
 		<th>Employee</th>
 		<td><%= link_to(@shift.assignment.employee.name, employee_path(@shift.assignment.employee)) %></td>
 	</tr>
+	<% end %>
 	<tr>
 		<th>Store</th>
 		<td><%= link_to(@shift.assignment.store.name + " Store", store_path(@shift.assignment.store)) %></td>
@@ -22,16 +27,22 @@
 	<tr>
 		<th>Jobs Done</th>
 		<td>
+			<% unless @shift.jobs.empty? %>
 			<ul>
 				<% for job in @shift.jobs %>
 					<li><%= job.name %></li>
 				<% end %>	
 			</ul>
+			<% else %>
+			   No jobs have been added to the record for this shift.
+			<% end %>
 		</td>
 	</tr>
+	<% unless current_user.role == "employee" %>
 	<tr>
 		<th>Notes</th>
 		<td><%= @shift.notes %></td>
 	</tr>
+	<% end %>
 </table>
 
