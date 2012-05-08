@@ -82,29 +82,29 @@ class EmployeeTest < ActiveSupport::TestCase
     end
     
     # and provide a teardown method as well
-    teardown do
-      @cmu.destroy
-      @ed.destroy
-      @cindy.destroy
-      @ralph.destroy
-      @john.destroy
-      @ben.destroy
-      @kathryn.destroy
-      @alex.destroy
-	  @benji.destroy
-      @assign_ed.destroy
-      @assign_cindy.destroy
-      @assign_john.destroy
-	  @old_assign_benji.destroy
-	  @recent_assign_benji.destroy
-      @yesterdayShift.destroy
-      @lastWeekShift.destroy
-      @lastMonthShift.destroy
-      @john1.destroy
-      @john2.destroy
-      @john3.destroy
-      @john4.destroy
-    end
+    #~ teardown do
+      #~ @cmu.destroy
+      #~ @ed.destroy
+      #~ @cindy.destroy
+      #~ @ralph.destroy
+      #~ @john.destroy
+      #~ @ben.destroy
+      #~ @kathryn.destroy
+      #~ @alex.destroy
+	  #~ @benji.destroy
+      #~ @assign_ed.destroy
+      #~ @assign_cindy.destroy
+      #~ @assign_john.destroy
+	  #~ @old_assign_benji.destroy
+	  #~ @recent_assign_benji.destroy
+      #~ @yesterdayShift.destroy
+      #~ @lastWeekShift.destroy
+      #~ @lastMonthShift.destroy
+      #~ @john1.destroy
+      #~ @john2.destroy
+      #~ @john3.destroy
+      #~ @john4.destroy
+    #~ end
   
     # now run the tests:
     # test employees must have unique ssn

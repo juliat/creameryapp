@@ -51,37 +51,37 @@ class ShiftTest < ActiveSupport::TestCase
       @shift_ed = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 4.days.from_now.to_date)
     end
     
-    teardown do
-      @cmu.destroy
-      @oakland.destroy
-      
-      @cindy.destroy
-      @assign_cindy.destroy
-      @shift_cindy.destroy
-      
-      @ben.destroy
-      @assign_ben.destroy
-      
-      @kathryn.destroy
-      @assign_kathryn.destroy
-      @shift_kathryn.destroy
-      @cashier.destroy
-      @sj_kath_cashier.destroy
-      
-      @ralph.destroy
-      @assign_ralph.destroy
-      @shift_ralph_1.destroy
-      @shift_ralph_2.destroy
-      @shift_ralph_3.destroy
-      @shift_ralph_4.destroy
-      @sj_ralph_cashier.destroy
-      @sj_ralph_cashier2.destroy
-      @sj_ralph_mopping.destroy
-      
-      @ed.destroy
-      @assign_ed.destroy
-      @shift_ed.destroy    
-    end
+    #~ teardown do
+      #~ @cmu.destroy
+      #~ @oakland.destroy
+      #~ 
+      #~ @cindy.destroy
+      #~ @assign_cindy.destroy
+      #~ @shift_cindy.destroy
+      #~ 
+      #~ @ben.destroy
+      #~ @assign_ben.destroy
+      #~ 
+      #~ @kathryn.destroy
+      #~ @assign_kathryn.destroy
+      #~ @shift_kathryn.destroy
+      #~ @cashier.destroy
+      #~ @sj_kath_cashier.destroy
+      #~ 
+      #~ @ralph.destroy
+      #~ @assign_ralph.destroy
+      #~ @shift_ralph_1.destroy
+      #~ @shift_ralph_2.destroy
+      #~ @shift_ralph_3.destroy
+      #~ @shift_ralph_4.destroy
+      #~ @sj_ralph_cashier.destroy
+      #~ @sj_ralph_cashier2.destroy
+      #~ @sj_ralph_mopping.destroy
+      #~ 
+      #~ @ed.destroy
+      #~ @assign_ed.destroy
+      #~ @shift_ed.destroy    
+    #~ end
   
     # now run the tests:
     # first, verify the factory for shift is working properly...
