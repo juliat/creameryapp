@@ -1,18 +1,17 @@
 <div class="shifts-calendar">
 	<h2>Today's Shifts</h2>
-	<% unless @store.shifts(1.day).nil? %>
-		<ul>
-		<% for shift in @store.shifts(1.day) %>
-			<!-- shift div is a link to edit page -->
-			<li>
+	<% unless @todays_shifts.empty? %>
+		<table>
+		<% for shift in @todays_shifts %>
+			<tr>
 				<a href=<%= edit_shift_path(shift) %> class="">
-						<p><%= shift.employee.name %></p>
-						<p><%= shift.name %></p>
+					<th><%= shift.name %></th>
+					<td><%= shift.employee.name %></td>
 				</a>
-			</li>
+			</tr>
 		<% end %>
-		</ul>
+		</table>
 	<% else %>
-		<p class="nil-message">There aren't any Shifts Scheduled for today.</p>
+		<p class="nil-message">There aren't any shifts scheduled for today.</p>
 	<% end %>
 </div>

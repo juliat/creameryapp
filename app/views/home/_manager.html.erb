@@ -7,7 +7,7 @@
 		<%= render :partial => 'store_employees' %>
 	</div>
 	<div class="span4">
-		<%= render :partial => 'store_shifts' %>
+		<%= render :partial => 'store_shifts', :locals => {:todays_shifts => todays_shifts} %>
 	</div>
 <% else %>
 	<p>You currently have a management position but no assigned store.</p>

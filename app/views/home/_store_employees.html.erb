@@ -5,8 +5,8 @@
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Hours</th>
-					<th>Last Shift</th>
+					<th>Total Hours (for last two weeks)</th>
+					<th>Date of Last Shift</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -14,9 +14,9 @@
 				<% for employee in @store.employees %>
 				<tr>
 					<th><%= employee.name %></th>
-					<td>Worked <strong><%= employee.shift_hours_worked %></strong> in the Last 2 Weeks</td>
+					<td><%= employee.shift_hours_worked %></td>
 					<% unless employee.last_shift_worked.nil? %>
-						<td>Last Shift was on <strong><%= humanize_date(employee.last_shift_worked.date) %></strong></td>
+						<td><%= humanize_date(employee.last_shift_worked.date) %></td>
 					<% else %>
 						<td>Employee has no shifts.</td>
 					<% end %>

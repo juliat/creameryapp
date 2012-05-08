@@ -9,6 +9,7 @@ class HomeController < ApplicationController
             @manager = current_user.employee
             unless @manager.current_assignment.nil?
                 @store = current_user.employee.current_assignment.store
+                @todays_shifts = Shift.for_store(@store).for_next_days(1)
             else
                 @store = nil
             end
