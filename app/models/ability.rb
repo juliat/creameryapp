@@ -36,12 +36,9 @@ class Ability
         
     elsif user.employee.role == "employee"
         # employees can only see their own info
-        can :read, Employee do |employee|
+        can :show, Employee do |employee|
             employee.id == user.employee_id
         end
-
-        # can :show, Shift do |employee|
-            
 
         # can't do anything else
         cannot :manage, [Store, Job, Assignment, User]

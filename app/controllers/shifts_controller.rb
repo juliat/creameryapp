@@ -2,6 +2,7 @@ class ShiftsController < ApplicationController
 	
 	# user must be logged in to get to shift info
 	before_filter :check_login
+	load_and_authorize_resource
 	
 	include ApplicationHelper
 	

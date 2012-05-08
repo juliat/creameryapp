@@ -2,7 +2,7 @@ class EmployeesController < ApplicationController
 
 	# user must be logged in to get to Employee info
 	before_filter :check_login
-	authorize_resource
+	load_and_authorize_resource
 	
 	def index
 		@employees = Employee.alphabetical
