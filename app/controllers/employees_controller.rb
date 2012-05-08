@@ -10,6 +10,7 @@ class EmployeesController < ApplicationController
 	
 	def show
 		@employee = Employee.find(params[:id])
+		@user = User.find_by_employee_id(@employee.id)
 		authorize! :read, @employee
 		@most_recent_assignment = Assignment.for_employee(@employee.id).chronological.last
 		@past_assignments = Assignment.for_employee(@employee.id).past.chronological

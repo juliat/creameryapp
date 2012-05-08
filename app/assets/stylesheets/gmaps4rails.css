@@ -24,11 +24,11 @@
 }
 
 .store_details .map_container{
-    width: 400px;
+    width: 350px;
 }
 
 .store_details .gmaps4rails_map {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 300px;
 }
 

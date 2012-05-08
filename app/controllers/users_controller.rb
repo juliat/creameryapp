@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		@user.employee_id = params[:employee_id] unless params[:employee_id].nil?
 	end
 	
 	def edit
@@ -26,9 +27,7 @@ class UsersController < ApplicationController
 			# provide email confirmation if all is good
 			UserMailer.new_user_message(@user).deliver
 			# and confirm that this was done
-			flash[:notice] = "#{@user.email} has been added as a user and notified by email"
-			
-			redirect_to(@user, :notice => 'User was successfully created.')
+			redirect_to(@user.employee, :notice => "#{@user.employee.proper_name} has been registered as a user and recieved a password via email.")
 		  
 		else
 			render :action => "new"
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
 		@user = current_user
 		if @user.update_attributes(params[:user])
 		  # when a new user is saved, add the user_id to the session hash
-		  session[:user_id] = @user.id	
+		  # session[:user_id] = @user.id	
 		  redirect_to(home_path, :notice => 'User was successfully updated.')
 		else
 		  render :action => "edit"
