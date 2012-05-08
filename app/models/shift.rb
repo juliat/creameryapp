@@ -7,7 +7,9 @@ class Shift < ActiveRecord::Base
   has_one :employee, :through => :assignment
   
   # Validations
-  validates_date :date, :on_or_after => lambda { :assignment_starts }, :on_or_after_message => "must be on or after the start of the assignment"
+  validates_date :date, :on_or_after => lambda { :assignment_starts }, 
+				 :on_or_after_message => "must be on or after the start of the assignment",
+				 :invalid_date_message => "is not a valid date"
   # validates_date :date, :on_or_after => lambda { self.assignment.start_date.to_date }, :on_or_after_message => "must be on or after the start of the assignment"
   validates_time :start_time #, :between => [Time.local(2000,1,1,11,0,0), Time.local(2000,1,1,23,0,0)]
   validates_time :end_time, :after => :start_time, :allow_blank => true
@@ -71,7 +73,7 @@ class Shift < ActiveRecord::Base
 	# ===================================================================
 	# hours method returns number of hours worked based on end_time - start_time
 	def hours
-		seconds_in_shift = end_time - start_t
+		seconds_in_shift = start_time - end_time
 		hours = seconds_in_shift/3600
 		return hours
 	end
