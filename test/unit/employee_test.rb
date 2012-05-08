@@ -69,6 +69,7 @@ class EmployeeTest < ActiveSupport::TestCase
 	  @benji = FactoryGirl.create(:employee, :first_name => "Benji", :last_name => "Samson")
 	  @old_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 2.years.ago.to_date, :end_date => 1.year.ago.to_date)
 	  @recent_assign_benji = FactoryGirl.create(:assignment, :employee => @benji, :store => @cmu, :start_date => 1.year.ago.to_date, :end_date => 1.month.ago.to_date)
+      
       # assign a few shifts (to test shift_hours_worked method)
       # for ed
       @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => Date.yesterday, :start_time => 1.day.ago)

@@ -39,12 +39,37 @@ class StoreTest < ActiveSupport::TestCase
   
   # Establish context
   # Testing other methods with a context
-  context "Creating three stores" do
+  context "Creating three stores with two employees and some shifts" do
     # create the objects I want with factories
     setup do 
+      # stores
       @cmu = FactoryGirl.create(:store)
       @hazelwood = FactoryGirl.create(:store, :name => "Hazelwood", :active => false)
       @oakland = FactoryGirl.create(:store, :name => "Oakland", :phone => "412-268-8211")
+      
+      # employees
+      @ed = FactoryGirl.create(:employee)
+      @cindy = FactoryGirl.create(:employee, :first_name => "Cindy", :last_name => "Crawford", :ssn => "084-35-9822", :date_of_birth => 17.years.ago.to_date)
+      @john = FactoryGirl.create(:employee, :first_name => "John", :last_name => "Johnson")
+      @kathryn = FactoryGirl.create(:employee, :first_name => "Kathryn", :last_name => "Janeway", :role => "manager", :date_of_birth => 30.years.ago.to_date)
+      
+      # some assignments (all current)
+      @assign_ed = FactoryGirl.create(:assignment, :employee => @ed, :store => @cmu, :end_date => nil)
+      @assign_cindy = FactoryGirl.create(:assignment, :employee => @cindy, :store => @cmu, :end_date => nil)
+      @assign_john = FactoryGirl.create(:assignment, :employee => @john, :store => @cmu, :end_date => nil)
+      @assign_kathryn = FactoryGirl.create(:assignment, :employee => @kathryn, :store => @cmu, :end_date => nil)
+	  
+      # assign a few shifts (to test shift_hours_worked method)
+      # for ed
+      @yesterdayShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => Date.yesterday, :start_time => 1.day.ago)
+      @lastWeekShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
+      @lastMonthShift = FactoryGirl.create(:shift, :assignment => @assign_ed, :date => 30.days.ago.to_date, :start_time => 30.days.ago)
+      # for john johnson
+      @john1 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 7.days.ago.to_date, :start_time => 7.days.ago)
+      @john2 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 8.days.ago.to_date, :start_time => 8.days.ago)
+      @john3 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 9.days.ago.to_date, :start_time => 9.days.ago)
+      @john4 = FactoryGirl.create(:shift, :assignment => @assign_john, :date => 19.days.ago.to_date, :start_time => 19.days.ago)
+      
     end
     
     # and provide a teardown method as well
@@ -115,6 +140,10 @@ class StoreTest < ActiveSupport::TestCase
 	
     # test the shift_hours_worked method
     should "show that the shift_hours_worked method works" do
+        # for default (14 days, 2 weeks)
+        assert_equal 15, @cmu.shift_hours_worked
+        # for custom number of days
+        assert_equal 21, @cmu.shift_hours_worked(30)
     end
     
 end # context
