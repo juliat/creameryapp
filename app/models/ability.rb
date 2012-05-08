@@ -14,10 +14,20 @@ class Ability
         # managers can access and edit
         # - their information
         # - their employees' information
-        can [:show, :update], Employee do |employee|
+        can [:read, :update], Employee do |employee|
             user_store = user.employee.current_assignment.store
-            (employee.id == user.employee_id) || (user_store.current_employees.include?(employee))
+            unless user_store.nil?
+                (employee.id == user.employee_id) || (user_store.current_employees.include?(employee))
+            else
+                (employee.id == user.employee_id)
+            end
         end
+        
+        # can view their own shift details
+        can :show, Shift do |shift|
+            shift.assignment.employee.id == user.employee_id
+        end
+        
         cannot :create, Employee
         cannot :destroy, Employee
                 

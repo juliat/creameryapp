@@ -6,9 +6,11 @@
 <div class="page-buttons">
 	<%= raw custom_button("employee", "edit", edit_employee_path(@employee), "Edit Employee") %>
 	<%= link_to "View All Employees", employees_path, :class => "view_all btn btn-large" %>
-	<%= link_to "Delete Employee", @employee, 
-		:confirm => 'Are you sure you want to delete this employee?', 
-		:method => :delete, :class => "delete btn btn-danger btn-small" %>
+	<% unless current_user.role == "manager" %>
+		<%= link_to "Delete Employee", @employee, 
+			:confirm => 'Are you sure you want to delete this employee?', 
+			:method => :delete, :class => "delete btn btn-danger btn-small" %>
+	<% end %>
 </div>
 
 <div class="employee_data">		
