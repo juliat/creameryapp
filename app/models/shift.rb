@@ -3,18 +3,12 @@ class Shift < ActiveRecord::Base
 	# Validations
 	# ====================================================================
 	# a shift must have an associated assignment, a date, and a start time
-	validates_presence_of :assignment_id, :start_time
-	
-	# validate date (including its presence)
-	validates_date :date, :allow_blank => false
-	
-	# validate that (if it is given) the end time is after the start time
-	validates_time :end_time, :allow_blank => true
-	# timeliness :after breaks (has to do with internationalization, from what I can tell)
-	# so using custom validation
-	validate :end_time_after_start_time
-	
-	# a shift can only be added to a current assignment
+	validates_date :date, :on_or_after => lambda { :assignment_starts }, :on_or_after_message => "must be on or after the start of the assignment"
+	# validates_date :date, :on_or_after => lambda { self.assignment.start_date.to_date }, :on_or_after_message => "must be on or after the start of the assignment"
+	validates_time :start_time #, :between => [Time.local(2000,1,1,11,0,0), Time.local(2000,1,1,23,0,0)]
+	validates_time :end_time, :after => :start_time, :allow_blank => true
+	validates_numericality_of :assignment_id, :only_integer => true, :greater_than => 0
+  	# a shift can only be added to a current assignment
 	validate :associated_assignment_is_active
 	
 
@@ -57,10 +51,10 @@ class Shift < ActiveRecord::Base
 	scope :for_employee, lambda{|employee_id| joins(:assignment).where("employee_id = ?", employee_id) }
 	
 	# past: returns all shifts which have a date in the past
-	scope :past, where("start_time < ?", Date.today.to_time)
+	scope :past, where('date < ?', Date.today)
 	
 	# upcoming: returns all shifts which have a date in the present or future
-	scope :upcoming, where("start_time >= ?", Date.today.to_time)
+	scope :upcoming, where('date >= ?', Date.today)
 	
 	# for_next_days: returns all the upcoming shifts in the next x days
 	# parameter - x
@@ -90,7 +84,7 @@ class Shift < ActiveRecord::Base
 	def completed?
 		# if there are no jobs associated with this shift, then it is not 
 		# completed and this should return false
-		return !(self.jobs.empty?)
+		return self.shift_jobs.count > 0
 	end
 	
 	# Helper Methods
@@ -110,18 +104,10 @@ class Shift < ActiveRecord::Base
 	# Custom Validation Methods
 	private
 	def associated_assignment_is_active
-		# get all active assignments
-		active_assignments = Assignment.current.map{|assignment| assignment.id}
-		# check if this job's assignment is in the list
-		return active_assignments.include?(self.assignment_id)
-	end
-	def end_time_after_start_time
-		if end_time.nil?
-			return true
+		unless self.assignment.nil? || self.assignment.end_date.nil?
+			errors.add(:assignment_id, "is not a current assignment at the creamery")
 		end
-		return end_time > start_time
 	end
-	
 		
 	# Callback Methods
 	# ====================================================================

@@ -2,7 +2,7 @@
 	<h1 class="page_label"><span>Store Details:</span> <%= @store.name %> Store </h1>
 	<div id ="action_buttons">
 		 <%= link_to "View All Stores", stores_path, :class =>"view_all store btn btn-info"   %>
-		 <%= custom_button("store", "edit", edit_store_path(store), "Edit Store") %>
+		 <%= raw custom_button("store", "edit", edit_store_path(@store), "Edit Store") %>
 		 <%= link_to "Delete Store", @store, :confirm => 'Are you sure?', :method => :delete, :class =>"delete store btn btn-danger" %>
 	</div>
 	<div class="row">
