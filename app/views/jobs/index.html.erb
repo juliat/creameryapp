@@ -1,7 +1,15 @@
 <h1>All Jobs</h1>
-<%= raw custom_button("job", "add", "New Job") %>
+<%= raw custom_button("job", "new", new_job_path, "New Job") %>
 <ul>
+	<table>
 	<% for job in @jobs %>
-	<li><h3><%= job.name %></h3><p><%= job.description %></p></li>
+		<tr>
+			<th><%= job.name %></th>
+			<td><%= job.description %></td>
+			<td><%= link_to "Edit", edit_job_path(job), :class => 'btn btn-mini' %>
+			<%= link_to "Remove", job_path(job), :method => :delete, :confirm => 'Are you sure you want to delete this job?', :class => 'btn btn-mini btn-danger' %>
+			</td>
+		</tr>
 	<% end %>
+	</table>
 </ul>

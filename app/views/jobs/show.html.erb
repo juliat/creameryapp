@@ -1,5 +1,6 @@
 <h1>Job Details</h1>
-<table>
+<%= raw custom_button("job", "edit", edit_job_path(@job), "Edit Job") %>
+<table class="table">
 	<tr>
 		<th>Active</th>
 		<td><%= @job.active ? "yes" : "no" %></td>
