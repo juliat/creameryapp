@@ -18,12 +18,10 @@ class ShiftsController < ApplicationController
 
 	def edit
 		@shift = Shift.find(params[:id])
-		@shift.date = humanize_date(@shift.date)
 	end
 
 	def create
 		@shift = Shift.new(params[:shift])
-		@shift.date = computerize_date(params[:shift][:date])
 		if @shift.save
 			# if saved to database
 			flash[:notice] = "Successfully created this shift."
@@ -36,7 +34,6 @@ class ShiftsController < ApplicationController
 
 	def update
 		@shift = Shift.find(params[:id])
-		@shift.date = computerize_date(params[:shift][:date])
 		if @shift.update_attributes(params[:shift])
 			flash[:notice] = "Successfully updated this shift. #{@shift.date}"
 			redirect_to @shift
