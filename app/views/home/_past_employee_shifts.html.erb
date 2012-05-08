@@ -10,10 +10,12 @@
 			</thead>
 			<tbody>
 				<% for shift in @shifts.past %>
-				<td><%= humanize_date(shift.date) %></td>
-				<td><%= link_to shift.name, shift_path(shift) %></td>
-				<td><%= shift.hours %></td>
-				<td><%= shift.store.name %></td>
+				<tr>
+					<td><%= humanize_date(shift.date) %></td>
+					<td><%= link_to shift.name, shift_path(shift) %></td>
+					<td><%= shift.hours %></td>
+					<td><%= shift.store.name %></td>
+				</tr>
 				<% end %>
 			</tbody>
 		</table>

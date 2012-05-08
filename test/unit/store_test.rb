@@ -95,8 +95,6 @@ class StoreTest < ActiveSupport::TestCase
       @john2.destroy
       @john3.destroy
       @john4.destroy
-      
-      
     end
   
     # now run the tests:
