@@ -74,7 +74,7 @@ class Shift < ActiveRecord::Base
 	# hours method returns number of hours worked based on end_time - start_time
 	def hours
 		seconds_in_shift = start_time - end_time
-		hours = seconds_in_shift/3600
+		hours = seconds_in_shift.abs/3600
 		return hours
 	end
 	
