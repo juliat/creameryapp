@@ -31,7 +31,7 @@ class ShiftTest < ActiveSupport::TestCase
       # Kathryn
       @kathryn = FactoryGirl.create(:employee, :first_name => "Kathryn", :last_name => "Janeway", :role => "manager", :date_of_birth => 30.years.ago.to_date)
       @assign_kathryn = FactoryGirl.create(:assignment, :employee => @kathryn, :store => @oakland, :start_date => 10.months.ago.to_date, :end_date => nil, :pay_level => 3)
-      @shift_kathryn = FactoryGirl.create(:shift, :assignment => @assign_kathryn, :date => 1.week.ago)
+      @shift_kathryn = FactoryGirl.create(:shift, :assignment => @assign_kathryn, :date => Date.today)
       @cashier = FactoryGirl.create(:job)
       @mopping = FactoryGirl.create(:job, :name => "Mopping")
       @sj_kath_cashier = FactoryGirl.create(:shift_job, :shift => @shift_kathryn, :job => @cashier)
@@ -39,7 +39,7 @@ class ShiftTest < ActiveSupport::TestCase
       @ralph = FactoryGirl.create(:employee, :first_name => "Ralph", :last_name => "Wilson", :date_of_birth => 17.years.ago.to_date)
       @assign_ralph = FactoryGirl.create(:assignment, :employee => @ralph, :store => @oakland, :start_date => 10.months.ago.to_date, :end_date => nil, :pay_level => 3)
       @shift_ralph_1 = FactoryGirl.create(:shift, :assignment => @assign_ralph, :date => 3.days.ago.to_date)
-      @shift_ralph_2 = FactoryGirl.create(:shift, :assignment => @assign_ralph, :date => 2.days.ago.to_date, :start_time => Time.local(2000,1,1,12,0,0,), :end_time => Time.local(2000,1,1,16,0,0,))
+      @shift_ralph_2 = FactoryGirl.create(:shift, :assignment => @assign_ralph, :date => 2.days.ago.to_date, :start_time => Time.local(2000,1,1,12,0,0,))
       @shift_ralph_3 = FactoryGirl.create(:shift, :assignment => @assign_ralph, :date => 1.day.ago.to_date, :start_time => Time.local(2000,1,1,13,0,0,), :end_time => Time.local(2000,1,1,14,0,0,))
       @shift_ralph_4 = FactoryGirl.create(:shift, :assignment => @assign_ralph, :date => Date.today, :start_time => Time.local(2000,1,1,13,0,0,))
       @sj_ralph_cashier = FactoryGirl.create(:shift_job, :shift => @shift_ralph_1, :job => @cashier)
@@ -88,7 +88,7 @@ class ShiftTest < ActiveSupport::TestCase
     should "show that the shift factories are properly created" do
       assert_equal "Oakland", @shift_kathryn.store.name
       assert_equal "Janeway, Kathryn", @shift_kathryn.employee.name
-      assert_equal "This was a great shift and enjoyed by all who chose to partake.", @shift_kathryn.notes
+      assert_equal "During this shift, velociraptors stormed the creamery. The employees valiantly battled with these ferocious dinosaurs, using lightsabers, phasers, and mops.", @shift_kathryn.notes
       assert_equal Date.today, @shift_kathryn.date
       assert_equal "11:00:00", @shift_kathryn.start_time.strftime("%H:%M:%S")
       assert_equal "14:00:00", @shift_kathryn.end_time.strftime("%H:%M:%S")
@@ -239,6 +239,10 @@ class ShiftTest < ActiveSupport::TestCase
     
     should "have a scope to order by employee name" do
       assert_equal ['Crawford, Cindy','Gruberman, Ed','Janeway, Kathryn','Wilson, Ralph','Wilson, Ralph','Wilson, Ralph','Wilson, Ralph'], Shift.by_employee.map{|s| s.employee.name}
+    end
+    
+    should "have a method which returns a shifts name as the start time - end time in human readable form" do
+      assert_equal "12:00 PM -  3:00 PM", @shift_ralph_2.name
     end
     
   end

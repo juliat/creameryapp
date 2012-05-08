@@ -1,5 +1,12 @@
 Notes:
-- Gems I'm using:
--- jquery-datatables-rails
--- gmaps4rails
+----
+Gems I'm using:
+*	jquery-datatables-rails
+*	gmaps4rails
+
+Models That Don't have 100% Test Coverage (and why)
+*	User
+	Could not write a test for password_reset method because it uses mailers.
+*	Store
+	Couldn't trigger geocoding callback error in tests.
 

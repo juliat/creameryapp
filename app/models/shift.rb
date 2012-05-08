@@ -1,24 +1,26 @@
 class Shift < ActiveRecord::Base
-  # Relationships
-  has_many :shift_jobs
-  has_many :jobs, :through => :shift_jobs
-  belongs_to :assignment
-  has_one :store, :through => :assignment
-  has_one :employee, :through => :assignment
+ 
+	# Validations
+	# ===============================================================================
+	validates_date :date, :on_or_after => lambda { :assignment_starts }, 
+				   :on_or_after_message => "must be on or after the start of the assignment",
+				   :invalid_date_message => "is not a valid date"
+	# validates_date :date, :on_or_after => lambda { self.assignment.start_date.to_date }, :on_or_after_message => "must be on or after the start of the assignment"
+	validates_time :start_time #, :between => [Time.local(2000,1,1,11,0,0), Time.local(2000,1,1,23,0,0)]
+	validates_time :end_time, :after => :start_time, :allow_blank => true
+	validate :assignment_must_be_current
+	validates_numericality_of :assignment_id, :only_integer => true, :greater_than => 0
   
-  # Validations
-  validates_date :date, :on_or_after => lambda { :assignment_starts }, 
-				 :on_or_after_message => "must be on or after the start of the assignment",
-				 :invalid_date_message => "is not a valid date"
-  # validates_date :date, :on_or_after => lambda { self.assignment.start_date.to_date }, :on_or_after_message => "must be on or after the start of the assignment"
-  validates_time :start_time #, :between => [Time.local(2000,1,1,11,0,0), Time.local(2000,1,1,23,0,0)]
-  validates_time :end_time, :after => :start_time, :allow_blank => true
-  validate :assignment_must_be_current
-  validates_numericality_of :assignment_id, :only_integer => true, :greater_than => 0
-  
+	# Relationships
+	# ===============================================================================
+	has_many :shift_jobs
+	has_many :jobs, :through => :shift_jobs
+	belongs_to :assignment
+	has_one :store, :through => :assignment
+	has_one :employee, :through => :assignment
   
 	# Scopes
-	# ====================================================================
+	# ===============================================================================
 	# completed: returns all shifts in the system that have at least one
 	# job associated with them
 	scope :completed, joins(:shift_jobs).group(:shift_id)
@@ -83,9 +85,10 @@ class Shift < ActiveRecord::Base
 		return "#{start_time.strftime("%l:%M %p")} - #{end_time.strftime("%l:%M %p")}"
 	end
 
-	# Callback Methods
+	# Callback and validation Methods
 	# ====================================================================
-	# this callback will automatically set the end time of a new shif to three 
+	
+	# this callback will automatically set the end time of a new shift to three 
 	# hours after the start time
 	before_create :set_shift_end_time
   
