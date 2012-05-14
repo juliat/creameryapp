@@ -10,10 +10,12 @@
 			</thead>
 			<tbody>
 				<% for shift in @shifts.upcoming %>
-				<td><%= humanize_date(shift.date) %></td>
-				<td><%= shift.name %></td>
-				<td><%= shift.hours %></td>
-				<td><%= shift.store.name %></td>
+				<tr>
+					<td><%= humanize_date(shift.date) %></td>
+					<td><%= shift.name %></td>
+					<td><%= shift.hours %></td>
+					<td><%= shift.store.name %></td>
+				</tr>
 				<% end %>
 			</tbody>
 		</table>
