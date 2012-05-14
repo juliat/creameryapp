@@ -1,4 +1,4 @@
-	<%= f.association :assignment, :prompt => "Assignment", 
+	<%= f.association :assignment, :collection => Assignment.by_store,	 :prompt => "Assignment", 
 					  :label_method => lambda{|label| label.store.name + " Store | " + label.employee.name},
 					  :input_html => {:class => "span4"}  %>
 	<%= f.input :date, :as => :date, :start_year => Date.today.year - 3,

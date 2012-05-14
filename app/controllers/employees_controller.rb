@@ -9,6 +9,7 @@ class EmployeesController < ApplicationController
 			@employees = Employee.alphabetical
 		elsif current_user.role == "manager"
 			@employees = current_user.employee.current_assignment.store.current_employees
+			@store = current_user.employee.current_assignment.store
 		end
 	end
 	

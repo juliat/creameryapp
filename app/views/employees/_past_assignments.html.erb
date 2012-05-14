@@ -9,7 +9,13 @@
 	</tr>
 <% for assignment in @past_assignments %>
   <tr>
-	<td><%=  link_to "#{assignment.store.name}", store_path(assignment.store) %></td>
+	<td>
+	<% if current_user.role == "admin" %>	
+		<%=  link_to "#{assignment.store.name}", store_path(assignment.store) %>
+	<% else %>
+		<%= assignment.store.name %>
+	<% end %>
+	</td>
 	<td><%= assignment.employee.role.capitalize %></td>
 	<td><%= assignment.pay_level %></td>
 	<td><%= assignment.start_date.strftime("%m/%d/%Y")  %></td>

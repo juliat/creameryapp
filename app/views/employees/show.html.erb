@@ -18,15 +18,26 @@
 		<% @most_recent_assignment.employee.role.start_with?("e") ? article = "an" : article = "a"%>
 		
 		<h3>Currently <%= article + " " + @most_recent_assignment.employee.role %> at the 
-		<%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %></h3>
+		<% if current_user.role == "admin" %>
+			<%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store)%>
+		<% else %>
+			<%= @most_recent_assignment.store.name %> Store
+		<% end %>
+		</h3>
 		
 	<% elsif (@most_recent_assignment.nil? == false) %>
 		<h3>Was a <%= @most_recent_assignment.employee.role %> at the 
-		<%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %> 
+		<% if current_user.role == "admin" %>
+			<%= link_to @most_recent_assignment.store.name+" Store", store_path(@most_recent_assignment.store) %>
+		<% else %>
+			<%= @most_recent_assignment.store.name %> Store
+		<% end %>
 		until <%= humanize_date(@most_recent_assignment.end_date) %>.</h3>
 	<% else %>
 		<h3><%= @employee.proper_name %> has no current assignment. 
-		<%= link_to("Click here to create one.", new_assignment_path(:employee_id => @employee.id)) %></h3>
+		<% if current_user.role == "admin" %>
+			<%= link_to("Click here to create one.", new_assignment_path(:employee_id => @employee.id)) %></h3>
+		<% end %>
 	<% end %>
 	
 	<table class="details">
@@ -62,9 +73,15 @@
 		<tr>
 			<th>User Account:</th>
 			<% unless @user.nil? %>
-				<td><%= @user.email %><br><%= link_to "Edit Account", edit_user_path(@user), :class => "btn btn-info btn-mini" %></td>
+				<td><%= @user.email %><br><% if current_user.role == "admin" %>
+				<%= link_to "Edit Account", edit_user_path(@user), :class => "btn btn-info btn-mini" %>
+				<% end %></td>
 			<% else %>
-				<td><%= @employee.proper_name %> has no account. <%= link_to "Click to create one!", new_user_path(:employee_id => @employee.id) %></td>
+				<td><%= @employee.proper_name %> has no account. 
+				<% if current_user.role == "admin" %>
+					<%= link_to "Click to create one!", new_user_path(:employee_id => @employee.id) %>
+				<% end %>
+				</td>
 			<% end %>
 		</tr>
 		<% end %>		
