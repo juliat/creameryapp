@@ -20,12 +20,10 @@ gem 'less-rails'
 gem 'sass-rails', '~> 3.2.3'
 # using for fake data on heroku
 gem 'populator3'
-
+gem 'faker'
 
 # Gems used only in development
 group :development do
-
-    gem 'faker'
     gem 'hirb'
     gem 'wirble'
 end
