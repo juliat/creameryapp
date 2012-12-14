@@ -48,9 +48,11 @@ group :assets do
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer'
-
+  gem 'therubyracer', '~> 0.11.0beta5'
+  group :libv8 do
+    gem 'libv8', "~> 3.11.8"
+  end
+  
   gem 'uglifier', '>= 1.0.3'
   
   gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'

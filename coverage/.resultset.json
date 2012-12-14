@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/julia/CMU/272/creamery/app/helpers/application_helper.rb": [
+      "/Users/julia/creamery/app/helpers/application_helper.rb": [
         1,
         null,
         1,
@@ -52,12 +52,12 @@
         null,
         null
       ],
-      "/home/julia/CMU/272/creamery/app/helpers/password_resets_helper.rb": [
+      "/Users/julia/creamery/app/helpers/password_resets_helper.rb": [
         1,
         null
       ]
     },
-    "timestamp": 1336520145
+    "timestamp": 1355454545
   },
   "Unit Tests": {
     "coverage": {
