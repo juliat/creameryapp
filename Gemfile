@@ -14,6 +14,8 @@ gem 'geokit'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'gmaps4rails'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+
 
 # Gems used only in development
 group :development do
@@ -55,7 +57,6 @@ group :assets do
   
   gem 'uglifier', '>= 1.0.3'
   
-  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
   gem 'jquery-ui-rails'
   
 end
