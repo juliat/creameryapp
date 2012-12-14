@@ -18,10 +18,13 @@ gem 'gmaps4rails'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'less-rails'
 gem 'sass-rails', '~> 3.2.3'
+# using for fake data on heroku
+gem 'populator3'
+
 
 # Gems used only in development
 group :development do
-    gem 'populator3'
+
     gem 'faker'
     gem 'hirb'
     gem 'wirble'
