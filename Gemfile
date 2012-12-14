@@ -16,6 +16,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 gem 'gmaps4rails'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'less-rails'
+gem 'sass-rails', '~> 3.2.3'
 
 # Gems used only in development
 group :development do
@@ -45,7 +46,6 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails'
 
