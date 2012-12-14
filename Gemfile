@@ -15,7 +15,7 @@ gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'gmaps4rails'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-
+gem 'less-rails'
 
 # Gems used only in development
 group :development do
@@ -47,7 +47,6 @@ end
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'less-rails'
   gem 'twitter-bootstrap-rails'
 
   gem 'therubyracer', '~> 0.11.0beta5'
@@ -56,7 +55,6 @@ group :assets do
   end
   
   gem 'uglifier', '>= 1.0.3'
-  
   gem 'jquery-ui-rails'
   
 end
