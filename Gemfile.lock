@@ -127,6 +127,7 @@ GEM
     multi_json (1.2.0)
     nifty-generators (0.4.6)
     nokogiri (1.5.2)
+    pg (0.14.1)
     polyglot (0.3.3)
     populator3 (0.2.7)
     rack (1.4.1)
@@ -190,7 +191,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.5)
     tconsole (1.1.1)
       minitest (~> 2.11.0)
       term-ansicolor (~> 1.0.7)
@@ -245,6 +245,7 @@ DEPENDENCIES
   nested_form!
   nifty-generators
   nokogiri
+  pg
   populator3
   rails (= 3.2.1)
   sass-rails (~> 3.2.3)
@@ -252,7 +253,6 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   simplecov
-  sqlite3
   tconsole (= 1.1.1)
   therubyracer (~> 0.11.0beta5)
   twitter-bootstrap-rails
