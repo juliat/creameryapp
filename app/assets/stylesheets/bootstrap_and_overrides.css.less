@@ -12,9 +12,6 @@
 @fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
 @fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
 
-// Font Awesome
-@import "fontawesome";
-
 // Your custom LESS stylesheets goes here
 //
 // Since bootstrap was imported above you have access to its mixins which
@@ -70,19 +67,30 @@ body {
 	
 	#header {
 		.navbar {
-			.nav > li > a {
-				text-shadow: none;
+			.navbar-inner {
+				padding-top: 1em;
+			}
+			:first-child > li > a {
+				padding-right: 2em;
+				&:hover {
+					color: white;
+				}
 			}
 			.nav {
 				margin-top: 0.5em;
 			}
-			#admin-nav-list li{
+			.nav li {
 				padding-left: 0.8em;
+				a {
+					text-shadow: none;
+					font-size: 1.15em;
+				}
 			}
 			.brand {
 				padding-bottom: 2px;
 				 img {
 					width: 80%;
+					padding-left: 1em;
 				}
 			}
 		}

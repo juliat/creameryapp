@@ -1,3 +1,10 @@
+.alpha{
+  /* Fallback for web browsers that doesn't support RGBa */
+  background: rgb(0, 0, 0);
+  /* RGBa with 0.4 opacity */
+  background: rgba(0, 0, 0, 0.4);
+}
+
 .box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
   box-shadow: @arguments;
   -moz-box-shadow: @arguments;

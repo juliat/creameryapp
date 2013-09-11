@@ -88,7 +88,7 @@ class Store < ActiveRecord::Base
 	    # if the geocode requires was successful, use them to set the latitude and longitude
 	    self.latitude, self.longitude = coord.ll.split(',')
 	else
-	    errors.add_to_base("Error with geocoding")
+	    errors[:base] << "Error with geocoding"
 	end
     end
    
